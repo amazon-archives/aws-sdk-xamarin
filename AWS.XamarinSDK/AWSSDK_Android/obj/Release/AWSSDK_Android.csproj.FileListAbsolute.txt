@@ -1,0 +1,15 @@
+F:\Tara\Code Files\AWS.XamarinSDK\AWSSDK_Android\bin\Release\AWSSDK_XMOBILE.dll
+F:\Tara\Code Files\AWS.XamarinSDK\AWSSDK_Android\bin\Release\AWSSDK_XMOBILE.pdb
+F:\Tara\Code Files\AWS.XamarinSDK\AWSSDK_Android\bin\Release\AWSSDK_XMOBILE.AWSSDK_XMOBILE.apk
+F:\Tara\Code Files\AWS.XamarinSDK\AWSSDK_Android\bin\Release\AWSSDK_XMOBILE.AWSSDK_XMOBILE-Signed.apk
+F:\Tara\Code Files\AWS.XamarinSDK\AWSSDK_Android\obj\Release\AWSSDK_XMOBILE.dll
+F:\Tara\Code Files\AWS.XamarinSDK\AWSSDK_Android\obj\Release\AWSSDK_XMOBILE.pdb
+F:\Tara\Code Files\AWS.XamarinSDK\AWSSDK_Android\obj\Release\android\bin\AWSSDK_XMOBILE.AWSSDK_XMOBILE.apk
+F:\Tara\Code Files\AWS.XamarinSDK\AWSSDK_Android\obj\Release\res\values\strings.xml
+F:\Tara\Code Files\AWS.XamarinSDK\AWSSDK_Android\obj\Release\R.cs.flag
+F:\Tara\Code Files\AWS.XamarinSDK\AWSSDK_Android\obj\Release\uploadflags.txt
+F:\Tara\Code Files\AWS.XamarinSDK\AWSSDK_Android\bin\Release\System.Net.Http.Extensions.dll
+F:\Tara\Code Files\AWS.XamarinSDK\AWSSDK_Android\bin\Release\System.Net.Http.Primitives.dll
+F:\Tara\Code Files\AWS.XamarinSDK\AWSSDK_Android\bin\Release\System.Net.Http.Extensions.xml
+F:\Tara\Code Files\AWS.XamarinSDK\AWSSDK_Android\bin\Release\System.Net.Http.Primitives.xml
+F:\Tara\Code Files\AWS.XamarinSDK\AWSSDK_Android\obj\Release\AWSSDK_Android.csprojResolveAssemblyReference.cache
