@@ -13,7 +13,7 @@ using System;
 namespace ThirdParty.MD5
 {
 
-#if SILVERLIGHT
+#if SILVERLIGHT || PCL
     public class MD5Managed //: HashAlgorithm
 #else
 public class MD5Managed : MD5

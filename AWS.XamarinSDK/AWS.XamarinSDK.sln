@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AWSSDK_WP8", "AWSSDK_WP8\AW
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AWSSDK_Android", "AWSSDK_Android\AWSSDK_Android.csproj", "{4A459CB4-279E-4626-8ADC-BC8FAEF391B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AWSSDK_iOS", "AWSSDK_iOS\AWSSDK_iOS.csproj", "{ECD5D42F-3F92-4D7A-AD28-599C3F8E98A4}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{0EEF9775-2732-44CC-BE90-E66D73B2F179}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
@@ -18,7 +16,27 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{0EEF97
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AWSSDK_Core", "AWSSDK_Core\AWSSDK_Core.csproj", "{4E8016CD-33E3-4961-A954-119A623527D4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AWSSDK_iOS", "AWSSDK.iOS\AWSSDK_iOS.csproj", "{2509D641-F08E-4DED-A12D-855B056BE831}"
+EndProject
 Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tarathegeekgirl.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = AWSSDK.iOS\\AWSSDK_iOS.csproj
+		SccProjectName1 = AWSSDK.iOS
+		SccLocalPath1 = AWSSDK.iOS
+		SccProjectUniqueName2 = AWSSDK_Android\\AWSSDK_Android.csproj
+		SccProjectName2 = AWSSDK_Android
+		SccLocalPath2 = AWSSDK_Android
+		SccProjectUniqueName3 = AWSSDK_Core\\AWSSDK_Core.csproj
+		SccProjectName3 = AWSSDK_Core
+		SccLocalPath3 = AWSSDK_Core
+		SccProjectUniqueName4 = AWSSDK_WP8\\AWSSDK_WP8.csproj
+		SccProjectName4 = AWSSDK_WP8
+		SccLocalPath4 = AWSSDK_WP8
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|ARM = Debug|ARM
@@ -54,16 +72,6 @@ Global
 		{4A459CB4-279E-4626-8ADC-BC8FAEF391B7}.Release|ARM.ActiveCfg = Release|Any CPU
 		{4A459CB4-279E-4626-8ADC-BC8FAEF391B7}.Release|x64.ActiveCfg = Release|Any CPU
 		{4A459CB4-279E-4626-8ADC-BC8FAEF391B7}.Release|x86.ActiveCfg = Release|Any CPU
-		{ECD5D42F-3F92-4D7A-AD28-599C3F8E98A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ECD5D42F-3F92-4D7A-AD28-599C3F8E98A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ECD5D42F-3F92-4D7A-AD28-599C3F8E98A4}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{ECD5D42F-3F92-4D7A-AD28-599C3F8E98A4}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{ECD5D42F-3F92-4D7A-AD28-599C3F8E98A4}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{ECD5D42F-3F92-4D7A-AD28-599C3F8E98A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ECD5D42F-3F92-4D7A-AD28-599C3F8E98A4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ECD5D42F-3F92-4D7A-AD28-599C3F8E98A4}.Release|ARM.ActiveCfg = Release|Any CPU
-		{ECD5D42F-3F92-4D7A-AD28-599C3F8E98A4}.Release|x64.ActiveCfg = Release|Any CPU
-		{ECD5D42F-3F92-4D7A-AD28-599C3F8E98A4}.Release|x86.ActiveCfg = Release|Any CPU
 		{4E8016CD-33E3-4961-A954-119A623527D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4E8016CD-33E3-4961-A954-119A623527D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E8016CD-33E3-4961-A954-119A623527D4}.Debug|ARM.ActiveCfg = Debug|Any CPU
@@ -74,6 +82,16 @@ Global
 		{4E8016CD-33E3-4961-A954-119A623527D4}.Release|ARM.ActiveCfg = Release|Any CPU
 		{4E8016CD-33E3-4961-A954-119A623527D4}.Release|x64.ActiveCfg = Release|Any CPU
 		{4E8016CD-33E3-4961-A954-119A623527D4}.Release|x86.ActiveCfg = Release|Any CPU
+		{2509D641-F08E-4DED-A12D-855B056BE831}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2509D641-F08E-4DED-A12D-855B056BE831}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2509D641-F08E-4DED-A12D-855B056BE831}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{2509D641-F08E-4DED-A12D-855B056BE831}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{2509D641-F08E-4DED-A12D-855B056BE831}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2509D641-F08E-4DED-A12D-855B056BE831}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2509D641-F08E-4DED-A12D-855B056BE831}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2509D641-F08E-4DED-A12D-855B056BE831}.Release|ARM.ActiveCfg = Release|Any CPU
+		{2509D641-F08E-4DED-A12D-855B056BE831}.Release|x64.ActiveCfg = Release|Any CPU
+		{2509D641-F08E-4DED-A12D-855B056BE831}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
