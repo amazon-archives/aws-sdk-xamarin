@@ -1,0 +1,13 @@
+F:\Tara\Code Files\AWS.XamarinSDK\AWSSDK_Core\obj\Debug\AWSSDK_Core.csproj.App.config
+F:\Tara\Code Files\AWS.XamarinSDK\AWSSDK_Core\obj\Debug\AWSSDK_Core.csprojResolveAssemblyReference.cache
+F:\Tara\Code Files\AWS.XamarinSDK\AWSSDK_Core\bin\Debug\System.Net.Http.dll
+F:\Tara\Code Files\AWS.XamarinSDK\AWSSDK_Core\bin\Debug\System.Net.Http.Extensions.dll
+F:\Tara\Code Files\AWS.XamarinSDK\AWSSDK_Core\bin\Debug\System.Net.Http.Primitives.dll
+F:\Tara\Code Files\AWS.XamarinSDK\AWSSDK_Core\bin\Debug\System.Net.Http.xml
+F:\Tara\Code Files\AWS.XamarinSDK\AWSSDK_Core\bin\Debug\System.Net.Http.Extensions.xml
+F:\Tara\Code Files\AWS.XamarinSDK\AWSSDK_Core\bin\Debug\System.Net.Http.Primitives.xml
+F:\Tara\Code Files\AWS.XamarinSDK\AWSSDK_Core\bin\Debug\AWSSDK_XMOBILE.dll.config
+F:\Tara\Code Files\AWS.XamarinSDK\AWSSDK_Core\bin\Debug\AWSSDK_XMOBILE.dll
+F:\Tara\Code Files\AWS.XamarinSDK\AWSSDK_Core\bin\Debug\AWSSDK_XMOBILE.pdb
+F:\Tara\Code Files\AWS.XamarinSDK\AWSSDK_Core\obj\Debug\AWSSDK_XMOBILE.dll
+F:\Tara\Code Files\AWS.XamarinSDK\AWSSDK_Core\obj\Debug\AWSSDK_XMOBILE.pdb
