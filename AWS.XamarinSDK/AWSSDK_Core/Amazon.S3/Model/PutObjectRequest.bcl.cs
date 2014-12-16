@@ -18,8 +18,12 @@ using System.Xml.Serialization;
 using System.Text;
 using System.IO;
 
+
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
+using PCLStorage;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Amazon.S3.Model
 {
@@ -31,7 +35,25 @@ namespace Amazon.S3.Model
     {
         internal void SetupForFilePath()
         {
-            throw new NotImplementedException();
+           
+            
+            //this.InputStream = new FileStream(this.FilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
+
+            //*TEW: Code added to make IO available cross-plat in PCL
+            IFile file;
+            Func<Task> fileStream = async() => 
+            {
+                string dirPath = this.filePath.Substring(0, filePath.LastIndexOf(PortablePath.DirectorySeparatorChar) - 1);
+                file = await FileSystem.Current.GetFileFromPathAsync(this.FilePath);
+                this.InputStream =  await file.OpenAsync(FileAccess.Read);
+            };
+
+            fileStream();
+
+            if (string.IsNullOrEmpty(this.Key))
+            {
+                this.Key = Path.GetFileName(this.FilePath);
+            }
         }
     }
 }

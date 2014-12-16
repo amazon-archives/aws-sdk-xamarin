@@ -19,8 +19,9 @@
  *
  */
 
+using Amazon.DynamoDBv2;
+using Amazon.DynamoDBv2.DataModel;
 using System;
-
 using System.Collections.Generic;
 
 namespace Amazon.Util
@@ -70,7 +71,7 @@ namespace Amazon.Util
             ProfileName = AWSConfigs._awsProfileName;
             ProfilesLocation = AWSConfigs._awsAccountsLocation;
 
-#if !WIN_RT && !WINDOWS_PHONE && !MOBILE
+#if !WIN_RT && !WINDOWS_PHONE &&!MOBILE
             var root = AWSConfigs.GetSection<AWSSection>(_rootAwsSectionName);
 
             Logging.Configure(root.Logging);
@@ -210,6 +211,11 @@ namespace Amazon.Util
     public partial class DynamoDBConfig
     {
         /// <summary>
+        /// Conversion schema to use for converting .NET types to DynamoDB types.
+        /// </summary>
+        internal ConversionSchema ConversionSchema { get; set; }
+
+        /// <summary>
         /// Settings for DynamoDBContext.
         /// </summary>
         public DynamoDBContextConfig Context { get; private set; }
@@ -217,6 +223,7 @@ namespace Amazon.Util
         internal DynamoDBConfig()
         {
             Context = new DynamoDBContextConfig();
+            ConversionSchema = ConversionSchema.V1;
         }
     }
 

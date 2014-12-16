@@ -17,9 +17,9 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
 
-#if (WIN_RT || WINDOWS_PHONE || MOBILE)
+//#if (WIN_RT || WINDOWS_PHONE)
 using Amazon.MissingTypes;
-#endif
+//#endif
 
 namespace ThirdParty.Json.LitJson
 {

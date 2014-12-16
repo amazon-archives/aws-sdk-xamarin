@@ -54,14 +54,14 @@ namespace Amazon.Runtime.Internal.Util
 
                 this.partSize = partSize;
 
-#if !WIN_RT && !WINDOWS_PHONE
+//#if !WIN_RT && !WINDOWS_PHONE
 
                 var encryptionStream = BaseStream as AESEncryptionUploadPartStream;
                 if (encryptionStream != null && (partSize % 16) != 0)
                 {
                     this.partSize = partSize - (partSize % EncryptUploadPartStream.InternalEncryptionBlockSize);
                 }
-#endif
+//#endif
             }
         }
 
@@ -153,28 +153,33 @@ namespace Amazon.Runtime.Internal.Util
         {
             throw new NotSupportedException();
         }
-
-#if !(WIN_RT || MOBILE)
-        public  IAsyncResult BeginRead(byte[] buffer, int offset, int count, AsyncCallback callback, Object state)
+        
+        public IAsyncResult BeginRead(byte[] buffer, int offset, int count, AsyncCallback callback, Object state)
         {
             throw new NotSupportedException();
         }
 
-        public  IAsyncResult BeginWrite(byte[] buffer, int offset, int count, AsyncCallback callback, Object state)
-        {
-            throw new NotSupportedException();
-        }
+//#if !WIN_RT
+       //public override IAsyncResult BeginRead(byte[] buffer, int offset, int count, AsyncCallback callback, Object state)
+       // {
+       //     throw new NotSupportedException();
+       // }
 
-        public override int EndRead(IAsyncResult asyncResult)
-        {
-            throw new NotImplementedException();
-        }
+       // public override IAsyncResult BeginWrite(byte[] buffer, int offset, int count, AsyncCallback callback, Object state)
+       // {
+       //     throw new NotSupportedException();
+       // }
 
-        public override void EndWrite(IAsyncResult asyncResult)
-        {
-            throw new NotImplementedException();
-        }
-#endif
+       // public override int EndRead(IAsyncResult asyncResult)
+       // {
+       //     throw new NotImplementedException();
+       // }
+
+       // public override void EndWrite(IAsyncResult asyncResult)
+       // {
+       //     throw new NotImplementedException();
+       // }
+//#endif
 
         #endregion
     }

@@ -34,17 +34,17 @@ namespace Amazon.Runtime.Internal
         {
             WebExceptionStatus.ConnectFailure,
 
-#if !(WIN_RT || PCL) // These statuses are not available on WinRT
-            WebExceptionStatus.ConnectionClosed,
-            WebExceptionStatus.KeepAliveFailure,
-            WebExceptionStatus.NameResolutionFailure,
-            WebExceptionStatus.ReceiveFailure,
-#else // WinRT does not expose the status as public enums so we hard code the status numbers.
+//#if (!WIN_RT) // These statuses are not available on WinRT
+//            WebExceptionStatus.ConnectionClosed,
+//            WebExceptionStatus.KeepAliveFailure,
+//            WebExceptionStatus.NameResolutionFailure,
+//            WebExceptionStatus.ReceiveFailure,
+//#else // WinRT does not expose the status as public enums so we hard code the status numbers.
             (WebExceptionStatus)8,
             (WebExceptionStatus)12,
             (WebExceptionStatus)1,
             (WebExceptionStatus)3,
-#endif
+//#endif
         };
 
         // Set of AWS error codes to retry on.
@@ -114,13 +114,14 @@ namespace Amazon.Runtime.Internal
             if (exception is IOException)
             {
 
-#if !(WIN_RT ||PCL)   // ThreadAbortException is not available on WIN RT
+//#if (!WIN_RT)   // ThreadAbortException is not available on WIN RT
 
                 // Don't retry IOExceptions that are caused by a ThreadAbortException
-                if (IsInnerException<ThreadAbortException>(exception))
-                    return false;
+                
+ //               if (IsInnerException<ThreadAbortException>(exception))
+ //                   return false;
 
-#endif
+//#endif
                 // Retry all other IOExceptions
                 return true;
             }

@@ -39,16 +39,26 @@ namespace Amazon.Runtime.Internal.Util
 
         #region Overrides
 
-#if !WIN_RT
         public IAsyncResult BeginWrite(byte[] buffer, int offset, int count, AsyncCallback callback, object state)
         {
             throw new NotSupportedException();
         }
+
         public void EndWrite(IAsyncResult asyncResult)
         {
             throw new NotSupportedException();
         }
-#endif
+
+//#if !WIN_RT
+        //public override IAsyncResult BeginWrite(byte[] buffer, int offset, int count, AsyncCallback callback, object state)
+        //{
+        //    throw new NotSupportedException();
+        //}
+        //public override void EndWrite(IAsyncResult asyncResult)
+        //{
+        //    throw new NotSupportedException();
+        //}
+//#endif
 
         public override bool CanRead
         {

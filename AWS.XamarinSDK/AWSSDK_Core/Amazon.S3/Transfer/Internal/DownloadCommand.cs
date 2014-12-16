@@ -40,13 +40,15 @@ namespace Amazon.S3.Transfer.Internal
         // Set of status codes to retry on.
         static ICollection<WebExceptionStatus> WebExceptionStatusesToRetryOn = new HashSet<WebExceptionStatus>
         {
-            WebExceptionStatus.ConnectFailure,
+            WebExceptionStatus.ConnectFailure
+            
+            
 
-#if !(WIN_RT || PCL) // These statuses are not available on WinRT
-            WebExceptionStatus.ConnectionClosed,
-            WebExceptionStatus.KeepAliveFailure,
-            WebExceptionStatus.NameResolutionFailure,            
-#endif
+//#if (!WIN_RT) // These statuses are not available on WinRT
+//            WebExceptionStatus.ConnectionClosed,
+//            WebExceptionStatus.KeepAliveFailure,
+//            WebExceptionStatus.NameResolutionFailure,            
+//#endif
         };
 
         static Logger _logger = Logger.GetLogger(typeof(TransferUtility));
@@ -93,17 +95,17 @@ namespace Amazon.S3.Transfer.Internal
             var canRetry = true;
             if (exception is IOException)
             {
-#if !(WIN_RT || PCL)
+//#if (!WIN_RT)
                 while (exception.InnerException != null)
                 {
-                    if (exception.InnerException is ThreadAbortException)
-                    {
-                        _logger.Error(exception, "Encountered a IOException caused by a ThreadAbortException.");
-                        return false;
-                    }
+                    //if (exception.InnerException is ThreadAbortException)
+                    //{
+                    //    _logger.Error(exception, "Encountered a IOException caused by a ThreadAbortException.");
+                    //    return false;
+                    //}
                     exception = exception.InnerException;
                 }
-#endif
+//#endif
                 if (retries < maxRetries)
                 {
                     _logger.InfoFormat("Encountered an IOException. Retrying, retry {0} of {1}.",

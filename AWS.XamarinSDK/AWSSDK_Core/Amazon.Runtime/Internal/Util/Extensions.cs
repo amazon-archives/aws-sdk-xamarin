@@ -15,9 +15,10 @@
 using System;
 using System.Diagnostics;
 
-#if WIN_RT
-using Amazon.MissingTypes;
-#endif
+
+//#if WIN_RT
+//using Amazon.MissingTypes;
+//#endif
 
 namespace Amazon.Runtime.Internal.Util
 {

@@ -67,6 +67,11 @@ namespace Amazon.DynamoDBv2.DocumentModel
         public int Limit { get; internal set; }
 
         /// <summary>
+        /// Gets and sets the FilterExpression property.
+        /// </summary>
+        public Expression FilterExpression { get; set; }
+
+        /// <summary>
         /// Filter for the search operation
         /// </summary>
         public Filter Filter { get; internal set; }
@@ -186,11 +191,14 @@ namespace Amazon.DynamoDBv2.DocumentModel
                             Limit = Limit,
                             TableName = TableName,
                             AttributesToGet = AttributesToGet,
-                            ScanFilter = Filter,
+                            ScanFilter = Filter.ToConditions(SourceTable.Conversion),
                             Select = EnumMapper.Convert(Select),
                         };
+                        if (this.FilterExpression != null && this.FilterExpression.IsSet)
+                            this.FilterExpression.ApplyExpression(scanReq, SourceTable.Conversion);
                         if (scanReq.ScanFilter != null && scanReq.ScanFilter.Count > 1)
                             scanReq.ConditionalOperator = EnumMapper.Convert(ConditionalOperator);
+                        Common.ConvertAttributesToGetToProjectionExpression(scanReq);
 
                         if (this.TotalSegments != 0)
                         {
@@ -231,10 +239,16 @@ namespace Amazon.DynamoDBv2.DocumentModel
                             IndexName = IndexName,
                         };
 
+                        if (this.FilterExpression != null && this.FilterExpression.IsSet)
+                        {
+                            this.FilterExpression.ApplyExpression(queryReq, SourceTable.Conversion);
+                        }
+
                         Dictionary<string, Condition> keyConditions, filterConditions;
                         SplitQueryFilter(Filter, SourceTable, queryReq.IndexName, out keyConditions, out filterConditions);
                         queryReq.KeyConditions = keyConditions;
                         queryReq.QueryFilter = filterConditions;
+                        Common.ConvertAttributesToGetToProjectionExpression(queryReq);
 
                         if (queryReq.QueryFilter != null && queryReq.QueryFilter.Count > 1)
                             queryReq.ConditionalOperator = EnumMapper.Convert(ConditionalOperator);
@@ -301,7 +315,8 @@ namespace Amazon.DynamoDBv2.DocumentModel
             keyConditions = new Dictionary<string, Condition>();
             filterConditions = new Dictionary<string, Condition>();
 
-            foreach (var kvp in filter.Conditions)
+            var conditions = filter.ToConditions(targetTable.Conversion);
+            foreach (var kvp in conditions)
             {
                 string attributeName = kvp.Key;
                 Condition condition = kvp.Value;
@@ -360,8 +375,12 @@ namespace Amazon.DynamoDBv2.DocumentModel
                                 TableName = TableName,
                                 Select = EnumMapper.Convert(SelectValues.Count),
                                 ExclusiveStartKey = NextKey,
-                                ScanFilter = Filter,
+                                ScanFilter = Filter.ToConditions(SourceTable.Conversion),
                             };
+                            if (this.FilterExpression != null && this.FilterExpression.IsSet)
+                            {
+                                this.FilterExpression.ApplyExpression(scanReq, SourceTable.Conversion);
+                            }
                             if (scanReq.ScanFilter != null && scanReq.ScanFilter.Count > 1)
                                 scanReq.ConditionalOperator = EnumMapper.Convert(ConditionalOperator);
 
@@ -385,6 +404,11 @@ namespace Amazon.DynamoDBv2.DocumentModel
                                 ScanIndexForward = !IsBackwardSearch,
                                 IndexName = IndexName
                             };
+
+                            if (this.FilterExpression != null && this.FilterExpression.IsSet)
+                            {
+                                this.FilterExpression.ApplyExpression(queryReq, SourceTable.Conversion);
+                            }
 
                             Dictionary<string, Condition> keyConditions, filterConditions;
                             SplitQueryFilter(Filter, SourceTable, queryReq.IndexName, out keyConditions, out filterConditions);

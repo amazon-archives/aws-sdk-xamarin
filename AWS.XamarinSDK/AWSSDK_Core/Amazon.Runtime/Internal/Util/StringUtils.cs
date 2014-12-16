@@ -62,7 +62,7 @@ namespace Amazon.Runtime.Internal.Util
 
         public static string FromBool(bool value)
         {
-            throw new NotImplementedException();
+            return value.ToString(CultureInfo.InvariantCulture).ToLower(CultureInfo.InvariantCulture);
         }
 
         public static string FromDateTime(DateTime value)

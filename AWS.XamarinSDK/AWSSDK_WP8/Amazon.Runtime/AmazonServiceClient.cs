@@ -112,6 +112,8 @@ namespace Amazon.Runtime
             where TRequest: AmazonWebServiceRequest
             where TResponse : AmazonWebServiceResponse
         {
+            ThrowIfDisposed();
+
             var executionContext = new ExecutionContext(
                 new RequestContext(this.Config.LogMetrics)
                 {
@@ -119,7 +121,8 @@ namespace Amazon.Runtime
                     Marshaller = marshaller,
                     OriginalRequest = request,
                     Signer = Signer,
-                    Unmarshaller = unmarshaller
+                    Unmarshaller = unmarshaller,
+                    IsAsync = false
                 },
                 new ResponseContext()
             );
@@ -136,6 +139,8 @@ namespace Amazon.Runtime
             where TRequest: AmazonWebServiceRequest
             where TResponse : AmazonWebServiceResponse, new()
         {
+            ThrowIfDisposed();
+
             var executionContext = new ExecutionContext(
                 new RequestContext(this.Config.LogMetrics)
                 {
@@ -143,7 +148,8 @@ namespace Amazon.Runtime
                     Marshaller = marshaller,
                     OriginalRequest = request,
                     Signer = Signer,
-                    Unmarshaller = unmarshaller
+                    Unmarshaller = unmarshaller,
+                    IsAsync = true
                 },
                 new ResponseContext()
             ) { CancellationToken = cancellationToken };
@@ -157,6 +163,8 @@ namespace Amazon.Runtime
             AsyncCallback callback, object state)
             where TRequest : AmazonWebServiceRequest            
         {
+            ThrowIfDisposed();
+
             var executionContext = new AsyncExecutionContext(
                 new AsyncRequestContext(this.Config.LogMetrics)
                 {
@@ -166,7 +174,8 @@ namespace Amazon.Runtime
                     Signer = Signer,
                     Unmarshaller = unmarshaller,
                     Callback = callback,
-                    State = state
+                    State = state,
+                    IsAsync = true
                 },
                 new AsyncResponseContext()
             );
@@ -255,6 +264,36 @@ namespace Amazon.Runtime
 
             WebServiceExceptionEventArgs args = WebServiceExceptionEventArgs.Create(exception, executionContext.RequestContext.Request);
             ExceptionEvent(this, args);
+        }
+
+        #endregion
+
+        #region Dispose methods
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (_disposed)
+                return;
+
+            if (disposing)
+            {
+                if (RuntimePipeline != null)
+                    RuntimePipeline.Dispose();
+
+                _disposed = true;
+            }
+        }
+
+        private void ThrowIfDisposed()
+        {
+            if (this._disposed)
+                throw new ObjectDisposedException(GetType().FullName);
         }
 
         #endregion
@@ -400,26 +439,6 @@ namespace Amazon.Runtime
                 // swallow the exception because this platform doesn't support the hack to fix the big in the Uri class.
             }
 #endif
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (_disposed)
-                return;
-
-            if (disposing)
-            {
-                if (RuntimePipeline != null)
-                    RuntimePipeline.Dispose();
-
-                _disposed = true;
-            }
         }
 
         /// <summary>

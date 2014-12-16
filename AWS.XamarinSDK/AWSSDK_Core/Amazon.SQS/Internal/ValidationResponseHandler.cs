@@ -90,11 +90,11 @@ namespace Amazon.SQS.Internal
 
             public void Dispose()
             {
-#if WIN_RT ||PCL
+//#if WIN_RT
                 writer.Dispose();
-#else
-                writer.Close();
-#endif
+//#else
+//                writer.Close();
+//#endif
             }
         }
 
@@ -151,7 +151,9 @@ namespace Amazon.SQS.Internal
         }
         public static string CalculateMD5(byte[] bytes)
         {
-            throw new NotImplementedException();
+            var md5Hash = Amazon.Util.CryptoUtilFactory.CryptoInstance.ComputeMD5Hash(bytes);
+            var calculatedMd5 = BitConverter.ToString(md5Hash).Replace("-", string.Empty).ToLower(CultureInfo.InvariantCulture);
+            return calculatedMd5;
         }
         public static bool CompareMD5(string message, string md5FromService)
         {

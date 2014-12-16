@@ -55,7 +55,7 @@ namespace Amazon.Runtime.Internal.Auth
         /// <exception cref="Amazon.Runtime.SignatureException">If any problems are encountered while signing the request</exception>
         public override void Sign(IRequest request, ClientConfig clientConfig, RequestMetrics metrics, string awsAccessKeyId, string awsSecretAccessKey) 
         {
-            var signer = SelectSigner(clientConfig);
+            var signer = SelectSigner(request, clientConfig);
             var useV4 = signer is AWS4Signer;
 
             if (useV4)
@@ -256,7 +256,32 @@ namespace Amazon.Runtime.Internal.Auth
 
         private static string GetCanonicalizedHeadersForStringToSign(IRequest request)
         {
-            throw new NotImplementedException();
+            List<string> headersToSign = GetHeadersForStringToSign(request);
+
+            for (int i = 0; i < headersToSign.Count; i++)
+            {
+                headersToSign[i] = headersToSign[i].ToLower(CultureInfo.InvariantCulture);
+            }
+
+            SortedDictionary<string,string> sortedHeaderMap = new SortedDictionary<string,string>();
+            foreach (var entry in request.Headers)
+            {
+                if (headersToSign.Contains(entry.Key.ToLower(CultureInfo.InvariantCulture)))
+                {
+                    sortedHeaderMap[entry.Key] = entry.Value;
+                }
+            }
+
+            StringBuilder builder = new StringBuilder();
+            foreach (var entry in sortedHeaderMap)
+            {
+                builder.Append(entry.Key.ToLower(CultureInfo.InvariantCulture));
+                builder.Append(":");
+                builder.Append(entry.Value);
+                builder.Append("\n");
+            }
+
+            return builder.ToString();
         }
 
         #endregion

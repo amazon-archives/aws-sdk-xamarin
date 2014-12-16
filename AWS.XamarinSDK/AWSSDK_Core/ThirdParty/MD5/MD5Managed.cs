@@ -1,6 +1,8 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
 using System;
-//using System.Security.Cryptography;
+using System.IO;
+using System.Security.Cryptography;
+using XPlat.Security.Cryptography;
 
 // **************************************************************
 // * Raw implementation of the MD5 hash algorithm
@@ -13,23 +15,26 @@ using System;
 namespace ThirdParty.MD5
 {
 
-#if SILVERLIGHT || PCL
-    public class MD5Managed //: HashAlgorithm
-#else
-public class MD5Managed : MD5
-#endif
+//#if SILVERLIGHT
+//    public class MD5Managed : HashAlgorithm
+//#else
+    public class MD5Managed : XPlat.Security.Cryptography.MD5, IHashAlgorithm
+//#endif
     {
         private byte[] _data;
         private ABCDStruct _abcd;
         private Int64 _totalLength;
         private int _dataSize;
+        //Int32 HashSizeValue;
+        //byte[] HashValue;
 
-        public MD5Managed()
+        public MD5Managed() 
         {
-            //base.HashSizeValue = 0x80;
+            base.HashSizeValue  = 0x80;
             this.Initialize();
+            
         }
-
+        
         public void Initialize()
         {
             _data = new byte[64];
@@ -43,7 +48,7 @@ public class MD5Managed : MD5
             _abcd.D = 0x10325476;
         }
 
-        protected void HashCore(byte[] array, int ibStart, int cbSize)
+        public void HashCore(byte[] array, int ibStart, int cbSize)
         {
             int startIndex = ibStart;
             int totalArrayLength = _dataSize + cbSize;
@@ -72,9 +77,71 @@ public class MD5Managed : MD5
             _totalLength += cbSize;
         }
 
-        protected byte[] HashFinal()
+        public byte[] HashFinal()
         {
-           throw new NotImplementedException();
+            
+            base._HashValue = MD5Core.GetHashFinalBlock(_data, 0, _dataSize, _abcd, _totalLength * 8);
+            return HashValue;
         }
+
+        public void Dispose() 
+        {
+            base.Dispose();
+        }
+
+        public void Dispose(bool dispose) 
+        {
+            base.Dispose(true);
+        }
+
+        public void Clear() 
+        {
+            base.Clear();
+        }
+
+        public int InputBlockSize { get { return base.InputBlockSize; } }
+
+        public int OutputBlockSize { get { return base.OutputBlockSize; } }
+
+        public byte[] TransformFinalBlock(byte[] _inputBuffer, int _inputOffset, int _inputCount)
+        {
+            return base.TransformFinalBlock(_inputBuffer, _inputOffset, _inputCount);
+        }
+
+        public bool CanReuseTransform { get { return base.CanReuseTransform; } }
+
+        public bool CanTransformMultipleBlocks { get { return base.CanTransformMultipleBlocks; } }
+
+        public int TransformBlock(byte[] _inputBuffer, int _inputOffset, int _inputCount, byte[] _outputBuffer, int _outputOffset) 
+        { return base.TransformBlock(_inputBuffer, _inputOffset, _inputCount, _outputBuffer, _outputOffset); }
+
+        public byte[] ComputeHash(byte[] buffer) 
+        {
+            return base.ComputeHash(buffer);
+        }
+
+        public byte[] ComputeHash(byte[] buffer, int inputOffset, int Count) 
+        {
+            return base.ComputeHash(buffer, inputOffset, Count);
+        }
+
+        public byte[] ComputeHash(Stream inputStream) 
+        {
+            return base.ComputeHash(inputStream);
+        }
+
+        public IHashAlgorithm Create() 
+        {
+            return XPlat.Security.Cryptography.MD5.Create_();
+        }
+
+        public IHashAlgorithm Create(String hashName) 
+        {
+            return XPlat.Security.Cryptography.MD5.Create_(hashName);
+        }
+
+        public int HashSize { get { return base.HashSizeValue; } }
+
+        public byte[] HashValue { get { return base._HashValue; } }
     }
 }

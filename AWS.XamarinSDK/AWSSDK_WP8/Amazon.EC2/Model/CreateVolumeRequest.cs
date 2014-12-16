@@ -14,7 +14,7 @@
  */
 
 /*
- * Do not modify this file. This file is generated from the ec2-2014-06-15.normal.json service model.
+ * Do not modify this file. This file is generated from the ec2-2014-10-01.normal.json service model.
  */
 using System;
 using System.Collections.Generic;
@@ -57,6 +57,7 @@ namespace Amazon.EC2.Model
         private string _availabilityZone;
         private bool? _encrypted;
         private int? _iops;
+        private string _kmsKeyId;
         private int? _size;
         private string _snapshotId;
         private VolumeType _volumeType;
@@ -70,7 +71,7 @@ namespace Amazon.EC2.Model
         /// Instantiates CreateVolumeRequest with the parameterized properties
         /// </summary>
         /// <param name="availabilityZone">The Availability Zone in which to create the volume. Use <a>DescribeAvailabilityZones</a> to list the Availability Zones that are currently available to you.</param>
-        /// <param name="size">The size of the volume, in GiBs. Constraints: If the volume type is <code>io1</code>, the minimum size of the volume is 10 GiB. Default: If you're creating the volume from a snapshot and don't specify a volume size, the default is the snapshot size.</param>
+        /// <param name="size">The size of the volume, in GiBs. Constraints: If the volume type is <code>io1</code>, the minimum size of the volume is 4 GiB. Default: If you're creating the volume from a snapshot and don't specify a volume size, the default is the snapshot size.</param>
         public CreateVolumeRequest(string availabilityZone, int size)
         {
             _availabilityZone = availabilityZone;
@@ -128,9 +129,8 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property Iops. 
         /// <para>
-        /// The number of I/O operations per second (IOPS) that the volume supports. This parameter
-        /// is not used with Magnetic or General Purpose (SSD) volumes, but is required when the
-        /// volume type is <code>io1</code>.
+        /// Only valid for Provisioned IOPS (SSD) volumes. The number of I/O operations per second
+        /// (IOPS) to provision for the volume.
         /// </para>
         /// </summary>
         public int Iops
@@ -146,6 +146,29 @@ namespace Amazon.EC2.Model
         }
 
         /// <summary>
+        /// Gets and sets the property KmsKeyId. 
+        /// <para>
+        /// The full ARN of the AWS Key Management Service (KMS) Customer Master Key (CMK) to
+        /// use when creating the encrypted volume. This parameter is only required if you want
+        /// to use a non-default CMK; if this parameter is not specified, the default CMK is used.
+        /// The ARN contains the <code>arn:aws:kms</code> namespace, followed by the region of
+        /// the CMK, the AWS account ID of the CMK owner, the <code>key</code> namespace, and
+        /// then the CMK ID. For example, arn:aws:kms:<i>us-east-1</i>:<i>012345678910</i>:key/<i>abcd1234-a123-456a-a12b-a123b4cd56ef</i>.
+        /// </para>
+        /// </summary>
+        public string KmsKeyId
+        {
+            get { return this._kmsKeyId; }
+            set { this._kmsKeyId = value; }
+        }
+
+        // Check to see if KmsKeyId property is set
+        internal bool IsSetKmsKeyId()
+        {
+            return this._kmsKeyId != null;
+        }
+
+        /// <summary>
         /// Gets and sets the property Size. 
         /// <para>
         /// The size of the volume, in GiBs.
@@ -153,7 +176,7 @@ namespace Amazon.EC2.Model
         ///  
         /// <para>
         /// Constraints: If the volume type is <code>io1</code>, the minimum size of the volume
-        /// is 10 GiB.
+        /// is 4 GiB.
         /// </para>
         ///  
         /// <para>

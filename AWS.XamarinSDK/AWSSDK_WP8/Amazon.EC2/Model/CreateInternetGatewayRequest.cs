@@ -14,7 +14,7 @@
  */
 
 /*
- * Do not modify this file. This file is generated from the ec2-2014-06-15.normal.json service model.
+ * Do not modify this file. This file is generated from the ec2-2014-10-01.normal.json service model.
  */
 using System;
 using System.Collections.Generic;
@@ -34,7 +34,7 @@ namespace Amazon.EC2.Model
     /// 
     ///  
     /// <para>
-    /// For more information about your VPC and Internet gateway, see the <a href="http://docs.&awsdomain;/AmazonVPC/latest/UserGuide/">Amazon
+    /// For more information about your VPC and Internet gateway, see the <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/">Amazon
     /// Virtual Private Cloud User Guide</a>.
     /// </para>
     /// </summary>

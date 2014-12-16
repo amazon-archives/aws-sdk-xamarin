@@ -21,45 +21,52 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-//using System.Security.Cryptography;
+using System.Security.Cryptography;
 using System.Text;
 using Amazon.Runtime;
+using ThirdParty.MD5;
+using XPlat.Security.Cryptography;
 
 namespace Amazon.Runtime.Internal.Util
 {
     public partial class HashingWrapper : IHashingWrapper
     {
-        //private HashAlgorithm _algorithm;
+        private IHashAlgorithm _algorithm ;
         private void Init(string algorithmName)
         {
-            throw new NotImplementedException();
+            //_algorithm = HashAlgorithm.Create(algorithmName);
+            _algorithm = MD5.Create_(algorithmName);
+            
         }
 
         #region IHashingWrapper Members
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            //_algorithm.Initialize();
+            _algorithm.Clear();
         }
 
         public byte[] ComputeHash(byte[] buffer)
         {
-            throw new NotImplementedException();
+            return _algorithm.ComputeHash(buffer);
         }
 
         public byte[] ComputeHash(Stream stream)
         {
-            throw new NotImplementedException();
+            return _algorithm.ComputeHash(stream);
         }
 
         public void AppendBlock(byte[] buffer, int offset, int count)
         {
-            throw new NotImplementedException();
+            
+            _algorithm.TransformBlock(buffer, offset, count, null, 0);
         }
 
         public byte[] AppendLastBlock(byte[] buffer, int offset, int count)
         {
-            throw new NotImplementedException();
+            _algorithm.TransformFinalBlock(buffer, offset, count);
+            return _algorithm.Hash;
         }
 
         #endregion
@@ -67,7 +74,7 @@ namespace Amazon.Runtime.Internal.Util
 
     public class HashingWrapperMD5 : HashingWrapper
     {
-        private static string md5AlgorithmName;// = typeof(MD5).FullName;
+        private static string md5AlgorithmName = typeof(MD5Managed).FullName;
 
         public HashingWrapperMD5()
             : base(md5AlgorithmName)

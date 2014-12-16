@@ -155,19 +155,19 @@ namespace Amazon.Runtime.Internal.Util
         /// <exception cref="Amazon.Runtime.AmazonClientException">
         /// If ExpectedHash is set and is different from CalculateHash that the stream calculates.
         /// </exception>
-#if !(WIN_RT || MOBILE)
-        public override void Close()
-        {
-            CalculateHash();
-            base.Close();
-        }
-#else
+//#if !WIN_RT
+//        public override void Close()
+//        {
+//            CalculateHash();
+//            base.Close();
+//        }
+//#else
         protected override void Dispose(bool disposing)
         {
             CalculateHash();
             base.Dispose(disposing);
         }
-#endif
+//#endif
 
         /// <summary>
         /// Gets a value indicating whether the current stream supports seeking.

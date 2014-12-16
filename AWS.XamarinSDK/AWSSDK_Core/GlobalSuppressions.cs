@@ -82,6 +82,7 @@ using System.Diagnostics.CodeAnalysis;
 [module: SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", Scope = "member", Target = "Amazon.SimpleDB.Util.AmazonSimpleDBUtil.#DecodeRealNumberRangeInt(System.String,System.Int32)", MessageId = "int")]
 [module: SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", Scope = "member", Target = "Amazon.SimpleDB.Util.AmazonSimpleDBUtil.#DecodeZeroPaddingFloat(System.String)", MessageId = "float")]
 [module: SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", Scope = "member", Target = "Amazon.SimpleDB.Util.AmazonSimpleDBUtil.#DecodeZeroPaddingInt(System.String)", MessageId = "int")]
+[module: SuppressMessage("Microsoft.Naming", "CA1720:IdentifiersShouldNotContainTypeNames", Scope = "member", Target = "Amazon.DynamoDBv2.Model.AttributeValue.#BOOL", MessageId = "bool")]
 
 // General suppressions for marshallers
 [module: SuppressMessage("Microsoft.Performance", "CA1809:AvoidExcessiveLocals", Scope = "member", Target = "Amazon.CloudFront.Model.Internal.MarshallTransformations.CreateDistributionRequestMarshaller.#Marshall(Amazon.CloudFront.Model.CreateDistributionRequest)")]
@@ -166,6 +167,7 @@ using System.Diagnostics.CodeAnalysis;
 [module: SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Scope = "type", Target = "Amazon.S3.Transfer.UploadProgressArgs")]
 [module: SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Scope = "type", Target = "Amazon.S3.Transfer.DownloadDirectoryProgressArgs")]
 [module: SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Scope = "type", Target = "Amazon.S3.Transfer.UploadDirectoryProgressArgs")]
+[module: SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Scope = "type", Target = "Amazon.S3.Transfer.UploadDirectoryFileRequestArgs")]
 [module: SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Scope = "type", Target = "Amazon.DynamoDBv2.DocumentModel.Document")]
 
 // Interface methods not callable by child types
@@ -203,6 +205,8 @@ using System.Diagnostics.CodeAnalysis;
 [module: SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Scope = "member", Target = "Amazon.Runtime.Internal.Util.EventStream.#BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)")]
 [module: SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Scope = "member", Target = "Amazon.S3.Transfer.Executer.#Execute()")]
 [module: SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Scope = "member", Target = "Amazon.DynamoDBv2.DocumentModel.Table.#TryLoadTable(Amazon.DynamoDBv2.IAmazonDynamoDB,System.String,Amazon.DynamoDBv2.DocumentModel.Table&)")]
+[module: SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Scope = "member", Target = "Amazon.DynamoDBv2.DocumentModel.Table.#TryLoadTable(Amazon.DynamoDBv2.IAmazonDynamoDB,System.String,Amazon.DynamoDBv2.DocumentModel.Table+DynamoDBConsumer,Amazon.DynamoDBv2.DynamoDBEntryConversion,Amazon.DynamoDBv2.DocumentModel.Table&)")]
+[module: SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Scope = "member", Target = "Amazon.DynamoDBv2.DocumentModel.Table.#TryLoadTable(Amazon.DynamoDBv2.IAmazonDynamoDB,System.String,Amazon.DynamoDBv2.DynamoDBEntryConversion,Amazon.DynamoDBv2.DocumentModel.Table&)")]
 [module: SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Scope = "member", Target = "Amazon.AWSSection.#Serialize(System.String)")]
 [module: SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Scope = "member", Target = "Amazon.Runtime.AbstractWebServiceClient.#DontUnescapePathDotsAndSlashes(System.Uri)")]
 [module: SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Scope = "member", Target = "Amazon.EC2.Import.DiskImageImporter.#UploadImageFilePart(System.Object)")]
@@ -217,6 +221,7 @@ using System.Diagnostics.CodeAnalysis;
 [module: SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Scope = "member", Target = "Amazon.Runtime.Internal.HttpErrorResponseExceptionHandler.#HandleSuppressed404(Amazon.Runtime.IExecutionContext,Amazon.Runtime.Internal.Transform.IWebResponseData)")]
 [module: SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Scope = "member", Target = "Amazon.Runtime.Internal.ErrorHandler.#InvokeAsyncCallback(Amazon.Runtime.IAsyncExecutionContext)")]
 [module: SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Scope = "member", Target = "Amazon.Runtime.AmazonServiceClient.#DontUnescapePathDotsAndSlashes(System.Uri)")]
+[module: SuppressMessage("Microsoft.Design", "CA1031:DoNotCatchGeneralExceptionTypes", Scope = "member", Target = "Amazon.DynamoDBv2.DataModel.DynamoDBContext.#TryToScalar(System.Object,System.Type,Amazon.DynamoDBv2.DataModel.DynamoDBFlatConfig,Amazon.DynamoDBv2.DocumentModel.DynamoDBEntry&)")]
 
 // Overflow operations
 [module: SuppressMessage("Microsoft.Usage", "CA2233:OperationsShouldNotOverflow", Scope = "member", Target = "Amazon.DynamoDBv2.AmazonDynamoDBClient.#pauseExponentially(System.Int32)", MessageId = "retries-1")]
@@ -270,9 +275,9 @@ using System.Diagnostics.CodeAnalysis;
 [module: SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Scope = "member", Target = "Amazon.SQS.AmazonSQSClient.#CalculateMD5(System.String)")]
 [module: SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Scope = "member", Target = "Amazon.Runtime.Internal.Auth.AWS4Signer.#CanonicalizeHeaderNames(System.Collections.Generic.IEnumerable`1<System.Collections.Generic.KeyValuePair`2<System.String,System.String>>)")]
 [module: SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Scope = "member", Target = "Amazon.Runtime.Internal.Auth.AWS4Signer.#CanonicalizeHeaders(System.Collections.Generic.ICollection`1<System.Collections.Generic.KeyValuePair`2<System.String,System.String>>)")]
-[module: SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Scope = "member", Target = "Amazon.Runtime.Internal.Auth.AWS4Signer.#DetermineSigningRegion(Amazon.Runtime.ClientConfig,System.String,Amazon.RegionEndpoint)")]
 [module: SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Scope = "member", Target = "Amazon.SQS.AmazonSQSClient.#CalculateMD5(System.Byte[])")]
 [module: SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Scope = "member", Target = "Amazon.Runtime.Internal.Auth.S3Signer.#BuildCanonicalizedHeaders(System.Collections.Generic.IDictionary`2<System.String,System.String>)")]
+[module: SuppressMessage("Microsoft.Globalization", "CA1308:NormalizeStringsToUppercase", Scope = "member", Target = "Amazon.Runtime.Internal.Auth.AWS4Signer.#DetermineSigningRegion(Amazon.Runtime.ClientConfig,System.String,Amazon.RegionEndpoint,Amazon.Runtime.Internal.IRequest)")]
 
 // Types names matching namespaces
 [module: SuppressMessage("Microsoft.Naming", "CA1724:TypeNamesShouldNotMatchNamespaces", Scope = "type", Target = "Amazon.Auth.AccessControlPolicy.Policy")]
@@ -286,6 +291,7 @@ using System.Diagnostics.CodeAnalysis;
 [module: SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings", Scope = "member", Target = "Amazon.CloudFront.AmazonCloudFrontUrlSigner.#SignUrlCanned(System.String,System.String,System.IO.FileInfo,System.DateTime)", MessageId = "0#")]
 [module: SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings", Scope = "member", Target = "Amazon.CloudFront.AmazonCloudFrontUrlSigner.#SignUrlCanned(System.String,System.String,System.IO.StreamReader,System.DateTime)", MessageId = "0#")]
 [module: SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings", Scope = "member", Target = "Amazon.SimpleNotificationService.AmazonSimpleNotificationServiceClient.#SubscribeQueue(System.String,Amazon.SQS.IAmazonSQS,System.String)", MessageId = "2#")]
+[module: SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings", Scope="member", Target="Amazon.SQS.IAmazonSQS.#AuthorizeS3ToSendMessage(System.String,System.String)", MessageId="0#")]
 [module: SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings", Scope = "member", Target = "Amazon.Util.AWSSDKUtils.#DetermineRegion(System.String)", MessageId = "0#")]
 [module: SuppressMessage("Microsoft.Design", "CA1054:UriParametersShouldNotBeStrings", Scope = "member", Target = "Amazon.Util.AWSSDKUtils.#DetermineService(System.String)", MessageId = "0#")]
 [module: SuppressMessage("Microsoft.Design", "CA1056:UriPropertiesShouldNotBeStrings", Scope = "member", Target = "Amazon.CloudFormation.Model.CreateStackRequest.#TemplateURL")]
@@ -333,6 +339,8 @@ using System.Diagnostics.CodeAnalysis;
 [module: SuppressMessage("Microsoft.Design", "CA1056:UriPropertiesShouldNotBeStrings", Scope = "member", Target = "Amazon.EC2.Import.ImageFilePart.#DeleteUrl")]
 [module: SuppressMessage("Microsoft.Design", "CA1056:UriPropertiesShouldNotBeStrings", Scope = "member", Target = "Amazon.EC2.Import.ImageFilePart.#GetUrl")]
 [module: SuppressMessage("Microsoft.Design", "CA1056:UriPropertiesShouldNotBeStrings", Scope = "member", Target = "Amazon.EC2.Model.CopySnapshotRequest.#PresignedUrl")]
+[module: SuppressMessage("Microsoft.Design", "CA1056:UriPropertiesShouldNotBeStrings", Scope = "member", Target = "Amazon.IdentityManagement.Model.GetOpenIDConnectProviderResult.#Url")]
+[module: SuppressMessage("Microsoft.Design", "CA1056:UriPropertiesShouldNotBeStrings", Scope = "member", Target = "Amazon.IdentityManagement.Model.CreateOpenIDConnectProviderRequest.#Url")]
 
 [module: SuppressMessage("Microsoft.Design", "CA1055:UriReturnValuesShouldNotBeStrings", Scope = "member", Target = "Amazon.CloudFront.AmazonCloudFrontUrlSigner.#BuildPolicyForSignedUrl(System.String,System.DateTime,System.String,System.DateTime)")]
 [module: SuppressMessage("Microsoft.Design", "CA1055:UriReturnValuesShouldNotBeStrings", Scope = "member", Target = "Amazon.CloudFront.AmazonCloudFrontUrlSigner.#GetCannedSignedURL(Amazon.CloudFront.AmazonCloudFrontUrlSigner+Protocol,System.String,System.IO.FileInfo,System.String,System.String,System.DateTime)")]
@@ -443,6 +451,7 @@ using System.Diagnostics.CodeAnalysis;
 [module: SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors", Scope = "member", Target = "Amazon.Runtime.AbstractWebServiceClient.#.ctor(Amazon.Runtime.AWSCredentials,Amazon.Runtime.ClientConfig,Amazon.Runtime.AbstractWebServiceClient+AuthenticationTypes)")]
 [module: SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors", Scope = "member", Target = "Amazon.Runtime.ClientConfig.#.ctor()")]
 [module: SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors", Scope = "member", Target = "Amazon.Runtime.AmazonServiceClient.#.ctor(Amazon.Runtime.AWSCredentials,Amazon.Runtime.ClientConfig)")]
+[module: SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors", Scope = "member", Target = "Amazon.Runtime.Internal.ErrorHandler.#.ctor(Amazon.Runtime.Internal.Util.ILogger)")]
 
 // Events should have before or after prefix
 [module: SuppressMessage("Microsoft.Naming", "CA1713:EventsShouldNotHaveBeforeOrAfterPrefix", Scope = "member", Target = "Amazon.Runtime.AbstractWebServiceClient.#BeforeRequestEvent")]
@@ -528,3 +537,6 @@ using System.Diagnostics.CodeAnalysis;
 
 [module: SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Scope = "member", Target = "Amazon.DynamoDBv2.IAmazonDynamoDB.#BatchWriteItem(System.Collections.Generic.Dictionary`2<System.String,System.Collections.Generic.List`1<Amazon.DynamoDBv2.Model.WriteRequest>>)")]
 [module: SuppressMessage("Microsoft.Design", "CA1006:DoNotNestGenericTypesInMemberSignatures", Scope = "member", Target = "Amazon.DynamoDBv2.Model.BatchWriteItemRequest.#.ctor(System.Collections.Generic.Dictionary`2<System.String,System.Collections.Generic.List`1<Amazon.DynamoDBv2.Model.WriteRequest>>)")]
+
+// Suppression for base and subclass conversions
+[module: SuppressMessage("Microsoft.Design", "CA1061:DoNotHideBaseClassMethods", Scope = "member", Target = "Amazon.DynamoDBv2.DocumentModel.DynamoDBList.#op_Implicit(Amazon.DynamoDBv2.DocumentModel.DynamoDBEntry[]):Amazon.DynamoDBv2.DocumentModel.DynamoDBList")]

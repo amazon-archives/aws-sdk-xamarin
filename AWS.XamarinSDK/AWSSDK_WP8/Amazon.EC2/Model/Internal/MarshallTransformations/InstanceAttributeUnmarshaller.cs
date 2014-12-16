@@ -14,7 +14,7 @@
  */
 
 /*
- * Do not modify this file. This file is generated from the ec2-2014-06-15.normal.json service model.
+ * Do not modify this file. This file is generated from the ec2-2014-10-01.normal.json service model.
  */
 using System;
 using System.Collections.Generic;
@@ -66,6 +66,13 @@ namespace Amazon.EC2.Model.Internal.MarshallTransformations
                     {
                         var unmarshaller = BoolUnmarshaller.Instance;
                         unmarshalledObject.EbsOptimized = unmarshaller.Unmarshall(context);
+                        continue;
+                    }
+                    if (context.TestExpression("groupSet/item", targetDepth))
+                    {
+                        var unmarshaller = GroupIdentifierUnmarshaller.Instance;
+                        var item = unmarshaller.Unmarshall(context);
+                        unmarshalledObject.Groups.Add(item);
                         continue;
                     }
                     if (context.TestExpression("instanceId", targetDepth))

@@ -1,2 +1,0 @@
-F:\Tara\Code Files\AWS.XamarinSDK\AWSSDK_Portable\obj\Debug\AWSSDK_Portable.csproj.App.config
-F:\Tara\Code Files\AWS.XamarinSDK\AWSSDK_Portable\obj\Debug\AWSSDK_Portable.csprojResolveAssemblyReference.cache

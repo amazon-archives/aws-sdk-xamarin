@@ -17,9 +17,11 @@ using System.Collections.Generic;
 using System.Xml.Serialization;
 using System.Text;
 using System.IO;
+using PCLStorage;
 
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
+using System.Threading.Tasks;
 
 namespace Amazon.S3.Model
 {
@@ -40,7 +42,22 @@ namespace Amazon.S3.Model
     {
         internal void SetupForFilePath()
         {
-            throw new NotImplementedException();
+            IFile file;
+            
+            //var fileStream = new FileStream(this.FilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
+            file = Task.Run<IFile>(
+                           async () => {
+                                          return await FileSystem.Current.GetFileFromPathAsync(this.FilePath);
+                                       }).Result;
+            this.InputStream = Task.Run<Stream>(
+                                        async() => {
+                                                      return await file.OpenAsync(FileAccess.Read);
+                                                   }).Result;
+            //(this.FilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
+            //fileStream.Position = this.FilePosition;
+            //this.InputStream = fileStream;
         }
+
+
     }
 }

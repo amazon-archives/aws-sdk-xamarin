@@ -1,6 +1,7 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
 using System;
 using System.Text;
+using XPlat.Security.Cryptography;
 
 // **************************************************************
 // * Raw implementation of the MD5 hash algorithm
@@ -23,7 +24,7 @@ namespace ThirdParty.MD5
         public uint D;
     }
 
-    public sealed class MD5Core
+    public sealed class MD5Core 
     {
         //Prevent CSC from adding a default public constructor
         private MD5Core() { }

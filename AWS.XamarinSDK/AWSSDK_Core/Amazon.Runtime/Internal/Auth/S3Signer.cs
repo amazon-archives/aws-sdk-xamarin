@@ -42,7 +42,7 @@ namespace Amazon.Runtime.Internal.Auth
 
         public override void Sign(IRequest request, ClientConfig clientConfig, RequestMetrics metrics, string awsAccessKeyId, string awsSecretAccessKey)
         {
-            var signer = SelectSigner(this, _useSigV4, clientConfig);
+            var signer = SelectSigner(this, _useSigV4, request, clientConfig);
             var aws4Signer = signer as AWS4Signer;
             var useV4 = aws4Signer != null;
 
@@ -125,7 +125,17 @@ namespace Amazon.Runtime.Internal.Auth
 
         static string BuildCanonicalizedHeaders(IDictionary<string, string> headers)
         {
-            throw new NotImplementedException();
+            var sb = new StringBuilder(256);
+            foreach (var key in headers.Keys.OrderBy(x => x, StringComparer.OrdinalIgnoreCase))
+            {
+                var lowerKey = key.ToLower(CultureInfo.InvariantCulture);
+                if (!lowerKey.StartsWith("x-amz-", StringComparison.Ordinal))
+                    continue;
+
+                sb.Append(String.Concat(lowerKey, ":", headers[key], "\n"));
+            }
+
+            return sb.ToString();
         }
 
         private static readonly HashSet<string> SignableParameters = new HashSet<string>

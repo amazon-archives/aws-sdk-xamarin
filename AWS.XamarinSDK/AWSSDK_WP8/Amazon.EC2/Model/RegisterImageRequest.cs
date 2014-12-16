@@ -14,7 +14,7 @@
  */
 
 /*
- * Do not modify this file. This file is generated from the ec2-2014-06-15.normal.json service model.
+ * Do not modify this file. This file is generated from the ec2-2014-10-01.normal.json service model.
  */
 using System;
 using System.Collections.Generic;
@@ -34,7 +34,12 @@ namespace Amazon.EC2.Model
     /// AMIs, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/creating-an-ami.html">Creating
     /// Your Own AMIs</a> in the <i>Amazon Elastic Compute Cloud User Guide</i>.
     /// 
-    ///  
+    ///  <note>
+    /// <para>
+    /// For Amazon EBS-backed instances, <a>CreateImage</a> creates and registers the AMI
+    /// in a single request, so you don't have to register the AMI yourself.
+    /// </para>
+    /// </note> 
     /// <para>
     /// You can also use <code>RegisterImage</code> to create an Amazon EBS-backed AMI from
     /// a snapshot of a root device volume. For more information, see <a href="http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_LaunchingInstanceFromSnapshot.html">Launching
@@ -46,6 +51,12 @@ namespace Amazon.EC2.Model
     /// AMI backed by an instance store volume invalidates its registration. If you make changes
     /// to an image, deregister the previous image and register the new image.
     /// </para>
+    ///  <note>
+    /// <para>
+    /// You can't register an image where a secondary (non-root) snapshot has AWS Marketplace
+    /// product codes.
+    /// </para>
+    /// </note>
     /// </summary>
     public partial class RegisterImageRequest : AmazonEC2Request
     {
@@ -176,8 +187,9 @@ namespace Amazon.EC2.Model
         /// </para>
         ///  
         /// <para>
-        /// Constraints: 3-128 alphanumeric characters, parenthesis (()), commas (,), slashes
-        /// (/), dashes (-), or underscores (_)
+        /// Constraints: 3-128 alphanumeric characters, parentheses (()), square brackets ([]),
+        /// spaces ( ), periods (.), slashes (/), dashes (-), single quotes ('), at-signs (@),
+        /// or underscores(_)
         /// </para>
         /// </summary>
         public string Name

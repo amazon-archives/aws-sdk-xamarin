@@ -47,22 +47,23 @@ namespace Amazon.Runtime
         // Set of status codes to retry on.
         internal static ICollection<WebExceptionStatus> WebExceptionStatusesToRetryOn = new HashSet<WebExceptionStatus>
         {
-            WebExceptionStatus.ConnectFailure,
+            WebExceptionStatus.ConnectFailure
 
-#if !(WIN_RT || PCL) // These statuses are not available on WinRT
-            WebExceptionStatus.ConnectionClosed,
-            WebExceptionStatus.KeepAliveFailure,
-            WebExceptionStatus.NameResolutionFailure
-#endif
+//#if (!WIN_RT) // These statuses are not available on WinRT
+//            WebExceptionStatus.ConnectionClosed,
+//            WebExceptionStatus.KeepAliveFailure,
+//            WebExceptionStatus.NameResolutionFailure
+//#endif
         };
 
         // Set of status codes where we don't retry.
         internal static ICollection<WebExceptionStatus> WebExceptionStatusesToThrowOn = new HashSet<WebExceptionStatus>
         {
             WebExceptionStatus.RequestCanceled,
-#if !(WIN_RT || PCL)
-            WebExceptionStatus.Timeout,     // Timeout status not available on WinRT       
-#endif
+            WebExceptionStatus.MessageLengthLimitExceeded
+//#if (!WIN_RT)
+//            WebExceptionStatus.Timeout,     // Timeout status not available on WinRT       
+//#endif
         };
 
         protected const int MAX_BACKOFF_IN_MILLISECONDS = 30 * 1000;
@@ -280,8 +281,7 @@ namespace Amazon.Runtime
         {
             requestData.Request.Headers[HeaderKeys.UserAgentHeader] = this.Config.UserAgent; // +" " + (asyncResult.CompletedSynchronously ? "ClientSync" : "ClientAsync");
 
-            //var method = requestData.Request.HttpMethod.ToUpper(CultureInfo.InvariantCulture);
-            var method = requestData.Request.HttpMethod.ToUpperInvariant();
+            var method = requestData.Request.HttpMethod.ToUpper(CultureInfo.InvariantCulture);
             if (method != "GET" && method != "DELETE" && method != "HEAD")
             {
                 if (!requestData.Request.Headers.ContainsKey(HeaderKeys.ContentTypeHeader))
@@ -510,13 +510,13 @@ namespace Amazon.Runtime
                 return true;
             }
 
-#if !WIN_RT && !PCL
-            if (errorResponseException.InnerException is WebException &&
-                (((WebException)(errorResponseException.InnerException)).Status == WebExceptionStatus.KeepAliveFailure))
-            {
-                return true;
-            }
-#endif
+//#if !WIN_RT
+//            if (errorResponseException.InnerException is WebException &&
+ //               (((WebException)(errorResponseException.InnerException)).Status == WebExceptionStatus.KeepAliveFailure))
+ //           {
+ //               return true;
+ //           }
+//#endif
 
             /*
              * Throttling is reported as a 400 or 503 error from services. To try and
@@ -559,20 +559,20 @@ namespace Amazon.Runtime
             return true;
         }
 
-#if (!WIN_RT && !PCL)
-        protected static bool IsInnerExceptionThreadAbort(Exception e)
-        {
-            var exception = e;
-            while (exception != null)
-            {
-                if (exception.InnerException is ThreadAbortException)
-                { return true; }
+//#if (!WIN_RT)
+//        protected static bool IsInnerExceptionThreadAbort(Exception e)
+//        {
+//            var exception = e;
+//            while (exception != null)
+//            {
+//                if (exception.InnerException is ThreadAbortException)
+//                { return true; }
 
-                exception = exception.InnerException;
-            }
-            return false;
-        }
-#endif
+//                exception = exception.InnerException;
+//            }
+//            return false;
+//        }
+//#endif
         protected static void HandleRetry(IRequestData state)
         {
             state.Metrics.SetCounter(Metric.AttemptCount, state.RetriesAttempt);

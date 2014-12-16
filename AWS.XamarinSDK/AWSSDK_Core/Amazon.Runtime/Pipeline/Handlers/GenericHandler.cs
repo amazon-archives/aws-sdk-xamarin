@@ -35,7 +35,7 @@ namespace Amazon.Runtime.Internal
             base.InvokeSync(executionContext);         
             PostInvoke(executionContext);            
         }
-#if BCL45 || WIN_RT || WINDOWS_PHONE || MOBILE
+#if BCL45 || WIN_RT || WINDOWS_PHONE 
 
         /// <summary>
         /// Calls the PreInvoke and PostInvoke methods before and after calling the next handler 

@@ -46,7 +46,7 @@ namespace Amazon.CognitoSync.Internal
             : base(credentials)
         { }
 
-#if BCL || MOBILE
+#if BCL
         protected override void PreInvoke(IExecutionContext executionContext)
         {
             base.PreInvoke(executionContext);

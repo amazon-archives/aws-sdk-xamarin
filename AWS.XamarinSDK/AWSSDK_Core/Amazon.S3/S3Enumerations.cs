@@ -124,6 +124,10 @@ namespace Amazon.S3
         /// </summary>
         public static readonly S3Region EU = new S3Region("EU");
         /// <summary>
+        /// Specifies that the S3 Bucket should use the EU-CENTRAL-1 locality.
+        /// </summary>
+        public static readonly S3Region EUC1 = new S3Region("eu-central-1");
+        /// <summary>
         /// Specifies that the S3 Bucket should use US-WEST-1 locality.
         /// </summary>
         public static readonly S3Region USW1 = new S3Region("us-west-1");
@@ -431,6 +435,11 @@ namespace Amazon.S3
         /// </summary>
         public static readonly ServerSideEncryptionMethod AES256 = new ServerSideEncryptionMethod("AES256");
 
+        /// <summary>
+        /// Use AWS Key Management Service for server side encryption.
+        /// </summary>
+        public static readonly ServerSideEncryptionMethod AWSKMS = new ServerSideEncryptionMethod("aws:kms");
+
         public ServerSideEncryptionMethod(string value)
             : base(value)
         {
@@ -598,6 +607,64 @@ namespace Amazon.S3
         }
 
         public static implicit operator EncodingType(string value)
+        {
+            return FindValue(value);
+        }
+
+    }
+
+    /// <summary>
+    /// A list of all event types that can configured with the bucket notification configuration.
+    /// </summary>
+    public sealed class EventType : ConstantClass
+    {
+        /// <summary>
+        /// The event encapsulates all the object create events
+        /// </summary>
+        public static readonly EventType ObjectCreatedAll = new EventType("s3:ObjectCreated:*");
+
+        /// <summary>
+        /// Event for put operations
+        /// </summary>
+        public static readonly EventType ObjectCreatedPut = new EventType("s3:ObjectCreated:Put");
+
+        /// <summary>
+        /// Event for post operations
+        /// </summary>
+        public static readonly EventType ObjectCreatedPost = new EventType("s3:ObjectCreated:Post");
+
+        /// <summary>
+        /// Event for copy operations
+        /// </summary>
+        public static readonly EventType ObjectCreatedCopy = new EventType("s3:ObjectCreated:Copy");
+
+        /// <summary>
+        /// Event for completing a multi part upload
+        /// </summary>
+        public static readonly EventType ObjectCreatedCompleteMultipartUpload = new EventType("s3:ObjectCreated:CompleteMultipartUpload");
+
+        /// <summary>
+        /// Event for objects stored in reduced redundancy and S3 detects the object is lost
+        /// </summary>
+        public static readonly EventType ReducedRedundancyLostObject = new EventType("s3:ReducedRedundancyLostObject");
+
+
+        public EventType(string value)
+            : base(value)
+        {
+        }
+
+        /// <summary>
+        /// Finds the constant for the unique value.
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static EventType FindValue(string value)
+        {
+            return FindValue<EventType>(value);
+        }
+
+        public static implicit operator EventType(string value)
         {
             return FindValue(value);
         }

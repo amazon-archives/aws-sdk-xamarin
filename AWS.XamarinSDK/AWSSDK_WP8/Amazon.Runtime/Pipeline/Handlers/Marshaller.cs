@@ -32,11 +32,11 @@ namespace Amazon.Runtime.Internal
         protected override void PreInvoke(IExecutionContext executionContext)
         {
             var requestContext = executionContext.RequestContext;
-            requestContext.Request = requestContext.Marshaller.Marshall(
-                executionContext.RequestContext.OriginalRequest);
+            requestContext.Request = requestContext.Marshaller.Marshall(requestContext.OriginalRequest);
+            requestContext.Request.AuthenticationRegion = requestContext.ClientConfig.AuthenticationRegion;
 
-            requestContext.Request.Headers[HeaderKeys.UserAgentHeader] = requestContext.ClientConfig.UserAgent; 
-            // +" " + (asyncResult.CompletedSynchronously ? "ClientSync" : "ClientAsync");
+            requestContext.Request.Headers[HeaderKeys.UserAgentHeader] = requestContext.ClientConfig.UserAgent
+            + " " + (executionContext.RequestContext.IsAsync ? "ClientAsync" : "ClientSync");
 
             var method = requestContext.Request.HttpMethod.ToUpper(CultureInfo.InvariantCulture);
             if (method != "GET" && method != "DELETE" && method != "HEAD")

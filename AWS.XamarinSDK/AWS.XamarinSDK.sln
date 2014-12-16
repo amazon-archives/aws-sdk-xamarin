@@ -16,26 +16,28 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{0EEF97
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AWSSDK_Core", "AWSSDK_Core\AWSSDK_Core.csproj", "{4E8016CD-33E3-4961-A954-119A623527D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AWSSDK_iOS", "AWSSDK.iOS\AWSSDK_iOS.csproj", "{2509D641-F08E-4DED-A12D-855B056BE831}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AWSSDK_iOS", "AWSSDK_iOS\AWSSDK_iOS.csproj", "{2509D641-F08E-4DED-A12D-855B056BE831}"
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 5
+		SccNumberOfProjects = 3
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = https://tarathegeekgirl.visualstudio.com/defaultcollection
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = AWSSDK.iOS\\AWSSDK_iOS.csproj
-		SccProjectName1 = AWSSDK.iOS
-		SccLocalPath1 = AWSSDK.iOS
-		SccProjectUniqueName2 = AWSSDK_Android\\AWSSDK_Android.csproj
-		SccProjectName2 = AWSSDK_Android
-		SccLocalPath2 = AWSSDK_Android
-		SccProjectUniqueName3 = AWSSDK_Core\\AWSSDK_Core.csproj
-		SccProjectName3 = AWSSDK_Core
-		SccLocalPath3 = AWSSDK_Core
-		SccProjectUniqueName4 = AWSSDK_WP8\\AWSSDK_WP8.csproj
-		SccProjectName4 = AWSSDK_WP8
-		SccLocalPath4 = AWSSDK_WP8
+		SccProjectUniqueName0 = AWSSDK_Android\\AWSSDK_Android.csproj
+		SccProjectName0 = AWSSDK_Android
+		SccAuxPath0 = https://tarathegeekgirl.visualstudio.com/defaultcollection
+		SccLocalPath0 = AWSSDK_Android
+		SccProvider0 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName1 = AWSSDK_WP8\\AWSSDK_WP8.csproj
+		SccProjectName1 = AWSSDK_WP8
+		SccAuxPath1 = https://tarathegeekgirl.visualstudio.com/defaultcollection
+		SccLocalPath1 = AWSSDK_WP8
+		SccProvider1 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccProjectUniqueName2 = AWSSDK_iOS\\AWSSDK_iOS.csproj
+		SccProjectName2 = AWSSDK_iOS
+		SccAuxPath2 = https://tarathegeekgirl.visualstudio.com/defaultcollection
+		SccLocalPath2 = AWSSDK_iOS
+		SccProvider2 = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

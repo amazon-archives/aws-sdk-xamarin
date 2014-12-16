@@ -14,7 +14,7 @@
  */
 
 /*
- * Do not modify this file. This file is generated from the ec2-2014-06-15.normal.json service model.
+ * Do not modify this file. This file is generated from the ec2-2014-10-01.normal.json service model.
  */
 using System;
 using System.Collections.Generic;
@@ -35,6 +35,7 @@ namespace Amazon.EC2.Model
         private List<InstanceBlockDeviceMapping> _blockDeviceMappings = new List<InstanceBlockDeviceMapping>();
         private bool? _disableApiTermination;
         private bool? _ebsOptimized;
+        private List<GroupIdentifier> _groups = new List<GroupIdentifier>();
         private string _instanceId;
         private string _instanceInitiatedShutdownBehavior;
         private string _instanceType;
@@ -99,6 +100,24 @@ namespace Amazon.EC2.Model
         internal bool IsSetEbsOptimized()
         {
             return this._ebsOptimized.HasValue; 
+        }
+
+        /// <summary>
+        /// Gets and sets the property Groups. 
+        /// <para>
+        /// The security groups associated with the instance.
+        /// </para>
+        /// </summary>
+        public List<GroupIdentifier> Groups
+        {
+            get { return this._groups; }
+            set { this._groups = value; }
+        }
+
+        // Check to see if Groups property is set
+        internal bool IsSetGroups()
+        {
+            return this._groups != null && this._groups.Count > 0; 
         }
 
         /// <summary>
@@ -231,9 +250,9 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property SourceDestCheck. 
         /// <para>
-        /// Indicates whether source/destination checking is enabled. A value of true means checking
-        /// is enabled, and false means checking is disabled. This value must be false for a NAT
-        /// instance to perform NAT.
+        /// Indicates whether source/destination checking is enabled. A value of <code>true</code>
+        /// means checking is enabled, and <code>false</code> means checking is disabled. This
+        /// value must be <code>false</code> for a NAT instance to perform NAT.
         /// </para>
         /// </summary>
         public bool SourceDestCheck

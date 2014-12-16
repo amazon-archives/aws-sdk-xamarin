@@ -58,7 +58,6 @@ namespace Amazon.S3.Transfer.Internal
                 BucketName = this._fileTransporterRequest.BucketName,
                 Key = this._fileTransporterRequest.Key,
                 CannedACL = this._fileTransporterRequest.CannedACL,
-                ContentType = this._fileTransporterRequest.ContentType,
                 StorageClass = this._fileTransporterRequest.StorageClass,
                 AutoCloseStream = this._fileTransporterRequest.AutoCloseStream,
                 AutoResetStreamPosition = this._fileTransporterRequest.AutoResetStreamPosition,
@@ -66,11 +65,17 @@ namespace Amazon.S3.Transfer.Internal
                 ServerSideEncryptionCustomerMethod = this._fileTransporterRequest.ServerSideEncryptionCustomerMethod,
                 ServerSideEncryptionCustomerProvidedKey = this._fileTransporterRequest.ServerSideEncryptionCustomerProvidedKey,
                 ServerSideEncryptionCustomerProvidedKeyMD5 = this._fileTransporterRequest.ServerSideEncryptionCustomerProvidedKeyMD5,
+                ServerSideEncryptionKeyManagementServiceKeyId = this._fileTransporterRequest.ServerSideEncryptionKeyManagementServiceKeyId,
                 Metadata = this._fileTransporterRequest.Metadata,
 #if (BCL && !BCL45)
                 Timeout = ClientConfig.GetTimeoutValue(this._config.DefaultTimeout, this._fileTransporterRequest.Timeout)
 #endif
             };
+
+            // Avoid setting ContentType to null, as that may clear
+            // out an existing value in Headers collection
+            if (!string.IsNullOrEmpty(this._fileTransporterRequest.ContentType))
+                putRequest.ContentType = this._fileTransporterRequest.ContentType;
 
 #if BCL
             putRequest.FilePath = this._fileTransporterRequest.FilePath;

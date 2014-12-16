@@ -27,6 +27,8 @@ using System.Text;
 
 using Amazon.S3.Model;
 using Amazon.Util;
+using PCLStorage;
+using System.Threading.Tasks;
 
 namespace Amazon.S3.Transfer
 {
@@ -49,6 +51,7 @@ namespace Amazon.S3.Transfer
         private ServerSideEncryptionCustomerMethod serverSideCustomerEncryption;
         private string serverSideEncryptionCustomerProvidedKey;
         private string serverSideEncryptionCustomerProvidedKeyMD5;
+        private string serverSideEncryptionKeyManagementServiceKeyId;
 
         private HeadersCollection headersCollection = new HeadersCollection();
         private MetadataCollection metadataCollection = new MetadataCollection();
@@ -213,6 +216,25 @@ namespace Amazon.S3.Transfer
         }
 
         /// <summary>
+        /// The id of the AWS Key Management Service key that Amazon S3 should use to encrypt and decrypt the object.
+        /// If a key id is not specified, the default key will be used for encryption and decryption.
+        /// </summary>
+        public string ServerSideEncryptionKeyManagementServiceKeyId
+        {
+            get { return this.serverSideEncryptionKeyManagementServiceKeyId; }
+            set { this.serverSideEncryptionKeyManagementServiceKeyId = value; }
+        }
+
+        /// <summary>
+        /// Checks if ServerSideEncryptionKeyManagementServiceKeyId property is set.
+        /// </summary>
+        /// <returns>true if ServerSideEncryptionKeyManagementServiceKeyId property is set.</returns>
+        internal bool IsSetServerSideEncryptionKeyManagementServiceKeyId()
+        {
+            return !System.String.IsNullOrEmpty(this.serverSideEncryptionKeyManagementServiceKeyId);
+        }
+
+        /// <summary>
         /// The base64-encoded encryption key for Amazon S3 to use to encrypt the object
         /// <para>
         /// Using the encryption key you provide as part of your request Amazon S3 manages both the encryption, as it writes 
@@ -242,6 +264,7 @@ namespace Amazon.S3.Transfer
             get { return this.serverSideEncryptionCustomerProvidedKeyMD5; }
             set { this.serverSideEncryptionCustomerProvidedKeyMD5 = value; }
         }
+
         #endregion
 
         /// <summary>
@@ -384,26 +407,31 @@ namespace Amazon.S3.Transfer
             get
             {
                 long length;
-
-#if BCL 
+//#if BCL ||MOBILE
                 if (this.IsSetFilePath())
                 {
-                    FileInfo fileInfo = new FileInfo(this.FilePath);
-                    length = fileInfo.Length;
+                    length = Task.Run(async() => 
+                                { 
+                                    IFile file = await FileSystem.Current.GetFileFromPathAsync(this.FilePath);
+                                    var fileStream = await file.OpenAsync(FileAccess.Read);
+                                    return fileStream.Length;
+                                }).Result;
+                    //FileInfo fileInfo = new FileInfo(this.FilePath);}
+                    //length = fileInfo.Length;
                 }
-#elif WIN_RT || WINDOWS_PHONE
-                if (IsSetStorageFile())
+//#elif WIN_RT || WINDOWS_PHONE
+//                if (IsSetStorageFile())
+//                {
+//                    var result = System.Threading.Tasks.Task.Run(() =>
+//                        this.StorageFile.GetBasicPropertiesAsync().AsTask()).Result;
+//                    length = checked((long)result.Size);
+//                }
+//#endif
+                else
                 {
-                    var result = System.Threading.Tasks.Task.Run(() =>
-                        this.StorageFile.GetBasicPropertiesAsync().AsTask()).Result;
-                    length = checked((long)result.Size);
-                }
-#else
-                //else
-                //{
                     length = this.InputStream.Length - this.InputStream.Position;
-                //}
-#endif
+                }
+
                 return length;
             }
         }

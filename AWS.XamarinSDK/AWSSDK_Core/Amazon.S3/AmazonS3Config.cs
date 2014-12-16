@@ -32,27 +32,26 @@ namespace Amazon.S3
         public AmazonS3Config()
         {
             this.AuthenticationServiceName = "s3";
+            this.AllowAutoRedirect = false;
 
-#if (WIN_RT || WINDOWS_PHONE || MOBILE)
+
+#if MOBILE
             // Only Timeout property is supported for WinRT and Windows Phone.
             // Set Timeout for S3 to max timeout as per-request
             // timeouts are not supported.
             this.Timeout = ClientConfig.MaxTimeout;
+
 #elif BCL45
-           this.Timeout = ClientConfig.MaxTimeout;
-           this.ReadWriteTimeout = ClientConfig.MaxTimeout;
+            // Set Timeout and ReadWriteTimeout for S3 to max timeout as per-request
+            // timeouts are not supported.
+            this.Timeout = ClientConfig.MaxTimeout;
+            this.ReadWriteTimeout = ClientConfig.MaxTimeout;
+#elif (WIN_RT || WINDOWS_PHONE)
+            // Only Timeout property is supported for WinRT and Windows Phone.
+            // Set Timeout for S3 to max timeout as per-request
+            // timeouts are not supported.
+            this.Timeout = ClientConfig.MaxTimeout;
 #endif
-            //#if BCL45 
-//            // Set Timeout and ReadWriteTimeout for S3 to max timeout as per-request
-//            // timeouts are not supported.
-//            this.Timeout = ClientConfig.MaxTimeout;
-//            this.ReadWriteTimeout = ClientConfig.MaxTimeout;
-//#elif (WIN_RT || WINDOWS_PHONE )
-//            // Only Timeout property is supported for WinRT and Windows Phone.
-//            // Set Timeout for S3 to max timeout as per-request
-//            // timeouts are not supported.
-//            this.Timeout = ClientConfig.MaxTimeout;
-//#endif
         }
 
         /// <summary>

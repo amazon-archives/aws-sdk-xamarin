@@ -16,7 +16,6 @@
 using Amazon.Util;
 using Amazon.Runtime.Internal.Util;
 using System.Globalization;
-using System;
 
 namespace Amazon.Runtime.Internal
 {
@@ -32,8 +31,25 @@ namespace Amazon.Runtime.Internal
         /// request and response context.</param>
         protected override void PreInvoke(IExecutionContext executionContext)
         {
-            throw new NotImplementedException(); 
+            var requestContext = executionContext.RequestContext;
+            requestContext.Request = requestContext.Marshaller.Marshall(requestContext.OriginalRequest);
+            requestContext.Request.AuthenticationRegion = requestContext.ClientConfig.AuthenticationRegion;
 
+            requestContext.Request.Headers[HeaderKeys.UserAgentHeader] = requestContext.ClientConfig.UserAgent
+            + " " + (executionContext.RequestContext.IsAsync ? "ClientAsync" : "ClientSync");
+
+            //var method = requestContext.Request.HttpMethod.ToUpper(CultureInfo.InvariantCulture);
+            var method = requestContext.Request.HttpMethod.ToUpperInvariant();
+            if (method != "GET" && method != "DELETE" && method != "HEAD")
+            {
+                if (!requestContext.Request.Headers.ContainsKey(HeaderKeys.ContentTypeHeader))
+                {
+                    if (requestContext.Request.UseQueryString)
+                        requestContext.Request.Headers[HeaderKeys.ContentTypeHeader] = "application/x-amz-json-1.0";
+                    else
+                        requestContext.Request.Headers[HeaderKeys.ContentTypeHeader] = AWSSDKUtils.UrlEncodedContent;
+                }
+            }
         }
     }
 }

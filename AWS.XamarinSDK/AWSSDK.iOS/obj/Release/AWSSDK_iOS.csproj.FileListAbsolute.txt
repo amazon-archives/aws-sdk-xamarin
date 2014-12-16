@@ -1,3 +1,0 @@
-F:\Tara\Code Files\AWS.XamarinSDK\AWSSDK.iOS\bin\iPhone\Release\AWSSDK_XMOBILE.dll
-F:\Tara\Code Files\AWS.XamarinSDK\AWSSDK.iOS\obj\Release\AWSSDK_iOS.csprojResolveAssemblyReference.cache
-F:\Tara\Code Files\AWS.XamarinSDK\AWSSDK.iOS\obj\Release\AWSSDK_XMOBILE.dll

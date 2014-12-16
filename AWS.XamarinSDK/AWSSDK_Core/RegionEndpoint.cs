@@ -40,8 +40,7 @@ namespace Amazon
     /// </summary>
     public class RegionEndpoint
     {
-        //const string REGIONS_FILE = "AWSSDK.endpoints.xml";
-        const string REGIONS_FILE = "AWSSDK_XMOBILE.endpoints.xml";
+        const string REGIONS_FILE = "AWSSDK.endpoints.xml";
 
         const int MAX_DOWNLOAD_RETRIES = 3;
 
@@ -72,6 +71,11 @@ namespace Amazon
         /// The EU West (Ireland) endpoint.
         /// </summary>
         public static readonly RegionEndpoint EUWest1 = NewEndpoint("eu-west-1", "EU West (Ireland)");
+
+        /// <summary>
+        /// The EU Central (Frankfurt) endpoint.
+        /// </summary>
+        public static readonly RegionEndpoint EUCentral1 = NewEndpoint("eu-central-1", "EU Central (Frankfurt)");
 
         /// <summary>
         /// The Asia Pacific (Tokyo) endpoint.

@@ -1,2 +1,0 @@
-F:\Tara\Code Files\AWS.XamarinSDK\AWSSDK.iOS\bin\iPhone\Release\AWSSDK.iOS.dll
-F:\Tara\Code Files\AWS.XamarinSDK\AWSSDK.iOS\obj\Release\AWSSDK.iOS.dll

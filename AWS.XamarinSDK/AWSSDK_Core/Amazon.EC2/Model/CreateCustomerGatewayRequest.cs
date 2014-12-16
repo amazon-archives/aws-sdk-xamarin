@@ -14,7 +14,7 @@
  */
 
 /*
- * Do not modify this file. This file is generated from the ec2-2014-06-15.normal.json service model.
+ * Do not modify this file. This file is generated from the ec2-2014-10-01.normal.json service model.
  */
 using System;
 using System.Collections.Generic;
@@ -42,7 +42,13 @@ namespace Amazon.EC2.Model
     /// If you don't have an ASN already, you can use a private ASN (in the 64512 - 65534
     /// range).
     /// </para>
-    ///  
+    ///  <note> 
+    /// <para>
+    /// Amazon EC2 supports all 2-byte ASN numbers in the range of 1 - 65534, with the exception
+    /// of 7224, which is reserved in the <code>us-east-1</code> region, and 9059, which is
+    /// reserved in the <code>eu-west-1</code> region.
+    /// </para>
+    ///  </note> 
     /// <para>
     /// For more information about VPN customer gateways, see <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_VPN.html">Adding
     /// a Hardware Virtual Private Gateway to Your VPC</a> in the <i>Amazon Virtual Private
@@ -63,7 +69,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Instantiates CreateCustomerGatewayRequest with the parameterized properties
         /// </summary>
-        /// <param name="type">The type of VPN connection that this customer gateway supports.</param>
+        /// <param name="type">The type of VPN connection that this customer gateway supports (<code>ipsec.1</code>).</param>
         /// <param name="publicIp">The Internet-routable IP address for the customer gateway's outside interface. The address must be static.</param>
         /// <param name="bgpAsn">For devices that support BGP, the customer gateway's BGP ASN. Default: 65000</param>
         public CreateCustomerGatewayRequest(GatewayType type, string publicIp, int bgpAsn)
@@ -117,7 +123,7 @@ namespace Amazon.EC2.Model
         /// <summary>
         /// Gets and sets the property Type. 
         /// <para>
-        /// The type of VPN connection that this customer gateway supports.
+        /// The type of VPN connection that this customer gateway supports (<code>ipsec.1</code>).
         /// </para>
         /// </summary>
         public GatewayType Type

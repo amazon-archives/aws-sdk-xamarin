@@ -40,7 +40,7 @@ namespace Amazon.Util
         internal const string DefaultRegion = "us-east-1";
         internal const string DefaultGovRegion = "us-gov-west-1";
 
-        internal const string SDKVersionNumber = "2.3.1.0";
+        internal const string SDKVersionNumber = "2.3.8.1";
 
         internal const int DefaultMaxRetry = 3;
         private const int DefaultConnectionLimit = 50;
@@ -526,6 +526,34 @@ namespace Amazon.Util
             FillDictionary(items, keyGenerator, valueGenerator, dictionary);
 
             return dictionary;
+        }
+
+        internal static bool TryFindByValue<TKey, TValue>(
+            IDictionary<TKey, TValue> dictionary, TValue value, IEqualityComparer<TValue> valueComparer,
+            out TKey key)
+        {
+            foreach (var kvp in dictionary)
+            {
+                var candidateValue = kvp.Value;
+                if (valueComparer.Equals(value, candidateValue))
+                {
+                    key = kvp.Key;
+                    return true;
+                }
+            }
+
+            key = default(TKey);
+            return false;
+        }
+
+        internal static Stream GenerateStreamFromString(string s)
+        {
+            MemoryStream stream = new MemoryStream();
+            StreamWriter writer = new StreamWriter(stream);
+            writer.Write(s);
+            writer.Flush();
+            stream.Position = 0;
+            return stream;
         }
 
         #endregion

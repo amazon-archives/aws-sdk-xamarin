@@ -100,7 +100,7 @@ namespace Amazon.Runtime.Internal.Util
 
         public void Close()
         {
-            //base.Close();
+            base.Dispose();
         }
 
         /// <summary>

@@ -20,43 +20,50 @@
 
 using System;
 using System.IO;
-//using System.Security.Cryptography;
+using System.Security.Cryptography;
 
 namespace Amazon.Runtime.Internal.Util
 {
     public abstract class EncryptionWrapper : IEncryptionWrapper
     {
-       //private SymmetricAlgorithm algorithm;
-        //private ICryptoTransform encryptor;
+        private SymmetricAlgorithm algorithm;
+        private ICryptoTransform encryptor;
         private const int encryptionKeySize = 256;
 
         protected EncryptionWrapper()
         {
-            //algorithm = CreateAlgorithm();
+            algorithm = CreateAlgorithm();
         }
 
-        //protected abstract object CreateAlgorithm();
+        protected abstract SymmetricAlgorithm CreateAlgorithm();
 
         #region IEncryptionWrapper Members
 
         public int AppendBlock(byte[] buffer, int offset, int count, byte[] target, int targetOffset)
         {
-            throw new NotImplementedException(); 
+            int bytesRead = encryptor.TransformBlock(buffer, offset, count, target, targetOffset);
+            return bytesRead;
         }
 
         public byte[] AppendLastBlock(byte[] buffer, int offset, int count)
         {
-            throw new NotImplementedException();
+            byte[] finalTransform = encryptor.TransformFinalBlock(buffer, offset, count);
+            return finalTransform;
         }
 
         public void CreateEncryptor()
         {
-            throw new NotImplementedException();
+            encryptor = algorithm.CreateEncryptor();
         }
 
         public void SetEncryptionData(byte[] key, byte[] IV)
         {
-            throw new NotImplementedException();
+            
+            //algorithm.KeySize = encryptionKeySize;
+            //algorithm.Padding = PaddingMode.PKCS7;
+            //algorithm.Mode = CipherMode.CBC;
+            algorithm.Key = key;
+            algorithm.IV = IV;
         }
 
         public void Reset()
@@ -73,9 +80,10 @@ namespace Amazon.Runtime.Internal.Util
         public EncryptionWrapperAES()
             : base() { }
 
-        //protected override SymmetricAlgorithm CreateAlgorithm()
-        //{
-        //    return AesManaged.Create();
-        //}
+        protected override SymmetricAlgorithm CreateAlgorithm()
+        {
+            //return AesManaged.Create();
+            return new AesManaged();
+        }
     }
 }
