@@ -40,7 +40,7 @@ namespace Amazon
     /// </summary>
     public class RegionEndpoint
     {
-        const string REGIONS_FILE = "AWSSDK.endpoints.xml";
+        const string REGIONS_FILE = "AWSSDK_XMOBILE.endpoints.xml";
 
         const int MAX_DOWNLOAD_RETRIES = 3;
 
@@ -170,7 +170,7 @@ namespace Amazon
             {
                 LoadEndpointDefinitionFromWeb(endpointsPath);
             }
-#if BCL
+#if BCL 
             else
             {
                 LoadEndpointDefinitionFromFilePath(endpointsPath);
