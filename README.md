@@ -31,5 +31,5 @@ Here are some resources that can help you get started:
 * [Amazon S3 Developer Guide](http://docs.aws.amazon.com/AmazonS3/latest/dev/)
 * [Amazon DynamoDB Developer Guide](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/)
 * [Amazon SNS Developer Guide](http://docs.aws.amazon.com/sns/latest/dg/)
-
+* [AWS Xamarin SDK NuGet Package](https://www.nuget.org/packages/AWS-Mobile-SDK-Xamarin-Beta/)
   [1]: http://aws.amazon.com/lambda/ "AWS Lambda"
