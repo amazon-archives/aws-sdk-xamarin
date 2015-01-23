@@ -3267,7 +3267,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="endpoints.xml" />
+    <EmbeddedResource Include="endpoints.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Amazon.Util\Internal\" />

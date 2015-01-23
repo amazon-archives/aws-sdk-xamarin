@@ -3265,7 +3265,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="endpoints.xml" />
+    <EmbeddedResource Include="endpoints.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
