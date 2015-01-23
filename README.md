@@ -6,7 +6,7 @@ The SDK is available on AWSLabs [here](https://github.com/awslabs/aws-sdk-xamari
 
 ##Highlights
 
- * Included iOS Unified library in addition to Classic iOS project for iOS 64 Apple requirement and Xamarin Unified API.
+ * Included iOS Unified library in addition to Classic iOS project for iOS 64 Apple requirement and Xamarin Unified API. iOS project is Unified API to be used with iOS 64 and iOS-Classic is classic Xamarin library API.
 
  * **Amazon Cognito (Identity)**: With [Amazon Cognito](http://aws.amazon.com/cognito/), you can create unique end user identifiers for accessing AWS cloud services by using public login providers such as Amazon, Facebook, and Google, or by using your own user identity system and generate temporary, limited-privilege credentials for accessing AWS resources eliminating the need to embed AWS credentials in the app. With Amazon Cognito Identity, you can also set granular access permissions on your existing AWS resources.
 
