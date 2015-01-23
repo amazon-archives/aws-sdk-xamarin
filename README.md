@@ -2,9 +2,11 @@
 
 We are making the AWS Mobile SDK for Xamarin available as a beta for you to evaluate and provide us feedback. Now you can use Xamarin to build cross platform apps that use AWS services for identity management ([Amazon Cognito](http://aws.amazon.com/cognito/)), cloud storage ([Amazon S3](http://aws.amazon.com/s3/)), a fully-managed NoSQL database ([Amazon DynamoDB](http://aws.amazon.com/dynamodb/)), and push notifications ([Amazon SNS Mobile Push](http://aws.amazon.com/sns/)).
 
-The SDK is available on AWSLabs [here](https://github.com/awslabs/aws-sdk-xamarin) and is in early stage development. The current version of the SDK (v2)  has been updated to provide more features and services for evaluation.  We plan to make improvements based on your feedback, so be sure to let us know if you have questions, issues or ideas [here](https://github.com/awslabs/aws-sdk-xamarin/issues).
+The SDK is available on AWSLabs [here](https://github.com/awslabs/aws-sdk-xamarin) and is in early stage development. The current version of the SDK (v3)  has been updated to provide more features and services for evaluation.  We plan to make improvements based on your feedback, so be sure to let us know if you have questions, issues or ideas [here](https://github.com/awslabs/aws-sdk-xamarin/issues).
 
 ##Highlights
+
+ * Included iOS Unified library in addition to Classic iOS project for iOS 64 Apple requirement and Xamarin Unified API. iOS project is Unified API to be used with iOS 64 and iOS-Classic is classic Xamarin library API.
 
  * **Amazon Cognito (Identity)**: With [Amazon Cognito](http://aws.amazon.com/cognito/), you can create unique end user identifiers for accessing AWS cloud services by using public login providers such as Amazon, Facebook, and Google, or by using your own user identity system and generate temporary, limited-privilege credentials for accessing AWS resources eliminating the need to embed AWS credentials in the app. With Amazon Cognito Identity, you can also set granular access permissions on your existing AWS resources.
 
