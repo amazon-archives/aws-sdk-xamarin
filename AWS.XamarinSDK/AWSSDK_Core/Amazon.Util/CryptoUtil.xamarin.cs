@@ -22,7 +22,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Security.Cryptography;
+//using System.Security.Cryptography;
+using System.Security;
+using PCLCrypto;
 
 using Amazon.Runtime;
 using ThirdParty.MD5;
@@ -41,7 +43,7 @@ namespace Amazon.Util
 
             public string HMACSign(byte[] data, string key, SigningAlgorithm algorithmName)
             {
-                
+                KeyedHashAlgorithm algorithm = CreateKeyedHashAlgorithm(algorithmName);
                 if (String.IsNullOrEmpty(key))
                 {
                     throw new ArgumentNullException("key", "Please specify a Secret Signing Key.");
@@ -52,8 +54,6 @@ namespace Amazon.Util
                     throw new ArgumentNullException("data", "Please specify data to sign.");
                 }
 
-                KeyedHashAlgorithm algorithm = CreateKeyedHashAlgorithm(algorithmName, Encoding.UTF8.GetBytes(key));
-                
                 if (null == algorithm)
                 {
                     throw new ArgumentNullException("algorithm", "Please specify a KeyedHashAlgorithm to use.");
@@ -61,8 +61,7 @@ namespace Amazon.Util
 
                 try
                 {
-                  
-                    //algorithm.Key = Encoding.UTF8.GetBytes(key);
+                    algorithm.Key = Encoding.UTF8.GetBytes(key);
                     byte[] bytes = algorithm.ComputeHash(data);
                     return Convert.ToBase64String(bytes);
                 }
@@ -99,6 +98,8 @@ namespace Amazon.Util
 
             public byte[] HMACSignBinary(byte[] data, byte[] key, SigningAlgorithm algorithmName)
             {
+                KeyedHashAlgorithm algorithm = CreateKeyedHashAlgorithm(algorithmName);
+
                 if (key == null || key.Length == 0)
                 {
                     throw new ArgumentNullException("key", "Please specify a Secret Signing Key.");
@@ -109,17 +110,14 @@ namespace Amazon.Util
                     throw new ArgumentNullException("data", "Please specify data to sign.");
                 }
 
-                KeyedHashAlgorithm algorithm = CreateKeyedHashAlgorithm(algorithmName,key);
-
                 if (null == algorithm)
                 {
                     throw new ArgumentNullException("algorithm", "Please specify a KeyedHashAlgorithm to use.");
                 }
 
-
                 try
                 {
-                    //algorithm.Key = key;
+                    algorithm.Key = key;
                     byte[] bytes = algorithm.ComputeHash(data);
                     return bytes;
                 }
@@ -142,14 +140,14 @@ namespace Amazon.Util
                 }
             }
 
-            private KeyedHashAlgorithm CreateKeyedHashAlgorithm(SigningAlgorithm algorithm, byte[] key=null)
+            private KeyedHashAlgorithm CreateKeyedHashAlgorithm(SigningAlgorithm algorithm)
             {
                 switch (algorithm)
                 {
                     case SigningAlgorithm.HmacSHA256:
-                        return new HMACSHA256(key);
+                        return new HMACSHA256();
                     case SigningAlgorithm.HmacSHA1:
-                        return new HMACSHA1(key);
+                        return new HMACSHA1();
                     default:
                         throw new Exception("Unknown algorithm: " + algorithm.ToString());
                 }

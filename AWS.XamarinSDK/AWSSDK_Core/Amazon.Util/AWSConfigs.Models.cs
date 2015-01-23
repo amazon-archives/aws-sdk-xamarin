@@ -71,7 +71,7 @@ namespace Amazon.Util
             ProfileName = AWSConfigs._awsProfileName;
             ProfilesLocation = AWSConfigs._awsAccountsLocation;
 
-#if !WIN_RT && !WINDOWS_PHONE &&!MOBILE
+#if !WIN_RT && !WINDOWS_PHONE && !MOBILE
             var root = AWSConfigs.GetSection<AWSSection>(_rootAwsSectionName);
 
             Logging.Configure(root.Logging);

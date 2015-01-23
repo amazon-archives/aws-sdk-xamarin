@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright 2012-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -93,7 +93,7 @@ namespace Amazon.DynamoDBv2
 
             object collection;
             if (items == null ||
-                !Utils.ItemsToCollection(collectionType, items, out collection))
+                !DataModel.Utils.ItemsToCollection(collectionType, items, out collection))
                 throw new InvalidOperationException(string.Format(CultureInfo.InvariantCulture,
                     "Unable to convert entry [{0}] of type {1} to {2}", entry, entry.GetType().FullName, collectionType.FullName));
 

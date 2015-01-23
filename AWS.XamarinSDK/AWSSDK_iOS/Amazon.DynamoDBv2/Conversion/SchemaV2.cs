@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright 2012-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -150,7 +150,7 @@ namespace Amazon.DynamoDBv2
 
             if (DataModel.Utils.ImplementsInterface(inputType, enumerableType))
             {
-                var elementType = Utils.GetElementType(inputType);
+                var elementType = global::Amazon.DynamoDBv2.DataModel.Utils.GetElementType(inputType);
                 var entries = Conversion.ConvertToEntries(elementType, value as IEnumerable);
                 l = new DynamoDBList(entries);
                 return true;
@@ -164,7 +164,7 @@ namespace Amazon.DynamoDBv2
     internal class DynamoDBListConverter : CollectionConverter
     {
         public DynamoDBListConverter()
-            : this(Utils.PrimitiveTypes)
+            : this(DataModel.Utils.PrimitiveTypes)
         { }
         public DynamoDBListConverter(IEnumerable<Type> memberTypes)
             : base(memberTypes)
@@ -191,7 +191,7 @@ namespace Amazon.DynamoDBv2
 
         public override bool TryFrom(DynamoDBList l, Type targetType, out object result)
         {
-            var elementType = Utils.GetElementType(targetType);
+            var elementType = global::Amazon.DynamoDBv2.DataModel.Utils.GetElementType(targetType);
             var entries = l.Entries;
             return EntriesToCollection(targetType, elementType, entries, out result);
         }

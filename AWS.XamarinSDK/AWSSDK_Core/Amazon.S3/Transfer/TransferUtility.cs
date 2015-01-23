@@ -340,7 +340,7 @@ namespace Amazon.S3.Transfer
             {
                 throw new InvalidOperationException("Please specify BucketName to PUT an object into Amazon S3.");
             }
-#if BCL
+#if BCL || MOBILE
             if (!request.IsSetFilePath() &&
                 !request.IsSetInputStream())
             {
@@ -374,7 +374,11 @@ namespace Amazon.S3.Transfer
                         "The Key property must be specified when using a Stream to upload into Amazon S3.");
                 }
             }
-#if BCL
+
+#if PCL
+            if (request.IsSetFilePath() && !request.IsSetInputStream())
+                throw new ArgumentException("This file indicated by the FilePath property does not exist!");
+#elif BCL || MOBILE
             if (request.IsSetFilePath() && !File.Exists(request.FilePath))
                 throw new ArgumentException("The file indicated by the FilePath property does not exist!");
 #elif WIN_RT || WINDOWS_PHONE

@@ -15,9 +15,8 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using System.Threading.Tasks;
 
-#if WIN_RT
+#if WIN_RT || PCL
 using System.Threading.Tasks;
 #endif
 
@@ -35,11 +34,11 @@ namespace Amazon.Runtime.Internal.Util
         private bool isDisposed = false;
         private Action<T> action;
         private Queue<T> queue;
-//#if WIN_RT
+#if WIN_RT || PCL
         private Task backgroundThread;
-//#else
-//        private Thread backgroundThread;
-//#endif
+#else
+        private Thread backgroundThread;
+#endif
         private AutoResetEvent resetEvent;
         private bool shouldStop;
         public bool IsRunning { get; private set; }
@@ -59,14 +58,14 @@ namespace Amazon.Runtime.Internal.Util
             shouldStop = false;
             this.action = action;
 
-//#if WIN_RT
+#if WIN_RT || PCL
             backgroundThread = new Task(Run);
             backgroundThread.Start();
-//#else
-//            backgroundThread = new Thread(Run);
-//            backgroundThread.IsBackground = true;
-//            backgroundThread.Start();
-//#endif
+#else
+            backgroundThread = new Thread(Run);
+            backgroundThread.IsBackground = true;
+            backgroundThread.Start();
+#endif
         }
 
         ~BackgroundDispatcher()
@@ -91,11 +90,11 @@ namespace Amazon.Runtime.Internal.Util
             {
                 if (disposing && resetEvent != null)
                 {
-//#if WIN_RT
+#if WIN_RT || PCL
                     resetEvent.Dispose();
-//#else
-//                    resetEvent.Close();
-//#endif
+#else
+                    resetEvent.Close();
+#endif
                     resetEvent = null;
                 }
                 this.isDisposed = true;

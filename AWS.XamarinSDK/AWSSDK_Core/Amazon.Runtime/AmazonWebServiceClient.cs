@@ -195,10 +195,10 @@ WebExceptionStatusesToRetryOn.Contains(we.Status)
                     var ioe = e.InnerException as IOException;
                     if (ioe != null)
                     {
-//#if !WIN_RT
-//                        if (IsInnerExceptionThreadAbort(ioe))
-//                        { throw new AmazonServiceException(e); }
-//#endif
+#if !WIN_RT && !PCL
+                        if (IsInnerExceptionThreadAbort(ioe))
+                        { throw new AmazonServiceException(e); }
+#endif
                         shouldRetry = RetryOrThrow(state, e);
                     }
 
@@ -463,18 +463,17 @@ WebExceptionStatusesToRetryOn.Contains(we.Status)
 
         protected HttpClient ConfigureHttpClient()
         {
-            var httpMessageHandler = new HttpClientHandler(); 
-//#if BCL45
-//            var httpMessageHandler = new WebRequestHandler();
-//            if (this.Config.ReadWriteTimeout.HasValue)
-//            {
-//                // ReadWriteTimeout value is set to ClientConfig.MaxTimeout for S3 and Glacier.
-//                // Use default value (300 seconds) for other services.
-//                httpMessageHandler.ReadWriteTimeout = (int)this.Config.ReadWriteTimeout.Value.TotalMilliseconds;
-//            }            
-//#else
-//            var httpMessageHandler = new HttpClientHandler();
-//#endif
+#if BCL45 && !MOBILE
+            var httpMessageHandler = new WebRequestHandler();
+            if (this.Config.ReadWriteTimeout.HasValue)
+            {
+                // ReadWriteTimeout value is set to ClientConfig.MaxTimeout for S3 and Glacier.
+                // Use default value (300 seconds) for other services.
+                httpMessageHandler.ReadWriteTimeout = (int)this.Config.ReadWriteTimeout.Value.TotalMilliseconds;
+            }            
+#else
+            var httpMessageHandler = new HttpClientHandler();
+#endif
 
 #if BCL
             

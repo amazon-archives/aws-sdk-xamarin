@@ -149,10 +149,11 @@ namespace Amazon.Runtime
                     OriginalRequest = request,
                     Signer = Signer,
                     Unmarshaller = unmarshaller,
-                    IsAsync = true
+                    IsAsync = true,
+                    CancellationToken = cancellationToken
                 },
                 new ResponseContext()
-            ) { CancellationToken = cancellationToken };
+            );
 
             return this.RuntimePipeline.InvokeAsync<TResponse>(executionContext);
         }
@@ -303,7 +304,7 @@ namespace Amazon.Runtime
 
         private void BuildRuntimePipeline()
         {
-#if !MOBILE && (BCL || BCL45) 
+#if (BCL || BCL45) && !MOBILE 
             var httpRequestFactory = new HttpWebRequestFactory();
             var httpHandler = new HttpHandler<Stream>(httpRequestFactory, this);
 #else

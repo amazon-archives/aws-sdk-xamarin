@@ -32,58 +32,9 @@ namespace Amazon.AutoScaling
     ///
     /// Auto Scaling 
     /// <para>
-    ///  Auto Scaling is a web service designed to automatically launch or terminate Amazon
-    /// Elastic Compute Cloud (Amazon EC2) instances based on user-defined policies, schedules,
-    /// and health checks. This service is used in conjunction with Amazon CloudWatch and
-    /// Elastic Load Balancing services. 
-    /// </para>
-    ///  
-    /// <para>
-    /// Auto Scaling provides APIs that you can call by submitting a Query Request. Query
-    /// requests are HTTP or HTTPS requests that use the HTTP verbs GET or POST and a Query
-    /// parameter named <i>Action</i> or <i>Operation</i> that specifies the API you are calling.
-    /// Action is used throughout this documentation, although Operation is also supported
-    /// for backward compatibility with other Amazon Web Services (AWS) Query APIs. 
-    /// </para>
-    ///  
-    /// <para>
-    /// Calling the API using a Query request is the most direct way to access the web service,
-    /// but requires that your application handle low-level details such as generating the
-    /// hash to sign the request and error handling. The benefit of calling the service using
-    /// a Query request is that you are assured of having access to the complete functionality
-    /// of the API. For information about signing a a query request, see <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/api_requests.html">Use
-    /// Query Requests to Call Auto Scaling APIs</a>
-    /// </para>
-    ///  
-    /// <para>
-    ///  This guide provides detailed information about Auto Scaling actions, data types,
-    /// parameters, and errors. For detailed information about Auto Scaling features and their
-    /// associated API actions, go to the <a href="http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/">Auto
-    /// Scaling Developer Guide</a>. 
-    /// </para>
-    ///  
-    /// <para>
-    /// This reference is based on the current WSDL, which is available at:
-    /// </para>
-    ///  
-    /// <para>
-    /// <a href="http://autoscaling.amazonaws.com/doc/2011-01-01/AutoScaling.wsdl">http://autoscaling.amazonaws.com/doc/2011-01-01/AutoScaling.wsdl</a>
-    /// 
-    /// </para>
-    ///  
-    /// <para>
-    /// <b>Endpoints</b>
-    /// </para>
-    ///  
-    /// <para>
-    /// The examples in this guide assume that your instances are launched in the US East
-    /// (Northern Virginia) region and use us-east-1 as the endpoint.
-    /// </para>
-    ///  
-    /// <para>
-    /// You can set up your Auto Scaling infrastructure in other AWS regions. For information
-    /// about this product's regions and endpoints, see <a href="http://docs.aws.amazon.com/general/latest/gr/index.html?rande.html">Regions
-    /// and Endpoints</a> in the Amazon Web Services General Reference. 
+    /// Auto Scaling is designed to automatically launch or terminate EC2 instances based
+    /// on user-defined policies, schedules, and health checks. Use this service in conjunction
+    /// with the Amazon CloudWatch and Elastic Load Balancing services.
     /// </para>
     /// </summary>
     public partial interface IAmazonAutoScaling : IDisposable
@@ -93,7 +44,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the AttachInstances operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the AttachInstances operation.</param>
@@ -109,7 +59,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the CompleteLifecycleAction operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the CompleteLifecycleAction operation.</param>
@@ -125,7 +74,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the CreateAutoScalingGroup operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the CreateAutoScalingGroup operation.</param>
@@ -141,7 +89,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the CreateLaunchConfiguration operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the CreateLaunchConfiguration operation.</param>
@@ -157,7 +104,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the CreateOrUpdateTags operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the CreateOrUpdateTags operation.</param>
@@ -173,7 +119,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the DeleteAutoScalingGroup operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the DeleteAutoScalingGroup operation.</param>
@@ -189,7 +134,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the DeleteLaunchConfiguration operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the DeleteLaunchConfiguration operation.</param>
@@ -205,7 +149,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the DeleteLifecycleHook operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the DeleteLifecycleHook operation.</param>
@@ -221,7 +164,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the DeleteNotificationConfiguration operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the DeleteNotificationConfiguration operation.</param>
@@ -237,7 +179,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the DeletePolicy operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the DeletePolicy operation.</param>
@@ -253,7 +194,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the DeleteScheduledAction operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the DeleteScheduledAction operation.</param>
@@ -269,7 +209,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the DeleteTags operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the DeleteTags operation.</param>
@@ -285,7 +224,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the DescribeAccountLimits operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the DescribeAccountLimits operation.</param>
@@ -301,7 +239,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the DescribeAdjustmentTypes operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the DescribeAdjustmentTypes operation.</param>
@@ -317,7 +254,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the DescribeAutoScalingGroups operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the DescribeAutoScalingGroups operation.</param>
@@ -333,7 +269,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the DescribeAutoScalingInstances operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the DescribeAutoScalingInstances operation.</param>
@@ -349,7 +284,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the DescribeAutoScalingNotificationTypes operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the DescribeAutoScalingNotificationTypes operation.</param>
@@ -365,7 +299,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the DescribeLaunchConfigurations operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the DescribeLaunchConfigurations operation.</param>
@@ -381,7 +314,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the DescribeLifecycleHooks operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the DescribeLifecycleHooks operation.</param>
@@ -397,7 +329,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the DescribeLifecycleHookTypes operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the DescribeLifecycleHookTypes operation.</param>
@@ -413,7 +344,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the DescribeMetricCollectionTypes operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the DescribeMetricCollectionTypes operation.</param>
@@ -429,7 +359,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the DescribeNotificationConfigurations operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the DescribeNotificationConfigurations operation.</param>
@@ -445,7 +374,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the DescribePolicies operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the DescribePolicies operation.</param>
@@ -461,7 +389,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the DescribeScalingActivities operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the DescribeScalingActivities operation.</param>
@@ -477,7 +404,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the DescribeScalingProcessTypes operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the DescribeScalingProcessTypes operation.</param>
@@ -493,7 +419,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the DescribeScheduledActions operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the DescribeScheduledActions operation.</param>
@@ -509,7 +434,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the DescribeTags operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the DescribeTags operation.</param>
@@ -525,7 +449,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the DescribeTerminationPolicyTypes operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the DescribeTerminationPolicyTypes operation.</param>
@@ -541,7 +464,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the DetachInstances operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the DetachInstances operation.</param>
@@ -557,7 +479,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the DisableMetricsCollection operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the DisableMetricsCollection operation.</param>
@@ -573,7 +494,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the EnableMetricsCollection operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the EnableMetricsCollection operation.</param>
@@ -589,7 +509,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the EnterStandby operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the EnterStandby operation.</param>
@@ -605,7 +524,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the ExecutePolicy operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the ExecutePolicy operation.</param>
@@ -621,7 +539,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the ExitStandby operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the ExitStandby operation.</param>
@@ -637,7 +554,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the PutLifecycleHook operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the PutLifecycleHook operation.</param>
@@ -653,7 +569,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the PutNotificationConfiguration operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the PutNotificationConfiguration operation.</param>
@@ -669,7 +584,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the PutScalingPolicy operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the PutScalingPolicy operation.</param>
@@ -685,7 +599,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the PutScheduledUpdateGroupAction operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the PutScheduledUpdateGroupAction operation.</param>
@@ -701,7 +614,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the RecordLifecycleActionHeartbeat operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the RecordLifecycleActionHeartbeat operation.</param>
@@ -717,7 +629,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the ResumeProcesses operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the ResumeProcesses operation.</param>
@@ -733,7 +644,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the SetDesiredCapacity operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the SetDesiredCapacity operation.</param>
@@ -749,7 +659,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the SetInstanceHealth operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the SetInstanceHealth operation.</param>
@@ -765,7 +674,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the SuspendProcesses operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the SuspendProcesses operation.</param>
@@ -781,7 +689,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the TerminateInstanceInAutoScalingGroup operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the TerminateInstanceInAutoScalingGroup operation.</param>
@@ -797,7 +704,6 @@ namespace Amazon.AutoScaling
 
         /// <summary>
         /// Initiates the asynchronous execution of the UpdateAutoScalingGroup operation.
-        /// <seealso cref="Amazon.AutoScaling.IAmazonAutoScaling"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the UpdateAutoScalingGroup operation.</param>

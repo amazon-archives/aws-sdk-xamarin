@@ -27,8 +27,6 @@ using System.Text;
 
 using Amazon.S3.Model;
 using Amazon.Util;
-using PCLStorage;
-using System.Threading.Tasks;
 
 namespace Amazon.S3.Transfer
 {
@@ -115,7 +113,7 @@ namespace Amazon.S3.Transfer
         /// 	Gets or sets the canned access control list (ACL)
         /// 	for the uploaded object.
         /// 	Please refer to 
-        /// 	<see cref="T:Amazon.S3.Model.S3CannedACL"/> for
+        /// 	<see cref="T:Amazon.S3.S3CannedACL"/> for
         /// 	information on Amazon S3 canned ACLs.
         /// </summary>
         /// <value>
@@ -178,7 +176,7 @@ namespace Amazon.S3.Transfer
         /// <summary>
         /// 	Gets or sets the storage class for the uploaded Amazon S3 object.
         /// 	Please refer to 
-        /// 	<see cref="T:Amazon.S3.Model.S3StorageClass"/> for
+        /// 	<see cref="T:Amazon.S3.S3StorageClass"/> for
         /// 	information on S3 Storage Classes.
         /// </summary>
         /// <value>
@@ -407,31 +405,29 @@ namespace Amazon.S3.Transfer
             get
             {
                 long length;
-//#if BCL ||MOBILE
+#if PCL 
+                length = this.InputStream.Length - this.InputStream.Position; 
+#endif
+
+#if BCL
                 if (this.IsSetFilePath())
                 {
-                    length = Task.Run(async() => 
-                                { 
-                                    IFile file = await FileSystem.Current.GetFileFromPathAsync(this.FilePath);
-                                    var fileStream = await file.OpenAsync(FileAccess.Read);
-                                    return fileStream.Length;
-                                }).Result;
-                    //FileInfo fileInfo = new FileInfo(this.FilePath);}
-                    //length = fileInfo.Length;
+                    FileInfo fileInfo = new FileInfo(this.FilePath);
+                    length = fileInfo.Length;
                 }
-//#elif WIN_RT || WINDOWS_PHONE
-//                if (IsSetStorageFile())
-//                {
-//                    var result = System.Threading.Tasks.Task.Run(() =>
-//                        this.StorageFile.GetBasicPropertiesAsync().AsTask()).Result;
-//                    length = checked((long)result.Size);
-//                }
+#elif WIN_RT || WINDOWS_PHONE
+                if (IsSetStorageFile())
+                {
+                    var result = System.Threading.Tasks.Task.Run(() =>
+                        this.StorageFile.GetBasicPropertiesAsync().AsTask()).Result;
+                    length = checked((long)result.Size);
+                }
 //#endif
                 else
                 {
                     length = this.InputStream.Length - this.InputStream.Position;
                 }
-
+#endif
                 return length;
             }
         }

@@ -3,6 +3,42 @@
     <Region>
       <Name>us-east-1</Name>
       <Endpoint>
+        <ServiceName>cloudhsm</ServiceName>
+        <Http>false</Http>
+        <Https>true</Https>
+        <Hostname>cloudhsm.us-east-1.amazonaws.com</Hostname>
+      </Endpoint>
+      <Endpoint>
+        <ServiceName>ecs</ServiceName>
+        <Http>false</Http>
+        <Https>true</Https>
+        <Hostname>ecs.us-east-1.amazonaws.com</Hostname>
+      </Endpoint>
+      <Endpoint>
+        <ServiceName>lambda</ServiceName>
+        <Http>false</Http>
+        <Https>true</Https>
+        <Hostname>lambda.us-east-1.amazonaws.com</Hostname>
+      </Endpoint>
+      <Endpoint>
+        <ServiceName>codedeploy</ServiceName>
+        <Http>false</Http>
+        <Https>true</Https>
+        <Hostname>codedeploy.us-east-1.amazonaws.com</Hostname>
+      </Endpoint>
+      <Endpoint>
+        <ServiceName>config</ServiceName>
+        <Http>false</Http>
+        <Https>true</Https>
+        <Hostname>config.us-east-1.amazonaws.com</Hostname>
+      </Endpoint>
+      <Endpoint>
+        <ServiceName>kms</ServiceName>
+        <Http>false</Http>
+        <Https>true</Https>
+        <Hostname>kms.us-east-1.amazonaws.com</Hostname>
+      </Endpoint>
+      <Endpoint>
         <ServiceName>cognito-sync</ServiceName>
         <Http>false</Http>
         <Https>true</Https>
@@ -19,12 +55,6 @@
         <Http>false</Http>
         <Https>true</Https>
         <Hostname>cloudformation.us-east-1.amazonaws.com</Hostname>
-      </Endpoint>
-      <Endpoint>
-        <ServiceName>config</ServiceName>
-        <Http>false</Http>
-        <Https>true</Https>
-        <Hostname>config.us-east-1.amazonaws.com</Hostname>
       </Endpoint>
       <Endpoint>
         <ServiceName>cloudfront</ServiceName>
@@ -51,22 +81,10 @@
         <Hostname>monitoring.us-east-1.amazonaws.com</Hostname>
       </Endpoint>
       <Endpoint>
-        <ServiceName>lambda</ServiceName>
-        <Http>false</Http>
-        <Https>true</Https>
-        <Hostname>lambda.us-east-1.amazonaws.com</Hostname>
-      </Endpoint>
-      <Endpoint>
         <ServiceName>logs</ServiceName>
         <Http>true</Http>
         <Https>true</Https>
         <Hostname>logs.us-east-1.amazonaws.com</Hostname>
-      </Endpoint>
-      <Endpoint>
-        <ServiceName>codedeploy</ServiceName>
-        <Http>true</Http>
-        <Https>true</Https>
-        <Hostname>codedeploy.us-east-1.amazonaws.com</Hostname>
       </Endpoint>
       <Endpoint>
         <ServiceName>dynamodb</ServiceName>
@@ -219,12 +237,6 @@
         <Hostname>kinesis.us-east-1.amazonaws.com</Hostname>
       </Endpoint>
       <Endpoint>
-        <ServiceName>kms</ServiceName>
-        <Http>false</Http>
-        <Https>true</Https>
-        <Hostname>kms.us-east-1.amazonaws.com</Hostname>
-      </Endpoint>
-      <Endpoint>
         <ServiceName>opsworks</ServiceName>
         <Http>false</Http>
         <Https>true</Https>
@@ -239,6 +251,12 @@
     </Region>
     <Region>
       <Name>us-west-1</Name>
+      <Endpoint>
+        <ServiceName>kms</ServiceName>
+        <Http>false</Http>
+        <Https>true</Https>
+        <Hostname>kms.us-west-1.amazonaws.com</Hostname>
+      </Endpoint>
       <Endpoint>
         <ServiceName>cloudformation</ServiceName>
         <Http>false</Http>
@@ -398,15 +416,33 @@
         <Https>true</Https>
         <Hostname>elastictranscoder.us-west-1.amazonaws.com</Hostname>
       </Endpoint>
+    </Region>
+    <Region>
+      <Name>us-west-2</Name>
+      <Endpoint>
+        <ServiceName>cloudhsm</ServiceName>
+        <Http>false</Http>
+        <Https>true</Https>
+        <Hostname>cloudhsm.us-west-2.amazonaws.com</Hostname>
+      </Endpoint>
+      <Endpoint>
+        <ServiceName>lambda</ServiceName>
+        <Http>false</Http>
+        <Https>true</Https>
+        <Hostname>lambda.us-west-2.amazonaws.com</Hostname>
+      </Endpoint>
+      <Endpoint>
+        <ServiceName>codedeploy</ServiceName>
+        <Http>false</Http>
+        <Https>true</Https>
+        <Hostname>codedeploy.us-west-2.amazonaws.com</Hostname>
+      </Endpoint>
       <Endpoint>
         <ServiceName>kms</ServiceName>
         <Http>false</Http>
         <Https>true</Https>
-        <Hostname>kms.us-west-1.amazonaws.com</Hostname>
+        <Hostname>kms.us-west-2.amazonaws.com</Hostname>
       </Endpoint>
-    </Region>
-    <Region>
-      <Name>us-west-2</Name>
       <Endpoint>
         <ServiceName>cloudformation</ServiceName>
         <Http>false</Http>
@@ -439,22 +475,10 @@
         <Hostname>monitoring.us-west-2.amazonaws.com</Hostname>
       </Endpoint>
       <Endpoint>
-        <ServiceName>lambda</ServiceName>
-        <Http>false</Http>
-        <Https>true</Https>
-        <Hostname>lambda.us-west-2.amazonaws.com</Hostname>
-      </Endpoint>
-      <Endpoint>
         <ServiceName>logs</ServiceName>
         <Http>true</Http>
         <Https>true</Https>
         <Hostname>logs.us-west-2.amazonaws.com</Hostname>
-      </Endpoint>
-      <Endpoint>
-        <ServiceName>codedeploy</ServiceName>
-        <Http>true</Http>
-        <Https>true</Https>
-        <Hostname>codedeploy.us-west-2.amazonaws.com</Hostname>
       </Endpoint>
       <Endpoint>
         <ServiceName>dynamodb</ServiceName>
@@ -603,12 +627,6 @@
         <Hostname>kinesis.us-west-2.amazonaws.com</Hostname>
       </Endpoint>
       <Endpoint>
-        <ServiceName>kms</ServiceName>
-        <Http>false</Http>
-        <Https>true</Https>
-        <Hostname>kms.us-west-2.amazonaws.com</Hostname>
-      </Endpoint>
-      <Endpoint>
         <ServiceName>elastictranscoder</ServiceName>
         <Http>false</Http>
         <Https>true</Https>
@@ -617,6 +635,12 @@
     </Region>
     <Region>
       <Name>ap-northeast-1</Name>
+      <Endpoint>
+        <ServiceName>kms</ServiceName>
+        <Http>false</Http>
+        <Https>true</Https>
+        <Hostname>kms.ap-northeast-1.amazonaws.com</Hostname>
+      </Endpoint>
       <Endpoint>
         <ServiceName>cloudformation</ServiceName>
         <Http>false</Http>
@@ -789,12 +813,6 @@
         <Hostname>kinesis.ap-northeast-1.amazonaws.com</Hostname>
       </Endpoint>
       <Endpoint>
-        <ServiceName>kms</ServiceName>
-        <Http>false</Http>
-        <Https>true</Https>
-        <Hostname>kms.ap-northeast-1.amazonaws.com</Hostname>
-      </Endpoint>
-      <Endpoint>
         <ServiceName>elastictranscoder</ServiceName>
         <Http>false</Http>
         <Https>true</Https>
@@ -803,6 +821,12 @@
     </Region>
     <Region>
       <Name>ap-southeast-1</Name>
+      <Endpoint>
+        <ServiceName>kms</ServiceName>
+        <Http>false</Http>
+        <Https>true</Https>
+        <Hostname>kms.ap-southeast-1.amazonaws.com</Hostname>
+      </Endpoint>
       <Endpoint>
         <ServiceName>cloudformation</ServiceName>
         <Http>false</Http>
@@ -963,12 +987,6 @@
         <Hostname>kinesis.ap-southeast-1.amazonaws.com</Hostname>
       </Endpoint>
       <Endpoint>
-        <ServiceName>kms</ServiceName>
-        <Http>false</Http>
-        <Https>true</Https>
-        <Hostname>kms.ap-southeast-1.amazonaws.com</Hostname>
-      </Endpoint>
-      <Endpoint>
         <ServiceName>elastictranscoder</ServiceName>
         <Http>false</Http>
         <Https>true</Https>
@@ -977,6 +995,18 @@
     </Region>
     <Region>
       <Name>ap-southeast-2</Name>
+      <Endpoint>
+        <ServiceName>cloudhsm</ServiceName>
+        <Http>false</Http>
+        <Https>true</Https>
+        <Hostname>cloudhsm.ap-southeast-2.amazonaws.com</Hostname>
+      </Endpoint>
+      <Endpoint>
+        <ServiceName>kms</ServiceName>
+        <Http>false</Http>
+        <Https>true</Https>
+        <Hostname>kms.ap-southeast-2.amazonaws.com</Hostname>
+      </Endpoint>
       <Endpoint>
         <ServiceName>cloudformation</ServiceName>
         <Http>false</Http>
@@ -1148,15 +1178,15 @@
         <Https>true</Https>
         <Hostname>kinesis.ap-southeast-2.amazonaws.com</Hostname>
       </Endpoint>
+    </Region>
+    <Region>
+      <Name>sa-east-1</Name>
       <Endpoint>
         <ServiceName>kms</ServiceName>
         <Http>false</Http>
         <Https>true</Https>
-        <Hostname>kms.ap-southeast-2.amazonaws.com</Hostname>
+        <Hostname>kms.sa-east-1.amazonaws.com</Hostname>
       </Endpoint>
-    </Region>
-    <Region>
-      <Name>sa-east-1</Name>
       <Endpoint>
         <ServiceName>cloudformation</ServiceName>
         <Http>false</Http>
@@ -1304,15 +1334,27 @@
         <Https>true</Https>
         <Hostname>directconnect.sa-east-1.amazonaws.com</Hostname>
       </Endpoint>
+    </Region>
+    <Region>
+      <Name>eu-west-1</Name>
+      <Endpoint>
+        <ServiceName>cloudhsm</ServiceName>
+        <Http>false</Http>
+        <Https>true</Https>
+        <Hostname>cloudhsm.eu-west-1.amazonaws.com</Hostname>
+      </Endpoint>
+      <Endpoint>
+        <ServiceName>lambda</ServiceName>
+        <Http>false</Http>
+        <Https>true</Https>
+        <Hostname>lambda.eu-west-1.amazonaws.com</Hostname>
+      </Endpoint>
       <Endpoint>
         <ServiceName>kms</ServiceName>
         <Http>false</Http>
         <Https>true</Https>
-        <Hostname>kms.sa-east-1.amazonaws.com</Hostname>
+        <Hostname>kms.eu-west-1.amazonaws.com</Hostname>
       </Endpoint>
-    </Region>
-    <Region>
-      <Name>eu-west-1</Name>
       <Endpoint>
         <ServiceName>cognito-sync</ServiceName>
         <Http>false</Http>
@@ -1355,12 +1397,6 @@
         <Http>true</Http>
         <Https>true</Https>
         <Hostname>monitoring.eu-west-1.amazonaws.com</Hostname>
-      </Endpoint>
-      <Endpoint>
-        <ServiceName>lambda</ServiceName>
-        <Http>false</Http>
-        <Https>true</Https>
-        <Hostname>lambda.eu-west-1.amazonaws.com</Hostname>
       </Endpoint>
       <Endpoint>
         <ServiceName>logs</ServiceName>
@@ -1515,12 +1551,6 @@
         <Hostname>kinesis.eu-west-1.amazonaws.com</Hostname>
       </Endpoint>
       <Endpoint>
-        <ServiceName>kms</ServiceName>
-        <Http>false</Http>
-        <Https>true</Https>
-        <Hostname>kms.eu-west-1.amazonaws.com</Hostname>
-      </Endpoint>
-      <Endpoint>
         <ServiceName>elastictranscoder</ServiceName>
         <Http>false</Http>
         <Https>true</Https>
@@ -1529,6 +1559,18 @@
     </Region>
     <Region>
       <Name>eu-central-1</Name>
+      <Endpoint>
+        <ServiceName>cloudhsm</ServiceName>
+        <Http>false</Http>
+        <Https>true</Https>
+        <Hostname>cloudhsm.eu-central-1.amazonaws.com</Hostname>
+      </Endpoint>
+      <Endpoint>
+        <ServiceName>kms</ServiceName>
+        <Http>false</Http>
+        <Https>true</Https>
+        <Hostname>kms.eu-central-1.amazonaws.com</Hostname>
+      </Endpoint>
       <Endpoint>
         <ServiceName>cloudformation</ServiceName>
         <Http>false</Http>
@@ -1578,6 +1620,12 @@
         <Http>true</Http>
         <Https>true</Https>
         <Hostname>elasticmapreduce.eu-central-1.amazonaws.com</Hostname>
+      </Endpoint>
+      <Endpoint>
+        <ServiceName>elasticache</ServiceName>
+        <Http>false</Http>
+        <Https>true</Https>
+        <Hostname>elasticache.eu-central-1.amazonaws.com</Hostname>
       </Endpoint>
       <Endpoint>
         <ServiceName>rds</ServiceName>
@@ -1677,12 +1725,6 @@
         <Http>false</Http>
         <Https>true</Https>
         <Hostname>kinesis.eu-central-1.amazonaws.com</Hostname>
-      </Endpoint>
-      <Endpoint>
-        <ServiceName>kms</ServiceName>
-        <Http>false</Http>
-        <Https>true</Https>
-        <Hostname>kms.eu-central-1.amazonaws.com</Hostname>
       </Endpoint>
     </Region>
     <Region>
@@ -1804,6 +1846,12 @@
     <Region>
       <Name>us-gov-west-1</Name>
       <Endpoint>
+        <ServiceName>cloudtrail</ServiceName>
+        <Http>false</Http>
+        <Https>true</Https>
+        <Hostname>cloudtrail.us-gov-west-1.amazonaws.com</Hostname>
+      </Endpoint>
+      <Endpoint>
         <ServiceName>monitoring</ServiceName>
         <Http>false</Http>
         <Https>true</Https>
@@ -1881,9 +1929,60 @@
         <Https>true</Https>
         <Hostname>swf.us-gov-west-1.amazonaws.com</Hostname>
       </Endpoint>
+      <Endpoint>
+        <ServiceName>redshift</ServiceName>
+        <Http>false</Http>
+        <Https>true</Https>
+        <Hostname>redshift.us-gov-west-1.amazonaws.com</Hostname>
+      </Endpoint>
     </Region>
   </Regions>
   <Services>
+    <Service>
+      <Name>cloudhsm</Name>
+      <FullName>AWS CloudHSM</FullName>
+      <RegionName>us-east-1</RegionName>
+      <RegionName>us-west-2</RegionName>
+      <RegionName>ap-southeast-2</RegionName>
+      <RegionName>eu-west-1</RegionName>
+      <RegionName>eu-central-1</RegionName>
+    </Service>
+    <Service>
+      <Name>ecs</Name>
+      <FullName>Amazon EC2 Container Service</FullName>
+      <RegionName>us-east-1</RegionName>
+    </Service>
+    <Service>
+      <Name>lambda</Name>
+      <FullName>AWS Lambda</FullName>
+      <RegionName>us-east-1</RegionName>
+      <RegionName>us-west-2</RegionName>
+      <RegionName>eu-west-1</RegionName>
+    </Service>
+    <Service>
+      <Name>codedeploy</Name>
+      <FullName>AWS CodeDeploy</FullName>
+      <RegionName>us-east-1</RegionName>
+      <RegionName>us-west-2</RegionName>
+    </Service>
+    <Service>
+      <Name>config</Name>
+      <FullName>AWS Config</FullName>
+      <RegionName>us-east-1</RegionName>
+    </Service>
+    <Service>
+      <Name>kms</Name>
+      <FullName>AWS Key Management</FullName>
+      <RegionName>us-east-1</RegionName>
+      <RegionName>us-west-1</RegionName>
+      <RegionName>us-west-2</RegionName>
+      <RegionName>ap-northeast-1</RegionName>
+      <RegionName>ap-southeast-1</RegionName>
+      <RegionName>ap-southeast-2</RegionName>
+      <RegionName>sa-east-1</RegionName>
+      <RegionName>eu-west-1</RegionName>
+      <RegionName>eu-central-1</RegionName>
+    </Service>
     <Service>
       <Name>cognito-sync</Name>
       <FullName>Amazon Cognito Sync</FullName>
@@ -1909,11 +2008,6 @@
       <RegionName>eu-west-1</RegionName>
       <RegionName>eu-central-1</RegionName>
       <RegionName>cn-north-1</RegionName>
-    </Service>
-    <Service>
-      <Name>config</Name>
-      <FullName>AWS Config</FullName>
-      <RegionName>us-east-1</RegionName>
     </Service>
     <Service>
       <Name>cloudfront</Name>
@@ -1953,6 +2047,7 @@
       <RegionName>sa-east-1</RegionName>
       <RegionName>eu-west-1</RegionName>
       <RegionName>eu-central-1</RegionName>
+      <RegionName>us-gov-west-1</RegionName>
     </Service>
     <Service>
       <Name>monitoring</Name>
@@ -1970,24 +2065,11 @@
       <RegionName>us-gov-west-1</RegionName>
     </Service>
     <Service>
-      <Name>lambda</Name>
-      <FullName>AWS Lambda</FullName>
-      <RegionName>us-east-1</RegionName>
-      <RegionName>us-west-2</RegionName>
-      <RegionName>eu-west-1</RegionName>
-    </Service>
-    <Service>
       <Name>logs</Name>
       <FullName>Amazon CloudWatch Logs</FullName>
       <RegionName>us-east-1</RegionName>
       <RegionName>us-west-2</RegionName>
       <RegionName>eu-west-1</RegionName>
-    </Service>
-    <Service>
-      <Name>codedeploy</Name>
-      <FullName>AWS Code Deploy</FullName>
-      <RegionName>us-east-1</RegionName>
-      <RegionName>us-west-2</RegionName>
     </Service>
     <Service>
       <Name>dynamodb</Name>
@@ -2045,6 +2127,7 @@
       <RegionName>ap-southeast-2</RegionName>
       <RegionName>sa-east-1</RegionName>
       <RegionName>eu-west-1</RegionName>
+      <RegionName>eu-central-1</RegionName>
       <RegionName>cn-north-1</RegionName>
     </Service>
     <Service>
@@ -2303,6 +2386,7 @@
       <RegionName>ap-southeast-2</RegionName>
       <RegionName>eu-west-1</RegionName>
       <RegionName>eu-central-1</RegionName>
+      <RegionName>us-gov-west-1</RegionName>
     </Service>
     <Service>
       <Name>kinesis</Name>
@@ -2329,19 +2413,6 @@
       <RegionName>ap-northeast-1</RegionName>
       <RegionName>ap-southeast-1</RegionName>
       <RegionName>eu-west-1</RegionName>
-    </Service>
-    <Service>
-      <Name>kms</Name>
-      <FullName>AWS Key Management Service</FullName>
-      <RegionName>us-east-1</RegionName>
-      <RegionName>eu-west-1</RegionName>
-      <RegionName>us-west-1</RegionName>
-      <RegionName>us-west-2</RegionName>
-      <RegionName>ap-southeast-1</RegionName>
-      <RegionName>ap-southeast-2</RegionName>
-      <RegionName>ap-northeast-1</RegionName>
-      <RegionName>sa-east-1</RegionName>
-      <RegionName>eu-central-1</RegionName>
     </Service>
   </Services>
 </XML>

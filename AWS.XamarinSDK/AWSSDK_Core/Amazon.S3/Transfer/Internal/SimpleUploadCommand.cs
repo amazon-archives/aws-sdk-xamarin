@@ -77,7 +77,7 @@ namespace Amazon.S3.Transfer.Internal
             if (!string.IsNullOrEmpty(this._fileTransporterRequest.ContentType))
                 putRequest.ContentType = this._fileTransporterRequest.ContentType;
 
-#if BCL
+#if BCL || MOBILE
             putRequest.FilePath = this._fileTransporterRequest.FilePath;
 #elif WIN_RT || WINDOWS_PHONE
             if (this._fileTransporterRequest.IsSetStorageFile())

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright 2012-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -315,7 +315,7 @@ namespace Amazon.DynamoDBv2
         internal PrimitiveList ItemsToPrimitiveList(IEnumerable items)
         {
             var inputType = items.GetType();
-            var elementType = Utils.GetPrimitiveElementType(inputType);
+            var elementType = DataModel.Utils.GetPrimitiveElementType(inputType);
             var primitives = ToPrimitives(items, elementType);
             var pl = new PrimitiveList(primitives);
             return pl;
@@ -386,7 +386,7 @@ namespace Amazon.DynamoDBv2
         // elementType must be a type that is a primitive (Utils.IsPrimitive(elementType) must return true)
         private IEnumerable<Primitive> ToPrimitives(IEnumerable items, Type elementType)
         {
-            Utils.ValidatePrimitiveType(elementType);
+            DataModel.Utils.ValidatePrimitiveType(elementType);
 
             foreach (var item in items)
             {

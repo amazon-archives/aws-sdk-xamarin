@@ -34,8 +34,8 @@ namespace Amazon.SQS.Model
     {
         private Dictionary<string, string> _attributes = new Dictionary<string, string>();
         private string _body;
-        private string _mD5OfBody;
-        private string _mD5OfMessageAttributes;
+        private string _md5OfBody;
+        private string _md5OfMessageAttributes;
         private Dictionary<string, MessageAttributeValue> _messageAttributes = new Dictionary<string, MessageAttributeValue>();
         private string _messageId;
         private string _receiptHandle;
@@ -49,10 +49,9 @@ namespace Amazon.SQS.Model
         /// Gets and sets the property Attributes. 
         /// <para>
         /// <code>SenderId</code>, <code>SentTimestamp</code>, <code>ApproximateReceiveCount</code>,
-        /// and/or       <code>ApproximateFirstReceiveTimestamp</code>. <code>SentTimestamp</code>
-        ///      and <code>ApproximateFirstReceiveTimestamp</code> are each returned as an integer
-        /// representing the             <a href="http://en.wikipedia.org/wiki/Unix_time">epoch
-        /// time</a> in milliseconds.
+        /// and/or <code>ApproximateFirstReceiveTimestamp</code>. <code>SentTimestamp</code> and
+        /// <code>ApproximateFirstReceiveTimestamp</code> are each returned as an integer representing
+        /// the <a href="http://en.wikipedia.org/wiki/Unix_time">epoch time</a> in milliseconds.
         /// </para>
         /// </summary>
         public Dictionary<string, string> Attributes
@@ -93,14 +92,14 @@ namespace Amazon.SQS.Model
         /// </summary>
         public string MD5OfBody
         {
-            get { return this._mD5OfBody; }
-            set { this._mD5OfBody = value; }
+            get { return this._md5OfBody; }
+            set { this._md5OfBody = value; }
         }
 
         // Check to see if MD5OfBody property is set
         internal bool IsSetMD5OfBody()
         {
-            return this._mD5OfBody != null;
+            return this._md5OfBody != null;
         }
 
         /// <summary>
@@ -113,14 +112,14 @@ namespace Amazon.SQS.Model
         /// </summary>
         public string MD5OfMessageAttributes
         {
-            get { return this._mD5OfMessageAttributes; }
-            set { this._mD5OfMessageAttributes = value; }
+            get { return this._md5OfMessageAttributes; }
+            set { this._md5OfMessageAttributes = value; }
         }
 
         // Check to see if MD5OfMessageAttributes property is set
         internal bool IsSetMD5OfMessageAttributes()
         {
-            return this._mD5OfMessageAttributes != null;
+            return this._md5OfMessageAttributes != null;
         }
 
         /// <summary>
@@ -165,9 +164,9 @@ namespace Amazon.SQS.Model
         /// <summary>
         /// Gets and sets the property ReceiptHandle. 
         /// <para>
-        /// An identifier associated with the act of receiving the message.       A new receipt
-        /// handle is returned every time you receive a message.       When deleting a message,
-        /// you provide the last received receipt handle to delete the message.
+        /// An identifier associated with the act of receiving the message. A new receipt handle
+        /// is returned every time you receive a message. When deleting a message, you provide
+        /// the last received receipt handle to delete the message.
         /// </para>
         /// </summary>
         public string ReceiptHandle

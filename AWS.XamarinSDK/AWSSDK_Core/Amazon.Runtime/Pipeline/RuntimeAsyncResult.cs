@@ -106,11 +106,11 @@ namespace Amazon.Runtime.Internal
             {
                 if (disposing && _waitHandle != null)
                 {
-//#if WIN_RT
+#if WIN_RT || MOBILE
                     _waitHandle.Dispose();
-//#else
-//                    _waitHandle.Close();
-//#endif
+#else
+                    _waitHandle.Close();
+#endif
                     _waitHandle = null;
                 }
                 this._disposed = true;

@@ -1,4 +1,4 @@
-﻿/*  
+/*  
  * Copyright 2010-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -243,12 +243,12 @@ namespace Amazon.Runtime
         /// <param name="requestContent">The destination where the content stream is written.</param>
         /// <param name="contentStream">The content stream to be written.</param>
         /// <param name="contentHeaders">HTTP content headers.</param>
-        /// <param name="bufferSize">The size of the buffer used to read and transfer the stream.</param>
+        /// <param name="requestContext">The request context.</param>
         public void WriteToRequestBody(HttpContent requestContent, Stream contentStream,
-            IDictionary<string, string> contentHeaders, int bufferSize)
+            IDictionary<string, string> contentHeaders, IRequestContext requestContext)
         {
             var wrapperStream = new Amazon.Runtime.Internal.Util.NonDisposingWrapperStream(contentStream);
-            _request.Content = new StreamContent(wrapperStream, bufferSize);
+            _request.Content = new StreamContent(wrapperStream, requestContext.ClientConfig.BufferSize);
             _request.Content.Headers.ContentLength = contentStream.Length;
             WriteContentHeaders(contentHeaders);
         }

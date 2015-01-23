@@ -32,8 +32,8 @@ namespace Amazon.SQS.Model
     /// </summary>
     public partial class SendMessageResult : AmazonWebServiceResponse
     {
-        private string _mD5OfMessageAttributes;
-        private string _mD5OfMessageBody;
+        private string _md5OfMessageAttributes;
+        private string _md5OfMessageBody;
         private string _messageId;
 
         /// <summary>
@@ -46,43 +46,42 @@ namespace Amazon.SQS.Model
         /// </summary>
         public string MD5OfMessageAttributes
         {
-            get { return this._mD5OfMessageAttributes; }
-            set { this._mD5OfMessageAttributes = value; }
+            get { return this._md5OfMessageAttributes; }
+            set { this._md5OfMessageAttributes = value; }
         }
 
         // Check to see if MD5OfMessageAttributes property is set
         internal bool IsSetMD5OfMessageAttributes()
         {
-            return this._mD5OfMessageAttributes != null;
+            return this._md5OfMessageAttributes != null;
         }
 
         /// <summary>
         /// Gets and sets the property MD5OfMessageBody. 
         /// <para>
-        /// An MD5 digest of the non-URL-encoded message body string. This can be used to    
-        ///  verify that Amazon SQS received the message correctly. Amazon SQS first URL decodes
-        /// the      message before creating the MD5 digest. For information about MD5, go to
-        /// <a href="http://www.faqs.org/rfcs/rfc1321.html">http://www.faqs.org/rfcs/rfc1321.html</a>.
+        /// An MD5 digest of the non-URL-encoded message body string. This can be used to verify
+        /// that Amazon SQS received the message correctly. Amazon SQS first URL decodes the message
+        /// before creating the MD5 digest. For information about MD5, go to <a href="http://www.faqs.org/rfcs/rfc1321.html">http://www.faqs.org/rfcs/rfc1321.html</a>.
         /// </para>
         /// </summary>
         public string MD5OfMessageBody
         {
-            get { return this._mD5OfMessageBody; }
-            set { this._mD5OfMessageBody = value; }
+            get { return this._md5OfMessageBody; }
+            set { this._md5OfMessageBody = value; }
         }
 
         // Check to see if MD5OfMessageBody property is set
         internal bool IsSetMD5OfMessageBody()
         {
-            return this._mD5OfMessageBody != null;
+            return this._md5OfMessageBody != null;
         }
 
         /// <summary>
         /// Gets and sets the property MessageId. 
         /// <para>
-        ///             An element containing the message ID of the message sent to the queue.
-        ///             For more information, see       <a href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/ImportantIdentifiers.html">Queue
-        /// and Message Identifiers</a>       in the <i>Amazon SQS Developer Guide</i>.    
+        ///  An element containing the message ID of the message sent to the queue. For more information,
+        /// see <a href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/ImportantIdentifiers.html">Queue
+        /// and Message Identifiers</a> in the <i>Amazon SQS Developer Guide</i>. 
         /// </para>
         /// </summary>
         public string MessageId

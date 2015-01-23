@@ -180,7 +180,6 @@ namespace Amazon.Kinesis
 
         /// <summary>
         /// Initiates the asynchronous execution of the AddTagsToStream operation.
-        /// <seealso cref="Amazon.Kinesis.IAmazonKinesis"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the AddTagsToStream operation.</param>
@@ -211,7 +210,6 @@ namespace Amazon.Kinesis
 
         /// <summary>
         /// Initiates the asynchronous execution of the CreateStream operation.
-        /// <seealso cref="Amazon.Kinesis.IAmazonKinesis"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the CreateStream operation.</param>
@@ -242,7 +240,6 @@ namespace Amazon.Kinesis
 
         /// <summary>
         /// Initiates the asynchronous execution of the DeleteStream operation.
-        /// <seealso cref="Amazon.Kinesis.IAmazonKinesis"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the DeleteStream operation.</param>
@@ -273,7 +270,6 @@ namespace Amazon.Kinesis
 
         /// <summary>
         /// Initiates the asynchronous execution of the DescribeStream operation.
-        /// <seealso cref="Amazon.Kinesis.IAmazonKinesis"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the DescribeStream operation.</param>
@@ -304,7 +300,6 @@ namespace Amazon.Kinesis
 
         /// <summary>
         /// Initiates the asynchronous execution of the GetRecords operation.
-        /// <seealso cref="Amazon.Kinesis.IAmazonKinesis"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the GetRecords operation.</param>
@@ -335,7 +330,6 @@ namespace Amazon.Kinesis
 
         /// <summary>
         /// Initiates the asynchronous execution of the GetShardIterator operation.
-        /// <seealso cref="Amazon.Kinesis.IAmazonKinesis"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the GetShardIterator operation.</param>
@@ -370,7 +364,6 @@ namespace Amazon.Kinesis
 
         /// <summary>
         /// Initiates the asynchronous execution of the ListStreams operation.
-        /// <seealso cref="Amazon.Kinesis.IAmazonKinesis"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the ListStreams operation.</param>
@@ -401,7 +394,6 @@ namespace Amazon.Kinesis
 
         /// <summary>
         /// Initiates the asynchronous execution of the ListTagsForStream operation.
-        /// <seealso cref="Amazon.Kinesis.IAmazonKinesis"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the ListTagsForStream operation.</param>
@@ -432,7 +424,6 @@ namespace Amazon.Kinesis
 
         /// <summary>
         /// Initiates the asynchronous execution of the MergeShards operation.
-        /// <seealso cref="Amazon.Kinesis.IAmazonKinesis"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the MergeShards operation.</param>
@@ -463,7 +454,6 @@ namespace Amazon.Kinesis
 
         /// <summary>
         /// Initiates the asynchronous execution of the PutRecord operation.
-        /// <seealso cref="Amazon.Kinesis.IAmazonKinesis"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the PutRecord operation.</param>
@@ -482,6 +472,36 @@ namespace Amazon.Kinesis
 
         #endregion
         
+        #region  PutRecords
+
+        internal PutRecordsResponse PutRecords(PutRecordsRequest request)
+        {
+            var marshaller = new PutRecordsRequestMarshaller();
+            var unmarshaller = PutRecordsResponseUnmarshaller.Instance;
+
+            return Invoke<PutRecordsRequest,PutRecordsResponse>(request, marshaller, unmarshaller);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the PutRecords operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the PutRecords operation.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>The task object representing the asynchronous operation.</returns>
+        public Task<PutRecordsResponse> PutRecordsAsync(PutRecordsRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var marshaller = new PutRecordsRequestMarshaller();
+            var unmarshaller = PutRecordsResponseUnmarshaller.Instance;
+
+            return InvokeAsync<PutRecordsRequest,PutRecordsResponse>(request, marshaller, 
+                unmarshaller, cancellationToken);
+        }
+
+        #endregion
+        
         #region  RemoveTagsFromStream
 
         internal RemoveTagsFromStreamResponse RemoveTagsFromStream(RemoveTagsFromStreamRequest request)
@@ -494,7 +514,6 @@ namespace Amazon.Kinesis
 
         /// <summary>
         /// Initiates the asynchronous execution of the RemoveTagsFromStream operation.
-        /// <seealso cref="Amazon.Kinesis.IAmazonKinesis"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the RemoveTagsFromStream operation.</param>
@@ -525,7 +544,6 @@ namespace Amazon.Kinesis
 
         /// <summary>
         /// Initiates the asynchronous execution of the SplitShard operation.
-        /// <seealso cref="Amazon.Kinesis.IAmazonKinesis"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the SplitShard operation.</param>

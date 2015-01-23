@@ -1,4 +1,4 @@
-﻿/*******************************************************************************
+/*******************************************************************************
  *  Copyright 2008-2013 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *  Licensed under the Apache License, Version 2.0 (the "License"). You may not use
  *  this file except in compliance with the License. A copy of the License is located at
@@ -52,9 +52,9 @@ namespace Amazon.Util
         static string DetermineOSVersion()
         {
 				#if __IOS__
-				return MonoTouch.Constants.Version;
+				return "iOS";
 				#elif __ANDROID__
-				return  Android.OS.Build.VERSION.Release;
+				return  "Android";
 				#endif
 
             return "Unknown";

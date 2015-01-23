@@ -53,7 +53,7 @@ namespace Amazon.Runtime.Internal
             }                      
         }
 
-#if BCL45
+#if BCL45 && !MOBILE
 
         /// <summary>
         /// Unmarshalls the response returned by the HttpHandler.
@@ -70,7 +70,7 @@ namespace Amazon.Runtime.Internal
             return (T)executionContext.ResponseContext.Response;
         }
 
-#elif WIN_RT || WINDOWS_PHONE 
+#elif WIN_RT || WINDOWS_PHONE ||MOBILE
 
         /// <summary>
         /// Unmarshalls the response returned by the HttpHandler.
@@ -141,7 +141,7 @@ namespace Amazon.Runtime.Internal
             }
         }
 
-#if WIN_RT || WINDOWS_PHONE
+#if WIN_RT || WINDOWS_PHONE ||MOBILE
 
         /// <summary>
         /// Unmarshalls the HTTP response.

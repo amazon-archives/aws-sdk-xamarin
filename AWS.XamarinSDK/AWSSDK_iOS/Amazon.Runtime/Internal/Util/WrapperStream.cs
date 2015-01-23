@@ -1,4 +1,4 @@
-﻿/*******************************************************************************
+/*******************************************************************************
  *  Copyright 2008-2013 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *  Licensed under the Apache License, Version 2.0 (the "License"). You may not use
  *  this file except in compliance with the License. A copy of the License is located at
@@ -62,6 +62,27 @@ namespace Amazon.Runtime.Internal.Util
 
                 baseStream = (baseStream as WrapperStream).BaseStream;
             } while (baseStream is WrapperStream);
+            return baseStream;
+        }
+
+        /// <summary>
+        /// Returns the first base non-WrapperStream.
+        /// </summary>
+        /// <returns>First base stream that is non-WrapperStream.</returns>
+        public Stream GetSeekableBaseStream()
+        {
+            Stream baseStream = this;
+            do
+            {
+                if (baseStream.CanSeek)
+                    return baseStream;
+
+                baseStream = (baseStream as WrapperStream).BaseStream;
+            } while (baseStream is WrapperStream);
+
+            if (!baseStream.CanSeek)
+                throw new InvalidOperationException("Unable to find seekable stream");
+
             return baseStream;
         }
 

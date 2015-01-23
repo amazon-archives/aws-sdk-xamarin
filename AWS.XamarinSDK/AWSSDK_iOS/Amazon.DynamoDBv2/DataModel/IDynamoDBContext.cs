@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright 2012-2013 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -25,7 +25,7 @@ namespace Amazon.DynamoDBv2.DataModel
     /// Context interface for using the DataModel mode of DynamoDB.
     /// Used to interact with the service, save/load objects, etc.
     /// </summary>
-    partial interface IDynamoDBContext : IDisposable
+    public partial interface IDynamoDBContext : IDisposable
     {
         #region Save/serialize
 

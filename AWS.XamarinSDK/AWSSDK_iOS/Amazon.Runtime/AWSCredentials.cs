@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright 2011-2013 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -16,6 +16,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Runtime.InteropServices;
 using System.Security;
@@ -116,6 +117,13 @@ namespace Amazon.Runtime
         /// </summary>
         /// <returns></returns>
         public abstract ImmutableCredentials GetCredentials();
+
+#if BCL45 || WIN_RT || WINDOWS_PHONE
+        public virtual System.Threading.Tasks.Task<ImmutableCredentials> GetCredentialsAsync()
+        {
+            return System.Threading.Tasks.Task.Run<ImmutableCredentials>(() => this.GetCredentials());
+        }
+#endif
     }
 
     /// <summary>
@@ -292,12 +300,11 @@ namespace Amazon.Runtime
                 var credentialsFilePath = DetermineCredentialsFilePath(profilesLocation);
                 if (File.Exists(credentialsFilePath))
                 {                    
-                    string accessKeyId, secretKey;
-                    SearchCredentialsFile(credentialsFilePath, lookupName, out accessKeyId, out secretKey);
-
-                    if (accessKeyId != null && secretKey != null)
+                    var parser = new CredentialsFileParser(credentialsFilePath);
+                    var section = parser.FindSection(lookupName);
+                    if (section != null && section.HasValidCredentials)
                     {
-                        this._wrappedCredentials = new ImmutableCredentials(accessKeyId, secretKey, null);
+                        this._wrappedCredentials = section.Credentials;
                         LOGGER.InfoFormat("Credentials found using account name {0} and looking in {1}.", lookupName, credentialsFilePath);
                     }
 
@@ -329,42 +336,6 @@ namespace Amazon.Runtime
         #endregion
 
         /// <summary>
-        /// Parse the credentials file for access and secret key
-        /// </summary>
-        /// <param name="credentialsFilePath">The path to the credentials file to parse</param>
-        /// <param name="profileName">The profile name to search for</param>
-        /// <param name="accessKeyId">The access key returned to the caller</param>
-        /// <param name="secretKey">The secret key returned to the caller</param>
-        private static void SearchCredentialsFile(string credentialsFilePath, string profileName, out string accessKeyId, out string secretKey)
-        {
-            accessKeyId = secretKey = null;
-
-            // Add extra newline to make the logic simpler in case there is no newline after the last field in the CLI
-            string text = File.ReadAllText(credentialsFilePath) + "\n";
-            int sectionStart = text.IndexOf(string.Format(CultureInfo.InvariantCulture, "[{0}]", profileName), StringComparison.Ordinal);
-            if (sectionStart == -1)
-                return;
-
-            Func<string, string> findValue = ((fieldName) =>
-            {
-                int startPos = text.IndexOf(fieldName, sectionStart, StringComparison.Ordinal);
-                if (startPos == -1)
-                    return null;
-
-                int endPos = text.IndexOf('\n', startPos);
-                string line = text.Substring(startPos, endPos - startPos);
-                string[] tokens = line.Split('=');
-                if (tokens.Length != 2)
-                    return null;
-
-                return tokens[1].Trim();
-            });
-
-            accessKeyId = findValue("aws_access_key_id");
-            secretKey = findValue("aws_secret_access_key");
-        }
-
-        /// <summary>
         /// Determine the location of the shared credentials file.
         /// </summary>
         /// <param name="profilesLocation">If accountsLocation is null then the shared credentials file stored .aws directory under the home directory.</param>
@@ -383,6 +354,126 @@ namespace Amazon.Runtime
                 return Path.Combine(
                     Directory.GetParent(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal)).FullName,
                     ".aws/credentials");
+            }
+        }
+
+        private class CredentialsFileParser
+        {
+            private const string profileNamePrefix = "[";
+            private const string profileNameSuffix = "]";
+            private const string dataPrefix = "aws_";
+            private const string keyValueSeparator = "=";
+            private const string accessKeyName = "aws_access_key_id";
+            private const string secretKeyName = "aws_secret_access_key";
+            private const string tokenName = "aws_session_token";
+            private List<CredentialsSection> Sections { get; set; }
+
+            public CredentialsFileParser(string filePath)
+            {
+                var lines = File.ReadAllLines(filePath);
+                Parse(lines);
+            }
+
+            private void Parse(string[] lines)
+            {
+                Sections = new List<CredentialsSection>();
+                CredentialsSection currentSection = null;
+                foreach (var l in lines)
+                {
+                    var line = l ?? string.Empty;
+                    line = line.Trim();
+                    if (string.IsNullOrEmpty(line))
+                        continue;
+
+                    if (line.StartsWith(profileNamePrefix, StringComparison.OrdinalIgnoreCase) &&
+                        line.EndsWith(profileNameSuffix, StringComparison.OrdinalIgnoreCase))
+                    {
+                        if (currentSection != null)
+                            Sections.Add(currentSection);
+
+                        var profileName = GetProfileName(line);
+                        currentSection = new CredentialsSection(profileName);
+                    }
+                    else if (line.StartsWith(dataPrefix, StringComparison.OrdinalIgnoreCase) && currentSection != null)
+                    {
+                        // split data into key-value pairs, store appropriately
+                        var split = SplitData(line);
+                        if (split.Count > 0)
+                        {
+                            var name = split[0];
+                            var value = split.Count > 1 ? split[1] : null;
+
+                            SetSectionValue(currentSection, name, value);
+                        }
+                    }
+                }
+
+                if (currentSection != null)
+                    Sections.Add(currentSection);
+            }
+            private static List<string> SplitData(string line)
+            {
+                var split = line
+                    .Split(new string[] { keyValueSeparator }, StringSplitOptions.None)
+                    .Select(s => s.Trim())
+                    .Where(s => !string.IsNullOrEmpty(s))
+                    .ToList();
+                return split;
+            }
+            private static string GetProfileName(string line)
+            {
+                // get profile name by trimming off the [ and ] characters
+                var profileName = line;
+                profileName = profileName.Substring(profileNamePrefix.Length);
+                profileName = profileName.Substring(0, profileName.Length - profileNameSuffix.Length);
+                return profileName;
+            }
+            private static void SetSectionValue(CredentialsSection section, string name, string value)
+            {
+                if (string.Equals(accessKeyName, name, StringComparison.OrdinalIgnoreCase))
+                    section.AccessKey = value;
+                else if (string.Equals(secretKeyName, name, StringComparison.OrdinalIgnoreCase))
+                    section.SecretKey = value;
+                else if (string.Equals(tokenName, name, StringComparison.OrdinalIgnoreCase))
+                    section.Token = value;
+            }
+
+            public CredentialsSection FindSection(string profileName)
+            {
+                foreach (var section in Sections)
+                    if (string.Equals(section.ProfileName, profileName, StringComparison.Ordinal))
+                        return section;
+                return null;
+            }
+
+            public class CredentialsSection
+            {
+                public CredentialsSection(string profileName)
+                {
+                    ProfileName = profileName;
+                }
+
+                public string ProfileName { get; set; }
+                public string AccessKey { get; set; }
+                public string SecretKey { get; set; }
+                public string Token { get; set; }
+
+                public bool HasValidCredentials
+                {
+                    get
+                    {
+                        return
+                            !string.IsNullOrEmpty(AccessKey) &&
+                            !string.IsNullOrEmpty(SecretKey);
+                    }
+                }
+                public ImmutableCredentials Credentials
+                {
+                    get
+                    {
+                        return new ImmutableCredentials(AccessKey, SecretKey, Token);
+                    }
+                }
             }
         }
 
@@ -573,36 +664,58 @@ namespace Amazon.Runtime
                 if (ShouldUpdate)
                 {
                     _currentState = GenerateNewCredentials();
-
-                    // Check if the new credentials are already expired
-                    if (ShouldUpdate)
-                    {
-                        throw new AmazonClientException("The retrieved credentials have already expired");
-                    }
-
-                    // Offset the Expiration by PreemptExpiryTime
-                    _currentState.Expiration -= PreemptExpiryTime;
-
-                    if (ShouldUpdate)
-                    {
-                        // This could happen if the default value of PreemptExpiryTime is
-                        // overriden and set too high such that ShouldUpdate returns true.
-                        _logger.InfoFormat(
-                            "The preempt expiry time is set too high: Current time = {0}, Credentials expiry time = {1}, Preempt expiry time = {2}.",
-                            DateTime.Now,
-                            _currentState.Expiration,
-                            PreemptExpiryTime);
-                    }
+                    UpdateToGeneratedCredentials(_currentState);
                 }
 
                 return _currentState.Credentials.Copy();
             }
         }
 
+#if BCL45 || WIN_RT || WINDOWS_PHONE
+        public async override System.Threading.Tasks.Task<ImmutableCredentials> GetCredentialsAsync()
+        {
+            // If credentials are expired, update
+            if (ShouldUpdate)
+            {
+                var state = await GenerateNewCredentialsAsync().ConfigureAwait(false);
+                lock (this._refreshLock)
+                {
+                    _currentState = state;
+                    UpdateToGeneratedCredentials(_currentState);
+                }
+            }
+
+            return _currentState.Credentials.Copy();
+        }
+#endif
+
         #endregion
 
 
         #region Private/protected credential update methods
+
+        private void UpdateToGeneratedCredentials(CredentialsRefreshState state)
+        {
+            // Check if the new credentials are already expired
+            if (ShouldUpdate)
+            {
+                throw new AmazonClientException("The retrieved credentials have already expired");
+            }
+
+            // Offset the Expiration by PreemptExpiryTime
+            state.Expiration -= PreemptExpiryTime;
+
+            if (ShouldUpdate)
+            {
+                // This could happen if the default value of PreemptExpiryTime is
+                // overriden and set too high such that ShouldUpdate returns true.
+                _logger.InfoFormat(
+                    "The preempt expiry time is set too high: Current time = {0}, Credentials expiry time = {1}, Preempt expiry time = {2}.",
+                    DateTime.Now,
+                    _currentState.Expiration,
+                    PreemptExpiryTime);
+            }
+        }
 
         // Test credentials existence and expiration time
         private bool ShouldUpdate
@@ -627,6 +740,19 @@ namespace Amazon.Runtime
         {
             throw new NotImplementedException();
         }
+
+#if BCL45 || WIN_RT || WINDOWS_PHONE
+        /// <summary>
+        /// When overridden in a derived class, generates new credentials and new expiration date.
+        /// 
+        /// Called on first credentials request and when expiration date is in the past.
+        /// </summary>
+        /// <returns></returns>
+        protected virtual System.Threading.Tasks.Task<CredentialsRefreshState> GenerateNewCredentialsAsync()
+        {
+            return System.Threading.Tasks.Task.Run(() => this.GenerateNewCredentials());
+        }
+#endif
 
         /// <summary>
         /// Clears currently-stored credentials, forcing the next GetCredentials call to generate new credentials.

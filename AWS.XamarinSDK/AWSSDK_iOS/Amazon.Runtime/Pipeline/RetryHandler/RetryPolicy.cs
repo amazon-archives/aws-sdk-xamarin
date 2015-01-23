@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright 2010-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -44,7 +44,7 @@ namespace Amazon.Runtime
         /// <returns>Returns true if the request should be retried, else false.</returns>
         public bool Retry(IExecutionContext executionContext, Exception exception)
         {
-            return RetryLimitReached(executionContext) &&
+            return !RetryLimitReached(executionContext) &&
                 CanRetry(executionContext) &&
                 RetryForException(executionContext, exception);
         }
@@ -71,7 +71,7 @@ namespace Amazon.Runtime
         /// </summary>
         /// <param name="executionContext">The execution context which contains both the
         /// requests and response context.</param>
-        /// <returns>Return true if the request should be retried.</returns>
+        /// <returns>Return false if the request can be retried, based on number of retries.</returns>
         public abstract bool RetryLimitReached(IExecutionContext executionContext);
 
         /// <summary>

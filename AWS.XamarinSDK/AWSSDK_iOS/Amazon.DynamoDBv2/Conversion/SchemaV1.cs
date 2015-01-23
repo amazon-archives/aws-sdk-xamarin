@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright 2012-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -325,7 +325,7 @@ namespace Amazon.DynamoDBv2
         protected bool EntriesToCollection(Type targetType, Type elementType, IEnumerable<DynamoDBEntry> entries, out object result)
         {
             var items = Conversion.ConvertFromEntries(elementType, entries);
-            return Utils.ItemsToCollection(targetType, items, out result);
+            return DataModel.Utils.ItemsToCollection(targetType, items, out result);
         }
     }
 
@@ -336,7 +336,7 @@ namespace Amazon.DynamoDBv2
     internal class PrimitiveCollectionConverterV1 : CollectionConverter
     {
         public PrimitiveCollectionConverterV1()
-            : base(Utils.PrimitiveTypes)
+            : base(DataModel.Utils.PrimitiveTypes)
         { }
         
         public override bool TryTo(object value, out PrimitiveList pl)
@@ -354,13 +354,13 @@ namespace Amazon.DynamoDBv2
 
         public override bool TryFrom(PrimitiveList pl, Type targetType, out object result)
         {
-            var elementType = Utils.GetPrimitiveElementType(targetType);
+            var elementType = DataModel.Utils.GetPrimitiveElementType(targetType);
             var primitives = pl.Entries;
             return EntriesToCollection(targetType, elementType, pl.Entries.Cast<DynamoDBEntry>(), out result);
         }
         public override bool TryFrom(DynamoDBList l, Type targetType, out object result)
         {
-            var elementType = Utils.GetPrimitiveElementType(targetType);
+            var elementType = DataModel.Utils.GetPrimitiveElementType(targetType);
             var entries = l.Entries;
             return EntriesToCollection(targetType, elementType, entries, out result);
         }

@@ -68,6 +68,27 @@ namespace Amazon.Runtime.Internal.Util
         /// <summary>
         /// Returns the first base non-WrapperStream.
         /// </summary>
+        /// <returns>First base stream that is non-WrapperStream.</returns>
+        public Stream GetSeekableBaseStream()
+        {
+            Stream baseStream = this;
+            do
+            {
+                if (baseStream.CanSeek)
+                    return baseStream;
+
+                baseStream = (baseStream as WrapperStream).BaseStream;
+            } while (baseStream is WrapperStream);
+
+            if (!baseStream.CanSeek)
+                throw new InvalidOperationException("Unable to find seekable stream");
+
+            return baseStream;
+        }
+
+        /// <summary>
+        /// Returns the first base non-WrapperStream.
+        /// </summary>
         /// <param name="stream">Potential WrapperStream</param>
         /// <returns>Base non-WrapperStream.</returns>
         public static Stream GetNonWrapperBaseStream(Stream stream)
@@ -136,18 +157,18 @@ namespace Amazon.Runtime.Internal.Util
         /// Closes the current stream and releases any resources (such as sockets and
         /// file handles) associated with the current stream.
         /// </summary>
-//#if !WIN_RT
-//        public override void Close()
-//        {
-//            BaseStream.Close();
-//        }
-//#else
+#if !WIN_RT && !PCL
+        public override void Close()
+        {
+            BaseStream.Close();
+        }
+#else
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
             BaseStream.Dispose();
         }
-//#endif
+#endif
 
         /// <summary>
         /// Gets the length in bytes of the stream.

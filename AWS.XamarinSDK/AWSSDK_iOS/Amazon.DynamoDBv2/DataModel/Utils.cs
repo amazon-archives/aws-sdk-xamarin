@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright 2012-2013 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -197,7 +197,7 @@ namespace Amazon.DynamoDBv2.DataModel
         private static object[] GetAttributeObjects(MemberInfo targetMemberInfo)
         {
             if (targetMemberInfo == null) throw new ArgumentNullException("targetMemberInfo");
-#if (WIN_RT || WINDOWS_PHONE)
+#if (WIN_RT || WINDOWS_PHONE || MOBILE)
             object[] attributes = targetMemberInfo.GetCustomAttributes(typeof(DynamoDBAttribute), true).ToArray();
 #else
             object[] attributes = targetMemberInfo.GetCustomAttributes(typeof(DynamoDBAttribute), true);

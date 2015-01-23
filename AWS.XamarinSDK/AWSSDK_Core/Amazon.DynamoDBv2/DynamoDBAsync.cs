@@ -79,11 +79,11 @@ namespace Amazon.DynamoDBv2
             {
                 if (disposing && _waitHandle != null)
                 {
-//#if WIN_RT
+#if WIN_RT || PCL
                     _waitHandle.Dispose();
-//#else
- //                   _waitHandle.Close();
-//#endif
+#else
+                    _waitHandle.Close();
+#endif
                     _waitHandle = null;
                 }
                 this._disposed = true;
@@ -128,11 +128,11 @@ namespace Amazon.DynamoDBv2
         public static IAsyncResult BeginOperation(AsyncCall call, AsyncCallback callback, object state)
         {
             DynamoDBAsyncResult result = new DynamoDBAsyncResult(callback, state);
-//#if (WIN_RT || WINDOWS_PHONE)
+#if (WIN_RT || WINDOWS_PHONE || MOBILE)
             System.Threading.Tasks.Task.Run((Action)(() => Execute(call, result)));
-//#else
-//            ThreadPool.QueueUserWorkItem(s => Execute(call, result));
-//#endif
+#else
+            ThreadPool.QueueUserWorkItem(s => Execute(call, result));
+#endif
             return result;
         }
 

@@ -25,7 +25,7 @@ using Amazon.S3.Util;
 using Amazon.Runtime.Internal;
 using Amazon.Util;
 
-#if WIN_RT || WINDOWS_PHONE
+#if WIN_RT || WINDOWS_PHONE ||MOBILE
 using System.Threading.Tasks;
 #endif
 

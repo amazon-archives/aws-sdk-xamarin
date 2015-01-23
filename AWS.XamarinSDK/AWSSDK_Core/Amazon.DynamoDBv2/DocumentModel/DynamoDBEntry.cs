@@ -22,9 +22,9 @@ using System.IO;
 using System.Globalization;
 using Amazon.Util;
 
-//#if (WIN_RT || WINDOWS_PHONE)
+#if (WIN_RT || WINDOWS_PHONE || PCL)
 using Amazon.MissingTypes;
-//#endif
+#endif
 
 namespace Amazon.DynamoDBv2.DocumentModel
 {

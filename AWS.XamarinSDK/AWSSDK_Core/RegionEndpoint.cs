@@ -129,7 +129,13 @@ namespace Amazon
         /// </summary>
         public static IEnumerable<RegionEndpoint> EnumerableAllRegions
         {
-            get { return hashBySystemName.Values; }
+            get
+            {
+                if (!RegionEndpoint.loaded)
+                    RegionEndpoint.LoadEndpointDefinitions();
+
+                return hashBySystemName.Values; 
+            }
         }
 
         /// <summary>
@@ -170,7 +176,7 @@ namespace Amazon
             {
                 LoadEndpointDefinitionFromWeb(endpointsPath);
             }
-#if BCL 
+#if BCL
             else
             {
                 LoadEndpointDefinitionFromFilePath(endpointsPath);

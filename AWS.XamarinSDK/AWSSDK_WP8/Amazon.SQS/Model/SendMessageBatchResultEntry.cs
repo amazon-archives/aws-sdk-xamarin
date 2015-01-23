@@ -28,13 +28,13 @@ using Amazon.Runtime.Internal;
 namespace Amazon.SQS.Model
 {
     /// <summary>
-    /// Encloses a message ID for successfully enqueued message of a      <a>SendMessageBatch</a>.
+    /// Encloses a message ID for successfully enqueued message of a <a>SendMessageBatch</a>.
     /// </summary>
     public partial class SendMessageBatchResultEntry
     {
         private string _id;
-        private string _mD5OfMessageAttributes;
-        private string _mD5OfMessageBody;
+        private string _md5OfMessageAttributes;
+        private string _md5OfMessageBody;
         private string _messageId;
 
         /// <summary>
@@ -66,35 +66,34 @@ namespace Amazon.SQS.Model
         /// </summary>
         public string MD5OfMessageAttributes
         {
-            get { return this._mD5OfMessageAttributes; }
-            set { this._mD5OfMessageAttributes = value; }
+            get { return this._md5OfMessageAttributes; }
+            set { this._md5OfMessageAttributes = value; }
         }
 
         // Check to see if MD5OfMessageAttributes property is set
         internal bool IsSetMD5OfMessageAttributes()
         {
-            return this._mD5OfMessageAttributes != null;
+            return this._md5OfMessageAttributes != null;
         }
 
         /// <summary>
         /// Gets and sets the property MD5OfMessageBody. 
         /// <para>
-        /// An MD5 digest of the non-URL-encoded message body string. This can be used to    
-        ///  verify that Amazon SQS received the message correctly. Amazon SQS first URL decodes
-        /// the      message before creating the MD5 digest. For information about MD5, go to
-        /// <a href="http://www.faqs.org/rfcs/rfc1321.html">http://www.faqs.org/rfcs/rfc1321.html</a>.
+        /// An MD5 digest of the non-URL-encoded message body string. This can be used to verify
+        /// that Amazon SQS received the message correctly. Amazon SQS first URL decodes the message
+        /// before creating the MD5 digest. For information about MD5, go to <a href="http://www.faqs.org/rfcs/rfc1321.html">http://www.faqs.org/rfcs/rfc1321.html</a>.
         /// </para>
         /// </summary>
         public string MD5OfMessageBody
         {
-            get { return this._mD5OfMessageBody; }
-            set { this._mD5OfMessageBody = value; }
+            get { return this._md5OfMessageBody; }
+            set { this._md5OfMessageBody = value; }
         }
 
         // Check to see if MD5OfMessageBody property is set
         internal bool IsSetMD5OfMessageBody()
         {
-            return this._mD5OfMessageBody != null;
+            return this._md5OfMessageBody != null;
         }
 
         /// <summary>

@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright 2010-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -176,10 +176,10 @@ namespace Amazon.Runtime.Internal
         /// Checks if the retry limit is reached.
         /// </summary>
         /// <param name="executionContext">Request context containing the state of the request.</param>
-        /// <returns>Return true if the request should be retried.</returns>
+        /// <returns>Return false if the request can be retried, based on number of retries.</returns>
         public override bool RetryLimitReached(IExecutionContext executionContext)
         {
-            return executionContext.RequestContext.Retries < this.MaxRetries;
+            return executionContext.RequestContext.Retries >= this.MaxRetries;
         }
 
         /// <summary>

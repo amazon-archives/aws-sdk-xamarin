@@ -38,7 +38,7 @@ namespace Amazon.Runtime
         bool _disposed = false;
         HttpClient httpClient;
 
-#if !(WIN_RT || WINDOWS_PHONE || MOBILE)
+#if !(WIN_RT || WINDOWS_PHONE)
         bool configuredServicePoint;
 #endif
 

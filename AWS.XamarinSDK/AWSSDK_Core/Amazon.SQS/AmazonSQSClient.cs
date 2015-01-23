@@ -36,39 +36,39 @@ namespace Amazon.SQS
     /// <summary>
     /// Implementation for accessing SQS
     ///
-    /// Welcome to the <i>Amazon Simple Queue Service API Reference</i>. This section    
-    ///  describes who should read this guide, how the guide is organized, and other resources
-    /// related to the      Amazon Simple Queue Service (Amazon SQS).
+    /// Welcome to the <i>Amazon Simple Queue Service API Reference</i>. This section describes
+    /// who should read this guide, how the guide is organized, and other resources related
+    /// to the Amazon Simple Queue Service (Amazon SQS).
     /// 
-    ///     
+    ///  
     /// <para>
     /// Amazon SQS offers reliable and scalable hosted queues for storing messages as they
-    /// travel      between computers. By using Amazon SQS, you can move data between distributed
-    /// components of      your applications that perform different tasks without losing messages
-    /// or requiring each      component to be always available.
+    /// travel between computers. By using Amazon SQS, you can move data between distributed
+    /// components of your applications that perform different tasks without losing messages
+    /// or requiring each component to be always available.
     /// </para>
-    ///     
+    ///  
     /// <para>
-    /// Helpful Links:      <ul>        <li><a href="http://queue.amazonaws.com/doc/2012-11-05/QueueService.wsdl">Current
-    /// WSDL (2012-11-05)</a></li>        <li><a href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/MakingRequestsArticle.html">Making
-    /// API Requests</a></li>        <li><a href="http://aws.amazon.com/sqs/">Amazon SQS product
-    /// page</a></li>        <li><a href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSDeadLetterQueue.html">Using
-    /// Amazon SQS Dead Letter Queues</a></li>                <li><a href="http://docs.aws.amazon.com/general/latest/gr/rande.html#sqs_region">Regions
-    /// and Endpoints</a></li>              </ul>    
+    /// Helpful Links: <ul> <li><a href="http://queue.amazonaws.com/doc/2012-11-05/QueueService.wsdl">Current
+    /// WSDL (2012-11-05)</a></li> <li><a href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/MakingRequestsArticle.html">Making
+    /// API Requests</a></li> <li><a href="http://aws.amazon.com/sqs/">Amazon SQS product
+    /// page</a></li> <li><a href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSMessageAttributes.html">Using
+    /// Amazon SQS Message Attributes</a></li> <li><a href="http://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/SQSDeadLetterQueue.html">Using
+    /// Amazon SQS Dead Letter Queues</a></li> <li><a href="http://docs.aws.amazon.com/general/latest/gr/rande.html#sqs_region">Regions
+    /// and Endpoints</a></li> </ul> 
     /// </para>
-    ///     
+    ///  
     /// <para>
     /// We also provide SDKs that enable you to access Amazon SQS from your preferred programming
-    /// language.     The SDKs contain functionality that automatically takes care of tasks
-    /// such as:
+    /// language. The SDKs contain functionality that automatically takes care of tasks such
+    /// as:
     /// </para>
-    ///     
+    ///  
     /// <para>
-    ///       <ul>        <li>Cryptographically signing your service requests</li>       
-    /// <li>Retrying requests</li>        <li>Handling error responses</li>      </ul>   
-    /// 
+    ///  <ul> <li>Cryptographically signing your service requests</li> <li>Retrying requests</li>
+    /// <li>Handling error responses</li> </ul> 
     /// </para>
-    ///     
+    ///  
     /// <para>
     /// For a list of available SDKs, go to <a href="http://aws.amazon.com/tools/">Tools for
     /// Amazon Web Services</a>.
@@ -217,7 +217,6 @@ namespace Amazon.SQS
 
         /// <summary>
         /// Initiates the asynchronous execution of the AddPermission operation.
-        /// <seealso cref="Amazon.SQS.IAmazonSQS"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the AddPermission operation.</param>
@@ -248,7 +247,6 @@ namespace Amazon.SQS
 
         /// <summary>
         /// Initiates the asynchronous execution of the ChangeMessageVisibility operation.
-        /// <seealso cref="Amazon.SQS.IAmazonSQS"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the ChangeMessageVisibility operation.</param>
@@ -279,7 +277,6 @@ namespace Amazon.SQS
 
         /// <summary>
         /// Initiates the asynchronous execution of the ChangeMessageVisibilityBatch operation.
-        /// <seealso cref="Amazon.SQS.IAmazonSQS"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the ChangeMessageVisibilityBatch operation.</param>
@@ -310,7 +307,6 @@ namespace Amazon.SQS
 
         /// <summary>
         /// Initiates the asynchronous execution of the CreateQueue operation.
-        /// <seealso cref="Amazon.SQS.IAmazonSQS"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the CreateQueue operation.</param>
@@ -341,7 +337,6 @@ namespace Amazon.SQS
 
         /// <summary>
         /// Initiates the asynchronous execution of the DeleteMessage operation.
-        /// <seealso cref="Amazon.SQS.IAmazonSQS"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the DeleteMessage operation.</param>
@@ -372,7 +367,6 @@ namespace Amazon.SQS
 
         /// <summary>
         /// Initiates the asynchronous execution of the DeleteMessageBatch operation.
-        /// <seealso cref="Amazon.SQS.IAmazonSQS"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the DeleteMessageBatch operation.</param>
@@ -403,7 +397,6 @@ namespace Amazon.SQS
 
         /// <summary>
         /// Initiates the asynchronous execution of the DeleteQueue operation.
-        /// <seealso cref="Amazon.SQS.IAmazonSQS"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the DeleteQueue operation.</param>
@@ -434,7 +427,6 @@ namespace Amazon.SQS
 
         /// <summary>
         /// Initiates the asynchronous execution of the GetQueueAttributes operation.
-        /// <seealso cref="Amazon.SQS.IAmazonSQS"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the GetQueueAttributes operation.</param>
@@ -465,7 +457,6 @@ namespace Amazon.SQS
 
         /// <summary>
         /// Initiates the asynchronous execution of the GetQueueUrl operation.
-        /// <seealso cref="Amazon.SQS.IAmazonSQS"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the GetQueueUrl operation.</param>
@@ -496,7 +487,6 @@ namespace Amazon.SQS
 
         /// <summary>
         /// Initiates the asynchronous execution of the ListDeadLetterSourceQueues operation.
-        /// <seealso cref="Amazon.SQS.IAmazonSQS"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the ListDeadLetterSourceQueues operation.</param>
@@ -527,7 +517,6 @@ namespace Amazon.SQS
 
         /// <summary>
         /// Initiates the asynchronous execution of the ListQueues operation.
-        /// <seealso cref="Amazon.SQS.IAmazonSQS"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the ListQueues operation.</param>
@@ -546,6 +535,36 @@ namespace Amazon.SQS
 
         #endregion
         
+        #region  PurgeQueue
+
+        internal PurgeQueueResponse PurgeQueue(PurgeQueueRequest request)
+        {
+            var marshaller = new PurgeQueueRequestMarshaller();
+            var unmarshaller = PurgeQueueResponseUnmarshaller.Instance;
+
+            return Invoke<PurgeQueueRequest,PurgeQueueResponse>(request, marshaller, unmarshaller);
+        }
+
+        /// <summary>
+        /// Initiates the asynchronous execution of the PurgeQueue operation.
+        /// </summary>
+        /// 
+        /// <param name="request">Container for the necessary parameters to execute the PurgeQueue operation.</param>
+        /// <param name="cancellationToken">
+        ///     A cancellation token that can be used by other objects or threads to receive notice of cancellation.
+        /// </param>
+        /// <returns>The task object representing the asynchronous operation.</returns>
+        public Task<PurgeQueueResponse> PurgeQueueAsync(PurgeQueueRequest request, System.Threading.CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var marshaller = new PurgeQueueRequestMarshaller();
+            var unmarshaller = PurgeQueueResponseUnmarshaller.Instance;
+
+            return InvokeAsync<PurgeQueueRequest,PurgeQueueResponse>(request, marshaller, 
+                unmarshaller, cancellationToken);
+        }
+
+        #endregion
+        
         #region  ReceiveMessage
 
         internal ReceiveMessageResponse ReceiveMessage(ReceiveMessageRequest request)
@@ -558,7 +577,6 @@ namespace Amazon.SQS
 
         /// <summary>
         /// Initiates the asynchronous execution of the ReceiveMessage operation.
-        /// <seealso cref="Amazon.SQS.IAmazonSQS"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the ReceiveMessage operation.</param>
@@ -589,7 +607,6 @@ namespace Amazon.SQS
 
         /// <summary>
         /// Initiates the asynchronous execution of the RemovePermission operation.
-        /// <seealso cref="Amazon.SQS.IAmazonSQS"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the RemovePermission operation.</param>
@@ -620,7 +637,6 @@ namespace Amazon.SQS
 
         /// <summary>
         /// Initiates the asynchronous execution of the SendMessage operation.
-        /// <seealso cref="Amazon.SQS.IAmazonSQS"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the SendMessage operation.</param>
@@ -651,7 +667,6 @@ namespace Amazon.SQS
 
         /// <summary>
         /// Initiates the asynchronous execution of the SendMessageBatch operation.
-        /// <seealso cref="Amazon.SQS.IAmazonSQS"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the SendMessageBatch operation.</param>
@@ -682,7 +697,6 @@ namespace Amazon.SQS
 
         /// <summary>
         /// Initiates the asynchronous execution of the SetQueueAttributes operation.
-        /// <seealso cref="Amazon.SQS.IAmazonSQS"/>
         /// </summary>
         /// 
         /// <param name="request">Container for the necessary parameters to execute the SetQueueAttributes operation.</param>

@@ -18,12 +18,12 @@ namespace Amazon.Runtime.Internal.Util
         public NonDisposingWrapperStream(Stream baseStream) : base (baseStream)
         {
         }
-#if !WIN_RT
+#if !WIN_RT && !PCL
         /// <summary>
         /// The Close implementation for this wrapper stream
         /// does not close the underlying stream.
         /// </summary>
-        public void Close()
+        public override void Close()
         {
             // Suppress disposing the stream by not calling Close() on the base stream.            
         }

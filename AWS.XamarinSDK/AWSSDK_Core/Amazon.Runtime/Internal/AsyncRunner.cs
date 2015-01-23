@@ -31,44 +31,46 @@ namespace Amazon.Runtime.Internal
 
         public static Task<T> Run<T>(Func<T> action, CancellationToken cancellationToken)
         {
+#if (WIN_RT || WINDOWS_PHONE || MOBILE)
             Task<T> task = Task.Run<T>(action);
             return task;
-//            return Task<T>.Run(() =>
-//            {
-//                Exception exception = null;
-//                T result = default(T);
-//                Thread thread = new Thread(() =>
-//                {
-//                    try
-//                    {
-//                        result = action();
-//                    }
-//                    catch (Exception e)
-//                    {
-//                        exception = e;
-//                    }
-//                });
-//                if (cancellationToken != null)
-//                {
-//                    cancellationToken.Register(() =>
-//                    {
-//                        if (thread.IsAlive)
-//                            thread.Abort();
-//                    });
-//                }
+#else
+            return Task<T>.Run(() =>
+            {
+                Exception exception = null;
+                T result = default(T);
+                Thread thread = new Thread(() =>
+                {
+                    try
+                    {
+                        result = action();
+                    }
+                    catch (Exception e)
+                    {
+                        exception = e;
+                    }
+                });
+                if (cancellationToken != null)
+                {
+                    cancellationToken.Register(() =>
+                    {
+                        if (thread.IsAlive)
+                            thread.Abort();
+                    });
+                }
 
-//                thread.Start();
-//                thread.Join();
+                thread.Start();
+                thread.Join();
 
-//                if (exception != null)
-//                {
-//                    cancellationToken.ThrowIfCancellationRequested();
-//                    throw exception;
-//                }
+                if (exception != null)
+                {
+                    cancellationToken.ThrowIfCancellationRequested();
+                    throw exception;
+                }
 
-//                return result;
-//            }, cancellationToken);
-//#endif
+                return result;
+            }, cancellationToken);
+#endif
         }
-   }
+    }
 }

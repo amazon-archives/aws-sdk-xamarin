@@ -1,4 +1,4 @@
-﻿using Amazon.CloudSearchDomain.Model;
+using Amazon.CloudSearchDomain.Model;
 using Amazon.Runtime;
 using Amazon.Runtime.Internal;
 using System;

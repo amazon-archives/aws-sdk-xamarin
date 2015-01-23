@@ -1,4 +1,4 @@
-﻿/*******************************************************************************
+/*******************************************************************************
  *  Copyright 2008-2013 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *  Licensed under the Apache License, Version 2.0 (the "License"). You may not use
  *  this file except in compliance with the License. A copy of the License is located at
@@ -135,11 +135,13 @@ namespace Amazon.S3.Util
 
             if (match.Groups.Count > 2)
             {
-                // US 'classic' urls will not have a region code, so the region group
-                // will contain just 'amazonaws'
-                this.Region = match.Groups[2].Value.Equals("amazonaws", StringComparison.Ordinal) 
-                    ? RegionEndpoint.USEast1 
-                    : RegionEndpoint.GetBySystemName(match.Groups[2].Value);
+                // US 'classic' urls will not have a region code in the endpoint
+                var regionGroupValue = match.Groups[2].Value;
+                if (regionGroupValue.Equals("amazonaws", StringComparison.Ordinal)
+                    || regionGroupValue.Equals("external-1", StringComparison.Ordinal))
+                    this.Region = RegionEndpoint.USEast1;
+                else
+                    this.Region = RegionEndpoint.GetBySystemName(regionGroupValue);
             }
         }
 

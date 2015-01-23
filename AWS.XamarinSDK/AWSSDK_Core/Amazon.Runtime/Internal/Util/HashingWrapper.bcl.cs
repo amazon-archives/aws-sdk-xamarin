@@ -21,22 +21,21 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Security.Cryptography;
+//using System.Security.Cryptography;
+using System.Security; 
+using PCLCrypto;
 using System.Text;
 using Amazon.Runtime;
-using ThirdParty.MD5;
-using XPlat.Security.Cryptography;
 
 namespace Amazon.Runtime.Internal.Util
 {
     public partial class HashingWrapper : IHashingWrapper
     {
-        private IHashAlgorithm _algorithm ;
+        private HashAlgorithm _algorithm;
         private void Init(string algorithmName)
         {
             //_algorithm = HashAlgorithm.Create(algorithmName);
-            _algorithm = MD5.Create_(algorithmName);
-            
+            throw new NotImplementedException();
         }
 
         #region IHashingWrapper Members
@@ -44,29 +43,32 @@ namespace Amazon.Runtime.Internal.Util
         public void Clear()
         {
             //_algorithm.Initialize();
-            _algorithm.Clear();
+            throw new NotImplementedException();
         }
 
         public byte[] ComputeHash(byte[] buffer)
         {
-            return _algorithm.ComputeHash(buffer);
+            //return _algorithm.ComputeHash(buffer);
+            throw new NotImplementedException();
         }
 
         public byte[] ComputeHash(Stream stream)
         {
-            return _algorithm.ComputeHash(stream);
+            //return _algorithm.ComputeHash(stream);
+            throw new NotImplementedException();
         }
 
         public void AppendBlock(byte[] buffer, int offset, int count)
         {
-            
-            _algorithm.TransformBlock(buffer, offset, count, null, 0);
+            //_algorithm.TransformBlock(buffer, offset, count, null, 0);
+            throw new NotImplementedException();
         }
 
         public byte[] AppendLastBlock(byte[] buffer, int offset, int count)
         {
-            _algorithm.TransformFinalBlock(buffer, offset, count);
-            return _algorithm.Hash;
+            //_algorithm.TransformFinalBlock(buffer, offset, count);
+            //return _algorithm.Hash;
+            throw new NotImplementedException();
         }
 
         #endregion
@@ -74,7 +76,7 @@ namespace Amazon.Runtime.Internal.Util
 
     public class HashingWrapperMD5 : HashingWrapper
     {
-        private static string md5AlgorithmName = typeof(MD5Managed).FullName;
+        private static string md5AlgorithmName = ""; //typeof(MD5).FullName;
 
         public HashingWrapperMD5()
             : base(md5AlgorithmName)

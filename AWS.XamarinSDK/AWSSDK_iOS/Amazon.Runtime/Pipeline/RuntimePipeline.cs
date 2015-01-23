@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright 2010-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
+using System.Linq;
 
 namespace Amazon.Runtime.Internal
 {
@@ -407,6 +408,32 @@ namespace Amazon.Runtime.Internal
             ThrowIfDisposed();
 
             handler.Logger = _logger;
+        }
+
+        /// <summary>
+        /// Retrieves a list of handlers, in the order of their execution.
+        /// </summary>
+        /// <returns>Handlers in the current pipeline.</returns>
+        public List<IPipelineHandler> Handlers
+        {
+            get
+            {
+                return EnumerateHandlers().ToList();
+            }
+        }
+
+        /// <summary>
+        /// Retrieves current handlers, in the order of their execution.
+        /// </summary>
+        /// <returns>Handlers in the current pipeline.</returns>
+        public IEnumerable<IPipelineHandler> EnumerateHandlers()
+        {
+            var handler = this.Handler;
+            while(handler != null)
+            {
+                yield return handler;
+                handler = handler.InnerHandler;
+            }
         }
 
         #endregion

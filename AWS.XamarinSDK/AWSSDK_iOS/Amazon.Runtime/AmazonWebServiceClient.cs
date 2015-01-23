@@ -1,4 +1,4 @@
-﻿/*
+/*
  * Copyright 2010-2013 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -463,18 +463,17 @@ WebExceptionStatusesToRetryOn.Contains(we.Status)
 
         protected HttpClient ConfigureHttpClient()
         {
-            var httpMessageHandler = new HttpClientHandler(); 
-//#if BCL45
-//            var httpMessageHandler = new WebRequestHandler();
-//            if (this.Config.ReadWriteTimeout.HasValue)
-//            {
-//                // ReadWriteTimeout value is set to ClientConfig.MaxTimeout for S3 and Glacier.
-//                // Use default value (300 seconds) for other services.
-//                httpMessageHandler.ReadWriteTimeout = (int)this.Config.ReadWriteTimeout.Value.TotalMilliseconds;
-//            }            
-//#else
-//            var httpMessageHandler = new HttpClientHandler();
-//#endif
+#if BCL45 && !MOBILE
+            var httpMessageHandler = new WebRequestHandler();
+            if (this.Config.ReadWriteTimeout.HasValue)
+            {
+                // ReadWriteTimeout value is set to ClientConfig.MaxTimeout for S3 and Glacier.
+                // Use default value (300 seconds) for other services.
+                httpMessageHandler.ReadWriteTimeout = (int)this.Config.ReadWriteTimeout.Value.TotalMilliseconds;
+            }            
+#else
+            var httpMessageHandler = new HttpClientHandler();
+#endif
 
 #if BCL
             

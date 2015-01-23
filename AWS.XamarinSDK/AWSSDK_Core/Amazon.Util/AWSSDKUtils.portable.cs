@@ -27,7 +27,7 @@ namespace Amazon.Util
 {
     public static partial class AWSSDKUtils
     {
-        static string _userAgentBaseName = "aws-sdk-dotnet-portable";
+        static string _userAgentBaseName = "aws-sdk-xamarin-portable";
 
         static string DetermineRuntime()
         {
@@ -63,6 +63,16 @@ namespace Amazon.Util
         public static void Sleep(int ms)
         {
             new System.Threading.ManualResetEvent(false).WaitOne(ms);
+        }
+
+        internal static int GetMaxIdleTime(int? clientConfigValue)
+        {
+            // MaxIdleTime has been explicitly set on the client.
+            if (clientConfigValue.HasValue)
+                return clientConfigValue.Value;
+
+            // If default has been left at the system default return the SDK default.
+                return AWSSDKUtils.DefaultMaxIdleTime;
         }
     }
 }
