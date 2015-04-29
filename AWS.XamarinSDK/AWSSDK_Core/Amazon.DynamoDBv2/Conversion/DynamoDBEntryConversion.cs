@@ -333,17 +333,16 @@ namespace Amazon.DynamoDBv2
         {
             var typedConverterTypeInfo = TypeFactory.GetTypeInfo(typeof(Converter));
             var assembly = TypeFactory.GetTypeInfo(typeof(DynamoDBEntryConversion)).Assembly;
-            var types = assembly.DefinedTypes;
             //var types = assembly.GetTypes();
+            var types = assembly.DefinedTypes;
             foreach (var type in types)
             {
                 string fullName = type.FullName;
-                
+
                 //if (type.Namespace != typedConverterType.Namespace)
                 //    continue;
 
-                var typeInfo = TypeFactory.GetTypeInfo(type.AsType());
-                //var typeInfo = TypeFactory.GetTypeInfo()
+                var typeInfo = TypeFactory.GetTypeInfo(type.GetType());
                 if (typeInfo.IsAbstract)
                     continue;
 
@@ -353,8 +352,7 @@ namespace Amazon.DynamoDBv2
                 if (!typedConverterTypeInfo.IsAssignableFrom(typeInfo))
                     continue;
 
-                //AddConverter(type);
-                AddConverter(type.AsType());
+                AddConverter(type.GetType());
             }
         }
         private void AddConverter(Type type)

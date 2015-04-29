@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright 2012-2013 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -705,7 +705,8 @@ namespace Amazon.DynamoDBv2.DocumentModel
                 ConditionalOperator = currentConfig.ConditionalOperator,
                 AttributesToGet = currentConfig.AttributesToGet,
                 Select = currentConfig.Select,
-                CollectResults = currentConfig.CollectResults
+                CollectResults = currentConfig.CollectResults,
+                IndexName = currentConfig.IndexName
             };
 
             if (currentConfig.TotalSegments != 0)

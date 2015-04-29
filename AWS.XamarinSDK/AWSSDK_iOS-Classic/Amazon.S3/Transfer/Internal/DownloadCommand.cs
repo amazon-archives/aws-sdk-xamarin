@@ -66,7 +66,7 @@ namespace Amazon.S3.Transfer.Internal
             {
                 throw new InvalidOperationException("The BucketName specified is null or empty!");
             }
-#if BCL || MOBILE
+#if BCL
             if (!this._request.IsSetFilePath())
             {
                 throw new InvalidOperationException("The filepath specified is null or empty!");

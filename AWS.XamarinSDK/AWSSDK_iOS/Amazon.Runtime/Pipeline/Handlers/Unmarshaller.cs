@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright 2010-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -53,7 +53,7 @@ namespace Amazon.Runtime.Internal
             }                      
         }
 
-#if BCL45 && !MOBILE
+#if BCL45
 
         /// <summary>
         /// Unmarshalls the response returned by the HttpHandler.
@@ -70,7 +70,7 @@ namespace Amazon.Runtime.Internal
             return (T)executionContext.ResponseContext.Response;
         }
 
-#elif WIN_RT || WINDOWS_PHONE ||MOBILE
+#elif WIN_RT || WINDOWS_PHONE 
 
         /// <summary>
         /// Unmarshalls the response returned by the HttpHandler.
@@ -87,7 +87,7 @@ namespace Amazon.Runtime.Internal
             return (T)executionContext.ResponseContext.Response;
         }
 
-#elif BCL && !BCL45
+#elif AWS_APM_API
 
         /// <summary>
         /// Unmarshalls the response returned by the HttpHandler.
@@ -141,7 +141,7 @@ namespace Amazon.Runtime.Internal
             }
         }
 
-#if WIN_RT || WINDOWS_PHONE ||MOBILE
+#if WIN_RT || WINDOWS_PHONE
 
         /// <summary>
         /// Unmarshalls the HTTP response.

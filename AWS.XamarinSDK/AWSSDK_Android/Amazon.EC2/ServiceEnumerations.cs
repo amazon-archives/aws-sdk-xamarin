@@ -1155,6 +1155,26 @@ namespace Amazon.EC2
         /// </summary>
         public static readonly InstanceType C3Xlarge = new InstanceType("c3.xlarge");
         /// <summary>
+        /// Constant C42xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType C42xlarge = new InstanceType("c4.2xlarge");
+        /// <summary>
+        /// Constant C44xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType C44xlarge = new InstanceType("c4.4xlarge");
+        /// <summary>
+        /// Constant C48xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType C48xlarge = new InstanceType("c4.8xlarge");
+        /// <summary>
+        /// Constant C4Large for InstanceType
+        /// </summary>
+        public static readonly InstanceType C4Large = new InstanceType("c4.large");
+        /// <summary>
+        /// Constant C4Xlarge for InstanceType
+        /// </summary>
+        public static readonly InstanceType C4Xlarge = new InstanceType("c4.xlarge");
+        /// <summary>
         /// Constant Cc14xlarge for InstanceType
         /// </summary>
         public static readonly InstanceType Cc14xlarge = new InstanceType("cc1.4xlarge");
@@ -1547,6 +1567,10 @@ namespace Amazon.EC2
     {
 
         /// <summary>
+        /// Constant AllUpfront for OfferingTypeValues
+        /// </summary>
+        public static readonly OfferingTypeValues AllUpfront = new OfferingTypeValues("All Upfront");
+        /// <summary>
         /// Constant HeavyUtilization for OfferingTypeValues
         /// </summary>
         public static readonly OfferingTypeValues HeavyUtilization = new OfferingTypeValues("Heavy Utilization");
@@ -1558,6 +1582,14 @@ namespace Amazon.EC2
         /// Constant MediumUtilization for OfferingTypeValues
         /// </summary>
         public static readonly OfferingTypeValues MediumUtilization = new OfferingTypeValues("Medium Utilization");
+        /// <summary>
+        /// Constant NoUpfront for OfferingTypeValues
+        /// </summary>
+        public static readonly OfferingTypeValues NoUpfront = new OfferingTypeValues("No Upfront");
+        /// <summary>
+        /// Constant PartialUpfront for OfferingTypeValues
+        /// </summary>
+        public static readonly OfferingTypeValues PartialUpfront = new OfferingTypeValues("Partial Upfront");
 
         /// <summary>
         /// Default Constructor

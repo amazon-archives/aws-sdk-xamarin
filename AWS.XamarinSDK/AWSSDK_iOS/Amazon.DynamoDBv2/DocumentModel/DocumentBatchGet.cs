@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright 2012-2013 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -309,7 +309,7 @@ namespace Amazon.DynamoDBv2.DocumentModel
             }
         }
 
-#if (WIN_RT || WINDOWS_PHONE || MOBILE) 
+#if (WIN_RT || WINDOWS_PHONE || MOBILE)
         private void CallUntilCompletion(AmazonDynamoDBClient client, BatchGetItemRequest request)
 #else
         private void CallUntilCompletion(IAmazonDynamoDB client, BatchGetItemRequest request)

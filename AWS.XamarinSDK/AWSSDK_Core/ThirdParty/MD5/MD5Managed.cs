@@ -1,8 +1,7 @@
 ﻿//Copyright (c) Microsoft Corporation.  All rights reserved.
 using System;
 //using System.Security.Cryptography;
-using System.Security;
-using PCLCrypto;
+using XLabs.Cryptography;
 
 // **************************************************************
 // * Raw implementation of the MD5 hash algorithm
@@ -15,22 +14,25 @@ using PCLCrypto;
 namespace ThirdParty.MD5
 {
 
-#if SILVERLIGHT && !PCL
-    public class MD5Managed : HashAlgorithm
+#if SILVERLIGHT
+    //public class MD5Managed : HashAlgorithm
+    public class MD5Managed 
 #else
-public class MD5Managed //: MD5
+public class MD5Managed : MD5
 #endif
     {
         private byte[] _data;
         private ABCDStruct _abcd;
         private Int64 _totalLength;
         private int _dataSize;
-        protected int HashSizeValue;
-        protected byte[] HashValue;
+        private int HashSizeValue;
+        private byte[] HashValue;
+        protected XLabs.Cryptography.MD5 _base;
 
         public MD5Managed()
         {
-            //base.HashSizeValue = 0x80;
+            _base = XLabs.Cryptography.MD5.Create();
+            //_base.HashSizeValue = 0x80;
             this.HashSizeValue = 0x80;
             this.Initialize();
         }
@@ -38,6 +40,7 @@ public class MD5Managed //: MD5
         //public override void Initialize()
         public void Initialize()
         {
+            
             _data = new byte[64];
             _dataSize = 0;
             _totalLength = 0;
@@ -82,10 +85,8 @@ public class MD5Managed //: MD5
         //protected override byte[] HashFinal()
         protected byte[] HashFinal()
         {
-            //base.HashValue = MD5Core.GetHashFinalBlock(_data, 0, _dataSize, _abcd, _totalLength * 8);
             this.HashValue = MD5Core.GetHashFinalBlock(_data, 0, _dataSize, _abcd, _totalLength * 8);
             return this.HashValue;
-            //return base.HashValue;
         }
     }
 }

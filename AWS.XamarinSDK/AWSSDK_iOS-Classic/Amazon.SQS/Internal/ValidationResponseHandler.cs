@@ -12,9 +12,51 @@ using Amazon.Runtime.Internal;
 
 namespace Amazon.SQS.Internal
 {
-    public class ValidationResponseHandler : GenericHandler
+    public class ValidationResponseHandler : PipelineHandler
     {
-        protected override void PostInvoke(IExecutionContext executionContext)
+        /// <summary>
+        /// Calls the post invoke logic after calling the next handler 
+        /// in the pipeline.
+        /// </summary>
+        /// <param name="executionContext">The execution context which contains both the
+        /// requests and response context.</param>
+        public override void InvokeSync(IExecutionContext executionContext)
+        {
+            base.InvokeSync(executionContext);
+            PostInvoke(executionContext);
+        }
+#if AWS_ASYNC_API
+
+        /// <summary>
+        /// Calls the and post invoke logic after calling the next handler 
+        /// in the pipeline.
+        /// </summary>
+        /// <typeparam name="T">The response type for the current request.</typeparam>
+        /// <param name="executionContext">The execution context, it contains the
+        /// request and response context.</param>
+        /// <returns>A task that represents the asynchronous operation.</returns>
+        public override async System.Threading.Tasks.Task<T> InvokeAsync<T>(IExecutionContext executionContext)
+        {
+            var response = await base.InvokeAsync<T>(executionContext).ConfigureAwait(false);
+            PostInvoke(executionContext);
+            return response;
+        }
+
+#elif AWS_APM_API
+
+        /// <summary>
+        /// Calls the PostInvoke methods after calling the next handler 
+        /// in the pipeline.
+        /// </summary>
+        /// <param name="executionContext">The execution context, it contains the
+        /// request and response context.</param>
+        protected override void InvokeAsyncCallback(IAsyncExecutionContext executionContext)
+        {
+            PostInvoke(ExecutionContext.CreateFromAsyncContext(executionContext));
+            base.InvokeAsyncCallback(executionContext);
+        }
+#endif
+        protected void PostInvoke(IExecutionContext executionContext)
         {
             var request = executionContext.RequestContext.Request;
             var response = executionContext.ResponseContext.Response;
@@ -100,7 +142,7 @@ namespace Amazon.SQS.Internal
 
         public static string CalculateMD5(Dictionary<string, MessageAttributeValue> attributes)
         {
-            var sorted = attributes.OrderBy(kvp => kvp.Key, StringComparer.OrdinalIgnoreCase);
+            var sorted = attributes.OrderBy(kvp => kvp.Key, StringComparer.Ordinal);
 
             var ms = new MemoryStream();
             using (var writer = new SQSWriter(ms))
@@ -152,7 +194,7 @@ namespace Amazon.SQS.Internal
         public static string CalculateMD5(byte[] bytes)
         {
             var md5Hash = Amazon.Util.CryptoUtilFactory.CryptoInstance.ComputeMD5Hash(bytes);
-            var calculatedMd5 = BitConverter.ToString(md5Hash).Replace("-", string.Empty).ToLower(CultureInfo.InvariantCulture);
+            var calculatedMd5 = BitConverter.ToString(md5Hash).Replace("-", string.Empty).ToLowerInvariant();
             return calculatedMd5;
         }
         public static bool CompareMD5(string message, string md5FromService)

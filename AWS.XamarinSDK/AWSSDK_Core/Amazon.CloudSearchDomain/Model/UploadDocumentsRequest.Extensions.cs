@@ -55,7 +55,7 @@ namespace Amazon.CloudSearchDomain.Model
     public partial class UploadDocumentsRequest
     {
 
-#if BCL
+#if BCL || MOBILE
         private string filePath;
 
         /// <summary>
@@ -76,7 +76,8 @@ namespace Amazon.CloudSearchDomain.Model
 
         internal void SetupForFilePath()
         {
-            this.Documents = new FileStream(this.FilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
+            //this.Documents = new FileStream(this.FilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
+            throw new NotImplementedException();
         }
 #endif
     }

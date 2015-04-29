@@ -55,7 +55,7 @@ namespace Amazon.CloudSearchDomain.Model
     public partial class UploadDocumentsRequest
     {
 
-#if BCL
+#if BCL || MOBILE
         private string filePath;
 
         /// <summary>

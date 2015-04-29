@@ -1,4 +1,4 @@
-/*******************************************************************************
+﻿/*******************************************************************************
  *  Copyright 2008-2013 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *  Licensed under the Apache License, Version 2.0 (the "License"). You may not use
  *  this file except in compliance with the License. A copy of the License is located at
@@ -20,17 +20,14 @@
  */
 
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Globalization;
 
 #if !WIN_RT
-using System.Configuration;
+
 #endif
 
 using Amazon.Util;
-using Amazon.Runtime.Internal.Util;
 
 namespace Amazon
 {
@@ -93,6 +90,41 @@ namespace Amazon
 
         // New config section
         private static RootConfig _rootConfig = new RootConfig();
+
+        #endregion
+
+        #region Clock Skew
+
+        /// <summary>
+        /// Determines if the SDK should correct for client clock skew
+        /// by determining the correct server time and reissuing the
+        /// request with the correct time.
+        /// Default value of this field is True.
+        /// <seealso cref="ClockOffset"/> will be updated with the calculated
+        /// offset even if this field is set to false, though requests
+        /// will not be corrected or retried.
+        /// </summary>
+        public static bool CorrectForClockSkew
+        {
+            get { return _rootConfig.CorrectForClockSkew; }
+            set { _rootConfig.CorrectForClockSkew = value; }
+        }
+
+        /// <summary>
+        /// The calculated clock skew correction, if there is one.
+        /// This field will be set if a service call resulted in an exception
+        /// and the SDK has determined that there is a difference between local
+        /// and server times.
+        /// 
+        /// If <seealso cref="CorrectForClockSkew"/> is set to true, this
+        /// value will be set to the correction, but it will not be used by the
+        /// SDK and clock skew errors will not be retried.
+        /// </summary>
+        public static TimeSpan ClockOffset
+        {
+            get;
+            internal set;
+        }
 
         #endregion
 
@@ -647,5 +679,20 @@ namespace Amazon
         /// Always log service response
         /// </summary>
         Always = 2
+    }
+
+    /// <summary>
+    /// Format for metrics data in the logs
+    /// </summary>
+    public enum LogMetricsFormatOption
+    {
+        /// <summary>
+        /// Emit metrics in human-readable format
+        /// </summary>
+        Standard = 0,
+        /// <summary>
+        /// Emit metrics as JSON data
+        /// </summary>
+        JSON = 1
     }
 }

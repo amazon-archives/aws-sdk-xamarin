@@ -1,5 +1,8 @@
-#The AWS Mobile SDK for Xamarin
+﻿#The AWS Mobile SDK for Xamarin
 
+##UPDATE: 
+Early Release of v4 of Xamarin SDK available.  Please note this beta software, therefore, please submit issues and feedback so we can improve the SDK for usage.
+__________
 We are making the AWS Mobile SDK for Xamarin available as a beta for you to evaluate and provide us feedback. Now you can use Xamarin to build cross platform apps that use AWS services for identity management ([Amazon Cognito](http://aws.amazon.com/cognito/)), cloud storage ([Amazon S3](http://aws.amazon.com/s3/)), a fully-managed NoSQL database ([Amazon DynamoDB](http://aws.amazon.com/dynamodb/)), and push notifications ([Amazon SNS Mobile Push](http://aws.amazon.com/sns/)).
 
 The SDK is available on AWSLabs [here](https://github.com/awslabs/aws-sdk-xamarin) and is in early stage development. The current version of the SDK (v3)  has been updated to provide more features and services for evaluation.  We plan to make improvements based on your feedback, so be sure to let us know if you have questions, issues or ideas [here](https://github.com/awslabs/aws-sdk-xamarin/issues).

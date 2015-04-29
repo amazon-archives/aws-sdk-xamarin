@@ -76,13 +76,13 @@ namespace Amazon.DynamoDBv2.Model
         /// <para>
         /// String value comparisons for greater than, equals, or less than are based on ASCII
         /// character code values. For example, <code>a</code> is greater than <code>A</code>,
-        /// and <code>aa</code> is greater than <code>B</code>. For a list of code values, see
+        /// and <code>a</code> is greater than <code>B</code>. For a list of code values, see
         /// <a href="http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters">http://en.wikipedia.org/wiki/ASCII#ASCII_printable_characters</a>.
         /// </para>
         ///  
         /// <para>
         /// For Binary, DynamoDB treats each byte of the binary data as unsigned when it compares
-        /// binary values, for example when evaluating query expressions.
+        /// binary values.
         /// </para>
         /// </summary>
         public List<AttributeValue> AttributeValueList
@@ -125,7 +125,7 @@ namespace Amazon.DynamoDBv2.Model
         /// <para>
         /// <i>AttributeValueList</i> can contain only one <i>AttributeValue</i> element of type
         /// String, Number, Binary, String Set, Number Set, or Binary Set. If an item contains
-        /// an <i>AttributeValue</i> element of a different type than the one specified in the
+        /// an <i>AttributeValue</i> element of a different type than the one provided in the
         /// request, the value does not match. For example, <code>{"S":"6"}</code> does not equal
         /// <code>{"N":"6"}</code>. Also, <code>{"N":"6"}</code> does not equal <code>{"NS":["6",
         /// "2", "1"]}</code>.
@@ -139,7 +139,7 @@ namespace Amazon.DynamoDBv2.Model
         /// <para>
         /// <i>AttributeValueList</i> can contain only one <i>AttributeValue</i> of type String,
         /// Number, Binary, String Set, Number Set, or Binary Set. If an item contains an <i>AttributeValue</i>
-        /// of a different type than the one specified in the request, the value does not match.
+        /// of a different type than the one provided in the request, the value does not match.
         /// For example, <code>{"S":"6"}</code> does not equal <code>{"N":"6"}</code>. Also, <code>{"N":"6"}</code>
         /// does not equal <code>{"NS":["6", "2", "1"]}</code>.
         /// </para>
@@ -151,8 +151,8 @@ namespace Amazon.DynamoDBv2.Model
         /// <para>
         /// <i>AttributeValueList</i> can contain only one <i>AttributeValue</i> element of type
         /// String, Number, or Binary (not a set type). If an item contains an <i>AttributeValue</i>
-        /// element of a different type than the one specified in the request, the value does
-        /// not match. For example, <code>{"S":"6"}</code> does not equal <code>{"N":"6"}</code>.
+        /// element of a different type than the one provided in the request, the value does not
+        /// match. For example, <code>{"S":"6"}</code> does not equal <code>{"N":"6"}</code>.
         /// Also, <code>{"N":"6"}</code> does not compare to <code>{"NS":["6", "2", "1"]}</code>.
         /// </para>
         ///  <p/> </li> <li> 
@@ -163,7 +163,7 @@ namespace Amazon.DynamoDBv2.Model
         /// <para>
         /// <i>AttributeValueList</i> can contain only one <i>AttributeValue</i> of type String,
         /// Number, or Binary (not a set type). If an item contains an <i>AttributeValue</i> element
-        /// of a different type than the one specified in the request, the value does not match.
+        /// of a different type than the one provided in the request, the value does not match.
         /// For example, <code>{"S":"6"}</code> does not equal <code>{"N":"6"}</code>. Also, <code>{"N":"6"}</code>
         /// does not compare to <code>{"NS":["6", "2", "1"]}</code>.
         /// </para>
@@ -175,8 +175,8 @@ namespace Amazon.DynamoDBv2.Model
         /// <para>
         /// <i>AttributeValueList</i> can contain only one <i>AttributeValue</i> element of type
         /// String, Number, or Binary (not a set type). If an item contains an <i>AttributeValue</i>
-        /// element of a different type than the one specified in the request, the value does
-        /// not match. For example, <code>{"S":"6"}</code> does not equal <code>{"N":"6"}</code>.
+        /// element of a different type than the one provided in the request, the value does not
+        /// match. For example, <code>{"S":"6"}</code> does not equal <code>{"N":"6"}</code>.
         /// Also, <code>{"N":"6"}</code> does not compare to <code>{"NS":["6", "2", "1"]}</code>.
         /// </para>
         ///  <p/> </li> <li> 
@@ -187,8 +187,8 @@ namespace Amazon.DynamoDBv2.Model
         /// <para>
         /// <i>AttributeValueList</i> can contain only one <i>AttributeValue</i> element of type
         /// String, Number, or Binary (not a set type). If an item contains an <i>AttributeValue</i>
-        /// element of a different type than the one specified in the request, the value does
-        /// not match. For example, <code>{"S":"6"}</code> does not equal <code>{"N":"6"}</code>.
+        /// element of a different type than the one provided in the request, the value does not
+        /// match. For example, <code>{"S":"6"}</code> does not equal <code>{"N":"6"}</code>.
         /// Also, <code>{"N":"6"}</code> does not compare to <code>{"NS":["6", "2", "1"]}</code>.
         /// </para>
         ///  <p/> </li> <li> 
@@ -196,12 +196,26 @@ namespace Amazon.DynamoDBv2.Model
         /// <code>NOT_NULL</code> : The attribute exists. <code>NOT_NULL</code> is supported for
         /// all datatypes, including lists and maps.
         /// </para>
-        ///  </li> <li> 
+        ///  <note>
+        /// <para>
+        /// This operator tests for the existence of an attribute, not its data type. If the data
+        /// type of attribute "<code>a</code>" is null, and you evaluate it using <code>NOT_NULL</code>,
+        /// the result is a Boolean <i>true</i>. This result is because the attribute "<code>a</code>"
+        /// exists; its data type is not relevant to the <code>NOT_NULL</code> comparison operator.
+        /// </para>
+        ///  </note> </li> <li> 
         /// <para>
         /// <code>NULL</code> : The attribute does not exist. <code>NULL</code> is supported for
         /// all datatypes, including lists and maps.
         /// </para>
-        ///  </li> <li> 
+        ///  <note>
+        /// <para>
+        /// This operator tests for the nonexistence of an attribute, not its data type. If the
+        /// data type of attribute "<code>a</code>" is null, and you evaluate it using <code>NULL</code>,
+        /// the result is a Boolean <i>false</i>. This is because the attribute "<code>a</code>"
+        /// exists; its data type is not relevant to the <code>NULL</code> comparison operator.
+        /// </para>
+        ///  </note> </li> <li> 
         /// <para>
         /// <code>CONTAINS</code> : Checks for a subsequence, or value in a set.
         /// </para>
@@ -274,7 +288,7 @@ namespace Amazon.DynamoDBv2.Model
         /// type, either String, Number, or Binary (not a set type). A target attribute matches
         /// if the target value is greater than, or equal to, the first element and less than,
         /// or equal to, the second element. If an item contains an <i>AttributeValue</i> element
-        /// of a different type than the one specified in the request, the value does not match.
+        /// of a different type than the one provided in the request, the value does not match.
         /// For example, <code>{"S":"6"}</code> does not compare to <code>{"N":"6"}</code>. Also,
         /// <code>{"N":"6"}</code> does not compare to <code>{"NS":["6", "2", "1"]}</code>
         /// </para>

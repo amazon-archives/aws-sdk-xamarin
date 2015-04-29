@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright 2010-2013 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -131,7 +131,7 @@ namespace Amazon.Runtime
             return response;
         }
 
-#if BCL45 || WIN_RT || WINDOWS_PHONE 
+#if AWS_ASYNC_API 
 
         protected System.Threading.Tasks.Task<TResponse> InvokeAsync<TRequest, TResponse>(TRequest request, 
             IMarshaller<IRequest, AmazonWebServiceRequest> marshaller, ResponseUnmarshaller unmarshaller,
@@ -158,7 +158,7 @@ namespace Amazon.Runtime
             return this.RuntimePipeline.InvokeAsync<TResponse>(executionContext);
         }
 
-#elif BCL && !BCL45
+#elif AWS_APM_API
         protected IAsyncResult BeginInvoke<TRequest>(TRequest request,
             IMarshaller<IRequest, AmazonWebServiceRequest> marshaller, ResponseUnmarshaller unmarshaller,
             AsyncCallback callback, object state)
@@ -304,7 +304,7 @@ namespace Amazon.Runtime
 
         private void BuildRuntimePipeline()
         {
-#if (BCL || BCL45) && !MOBILE 
+#if (BCL || BCL45) && !MOBILE
             var httpRequestFactory = new HttpWebRequestFactory();
             var httpHandler = new HttpHandler<Stream>(httpRequestFactory, this);
 #else
@@ -354,9 +354,7 @@ namespace Amazon.Runtime
                 resourcePath = string.Empty;
             else
             {
-                if (resourcePath.StartsWith("//", StringComparison.Ordinal))
-                    resourcePath = resourcePath.Substring(2);
-                else if (resourcePath.StartsWith("/", StringComparison.Ordinal))
+                if (resourcePath.StartsWith("/", StringComparison.Ordinal))
                     resourcePath = resourcePath.Substring(1);
             }
 

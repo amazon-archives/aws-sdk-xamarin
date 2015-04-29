@@ -14,28 +14,31 @@
     <FileAlignment>512</FileAlignment>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
-    <AndroidUseLatestPlatformSdk>True</AndroidUseLatestPlatformSdk>
+    <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
+    <TargetFrameworkVersion>
+    </TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;__ANDROID__;MOBILE;SILVERLIGHT;BCL45</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;__ANDROID__;AWS_ASYNC_API;MOBILE;SILVERLIGHT;BCL45</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <NoWarn>419,1591,1573</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;__ANDROID__;MOBILE;SILVERLIGHT;BCL45</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;__ANDROID__;AWS_ASYNC_API;MOBILE;SILVERLIGHT;BCL45</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -451,12 +454,23 @@
     <Compile Include="Amazon.CognitoIdentity\Model\CreateIdentityPoolRequest.cs" />
     <Compile Include="Amazon.CognitoIdentity\Model\CreateIdentityPoolResponse.cs" />
     <Compile Include="Amazon.CognitoIdentity\Model\CreateIdentityPoolResult.cs" />
+    <Compile Include="Amazon.CognitoIdentity\Model\Credentials.cs" />
+    <Compile Include="Amazon.CognitoIdentity\Model\Credentials.Extensions.cs" />
     <Compile Include="Amazon.CognitoIdentity\Model\DeleteIdentityPoolRequest.cs" />
     <Compile Include="Amazon.CognitoIdentity\Model\DeleteIdentityPoolResponse.cs" />
     <Compile Include="Amazon.CognitoIdentity\Model\DescribeIdentityPoolRequest.cs" />
     <Compile Include="Amazon.CognitoIdentity\Model\DescribeIdentityPoolResponse.cs" />
     <Compile Include="Amazon.CognitoIdentity\Model\DescribeIdentityPoolResult.cs" />
+    <Compile Include="Amazon.CognitoIdentity\Model\DescribeIdentityRequest.cs" />
+    <Compile Include="Amazon.CognitoIdentity\Model\DescribeIdentityResponse.cs" />
+    <Compile Include="Amazon.CognitoIdentity\Model\DescribeIdentityResult.cs" />
     <Compile Include="Amazon.CognitoIdentity\Model\DeveloperUserAlreadyRegisteredException.cs" />
+    <Compile Include="Amazon.CognitoIdentity\Model\GetCredentialsForIdentityRequest.cs" />
+    <Compile Include="Amazon.CognitoIdentity\Model\GetCredentialsForIdentityResponse.cs" />
+    <Compile Include="Amazon.CognitoIdentity\Model\GetCredentialsForIdentityResult.cs" />
+    <Compile Include="Amazon.CognitoIdentity\Model\GetIdentityPoolRolesRequest.cs" />
+    <Compile Include="Amazon.CognitoIdentity\Model\GetIdentityPoolRolesResponse.cs" />
+    <Compile Include="Amazon.CognitoIdentity\Model\GetIdentityPoolRolesResult.cs" />
     <Compile Include="Amazon.CognitoIdentity\Model\GetIdRequest.cs" />
     <Compile Include="Amazon.CognitoIdentity\Model\GetIdResponse.cs" />
     <Compile Include="Amazon.CognitoIdentity\Model\GetIdResult.cs" />
@@ -471,10 +485,17 @@
     <Compile Include="Amazon.CognitoIdentity\Model\InternalErrorException.cs" />
     <Compile Include="Amazon.CognitoIdentity\Model\Internal\MarshallTransformations\CreateIdentityPoolRequestMarshaller.cs" />
     <Compile Include="Amazon.CognitoIdentity\Model\Internal\MarshallTransformations\CreateIdentityPoolResponseUnmarshaller.cs" />
+    <Compile Include="Amazon.CognitoIdentity\Model\Internal\MarshallTransformations\CredentialsUnmarshaller.cs" />
     <Compile Include="Amazon.CognitoIdentity\Model\Internal\MarshallTransformations\DeleteIdentityPoolRequestMarshaller.cs" />
     <Compile Include="Amazon.CognitoIdentity\Model\Internal\MarshallTransformations\DeleteIdentityPoolResponseUnmarshaller.cs" />
     <Compile Include="Amazon.CognitoIdentity\Model\Internal\MarshallTransformations\DescribeIdentityPoolRequestMarshaller.cs" />
     <Compile Include="Amazon.CognitoIdentity\Model\Internal\MarshallTransformations\DescribeIdentityPoolResponseUnmarshaller.cs" />
+    <Compile Include="Amazon.CognitoIdentity\Model\Internal\MarshallTransformations\DescribeIdentityRequestMarshaller.cs" />
+    <Compile Include="Amazon.CognitoIdentity\Model\Internal\MarshallTransformations\DescribeIdentityResponseUnmarshaller.cs" />
+    <Compile Include="Amazon.CognitoIdentity\Model\Internal\MarshallTransformations\GetCredentialsForIdentityRequestMarshaller.cs" />
+    <Compile Include="Amazon.CognitoIdentity\Model\Internal\MarshallTransformations\GetCredentialsForIdentityResponseUnmarshaller.cs" />
+    <Compile Include="Amazon.CognitoIdentity\Model\Internal\MarshallTransformations\GetIdentityPoolRolesRequestMarshaller.cs" />
+    <Compile Include="Amazon.CognitoIdentity\Model\Internal\MarshallTransformations\GetIdentityPoolRolesResponseUnmarshaller.cs" />
     <Compile Include="Amazon.CognitoIdentity\Model\Internal\MarshallTransformations\GetIdRequestMarshaller.cs" />
     <Compile Include="Amazon.CognitoIdentity\Model\Internal\MarshallTransformations\GetIdResponseUnmarshaller.cs" />
     <Compile Include="Amazon.CognitoIdentity\Model\Internal\MarshallTransformations\GetOpenIdTokenForDeveloperIdentityRequestMarshaller.cs" />
@@ -491,12 +512,15 @@
     <Compile Include="Amazon.CognitoIdentity\Model\Internal\MarshallTransformations\LookupDeveloperIdentityResponseUnmarshaller.cs" />
     <Compile Include="Amazon.CognitoIdentity\Model\Internal\MarshallTransformations\MergeDeveloperIdentitiesRequestMarshaller.cs" />
     <Compile Include="Amazon.CognitoIdentity\Model\Internal\MarshallTransformations\MergeDeveloperIdentitiesResponseUnmarshaller.cs" />
+    <Compile Include="Amazon.CognitoIdentity\Model\Internal\MarshallTransformations\SetIdentityPoolRolesRequestMarshaller.cs" />
+    <Compile Include="Amazon.CognitoIdentity\Model\Internal\MarshallTransformations\SetIdentityPoolRolesResponseUnmarshaller.cs" />
     <Compile Include="Amazon.CognitoIdentity\Model\Internal\MarshallTransformations\UnlinkDeveloperIdentityRequestMarshaller.cs" />
     <Compile Include="Amazon.CognitoIdentity\Model\Internal\MarshallTransformations\UnlinkDeveloperIdentityResponseUnmarshaller.cs" />
     <Compile Include="Amazon.CognitoIdentity\Model\Internal\MarshallTransformations\UnlinkIdentityRequestMarshaller.cs" />
     <Compile Include="Amazon.CognitoIdentity\Model\Internal\MarshallTransformations\UnlinkIdentityResponseUnmarshaller.cs" />
     <Compile Include="Amazon.CognitoIdentity\Model\Internal\MarshallTransformations\UpdateIdentityPoolRequestMarshaller.cs" />
     <Compile Include="Amazon.CognitoIdentity\Model\Internal\MarshallTransformations\UpdateIdentityPoolResponseUnmarshaller.cs" />
+    <Compile Include="Amazon.CognitoIdentity\Model\InvalidIdentityPoolConfigurationException.cs" />
     <Compile Include="Amazon.CognitoIdentity\Model\InvalidParameterException.cs" />
     <Compile Include="Amazon.CognitoIdentity\Model\LimitExceededException.cs" />
     <Compile Include="Amazon.CognitoIdentity\Model\ListIdentitiesRequest.cs" />
@@ -514,6 +538,8 @@
     <Compile Include="Amazon.CognitoIdentity\Model\NotAuthorizedException.cs" />
     <Compile Include="Amazon.CognitoIdentity\Model\ResourceConflictException.cs" />
     <Compile Include="Amazon.CognitoIdentity\Model\ResourceNotFoundException.cs" />
+    <Compile Include="Amazon.CognitoIdentity\Model\SetIdentityPoolRolesRequest.cs" />
+    <Compile Include="Amazon.CognitoIdentity\Model\SetIdentityPoolRolesResponse.cs" />
     <Compile Include="Amazon.CognitoIdentity\Model\TooManyRequestsException.cs" />
     <Compile Include="Amazon.CognitoIdentity\Model\UnlinkDeveloperIdentityRequest.cs" />
     <Compile Include="Amazon.CognitoIdentity\Model\UnlinkDeveloperIdentityResponse.cs" />
@@ -528,7 +554,12 @@
     <Compile Include="Amazon.CognitoSync\AmazonCognitoSyncException.cs" />
     <Compile Include="Amazon.CognitoSync\IAmazonCognitoSync.cs" />
     <Compile Include="Amazon.CognitoSync\Internal\CognitoCredentialsRetriever.cs" />
+    <Compile Include="Amazon.CognitoSync\Model\AlreadyStreamedException.cs" />
     <Compile Include="Amazon.CognitoSync\Model\AmazonCognitoSyncRequest.cs" />
+    <Compile Include="Amazon.CognitoSync\Model\BulkPublishRequest.cs" />
+    <Compile Include="Amazon.CognitoSync\Model\BulkPublishResponse.cs" />
+    <Compile Include="Amazon.CognitoSync\Model\BulkPublishResult.cs" />
+    <Compile Include="Amazon.CognitoSync\Model\CognitoStreams.cs" />
     <Compile Include="Amazon.CognitoSync\Model\Dataset.cs" />
     <Compile Include="Amazon.CognitoSync\Model\DeleteDatasetRequest.cs" />
     <Compile Include="Amazon.CognitoSync\Model\DeleteDatasetResponse.cs" />
@@ -542,12 +573,20 @@
     <Compile Include="Amazon.CognitoSync\Model\DescribeIdentityUsageRequest.cs" />
     <Compile Include="Amazon.CognitoSync\Model\DescribeIdentityUsageResponse.cs" />
     <Compile Include="Amazon.CognitoSync\Model\DescribeIdentityUsageResult.cs" />
+    <Compile Include="Amazon.CognitoSync\Model\DuplicateRequestException.cs" />
+    <Compile Include="Amazon.CognitoSync\Model\GetBulkPublishDetailsRequest.cs" />
+    <Compile Include="Amazon.CognitoSync\Model\GetBulkPublishDetailsResponse.cs" />
+    <Compile Include="Amazon.CognitoSync\Model\GetBulkPublishDetailsResult.cs" />
     <Compile Include="Amazon.CognitoSync\Model\GetIdentityPoolConfigurationRequest.cs" />
     <Compile Include="Amazon.CognitoSync\Model\GetIdentityPoolConfigurationResponse.cs" />
     <Compile Include="Amazon.CognitoSync\Model\GetIdentityPoolConfigurationResult.cs" />
     <Compile Include="Amazon.CognitoSync\Model\IdentityPoolUsage.cs" />
     <Compile Include="Amazon.CognitoSync\Model\IdentityUsage.cs" />
     <Compile Include="Amazon.CognitoSync\Model\InternalErrorException.cs" />
+    <Compile Include="Amazon.CognitoSync\Model\Internal\MarshallTransformations\BulkPublishRequestMarshaller.cs" />
+    <Compile Include="Amazon.CognitoSync\Model\Internal\MarshallTransformations\BulkPublishResponseUnmarshaller.cs" />
+    <Compile Include="Amazon.CognitoSync\Model\Internal\MarshallTransformations\CognitoStreamsMarshaller.cs" />
+    <Compile Include="Amazon.CognitoSync\Model\Internal\MarshallTransformations\CognitoStreamsUnmarshaller.cs" />
     <Compile Include="Amazon.CognitoSync\Model\Internal\MarshallTransformations\DatasetUnmarshaller.cs" />
     <Compile Include="Amazon.CognitoSync\Model\Internal\MarshallTransformations\DeleteDatasetRequestMarshaller.cs" />
     <Compile Include="Amazon.CognitoSync\Model\Internal\MarshallTransformations\DeleteDatasetResponseUnmarshaller.cs" />
@@ -557,10 +596,14 @@
     <Compile Include="Amazon.CognitoSync\Model\Internal\MarshallTransformations\DescribeIdentityPoolUsageResponseUnmarshaller.cs" />
     <Compile Include="Amazon.CognitoSync\Model\Internal\MarshallTransformations\DescribeIdentityUsageRequestMarshaller.cs" />
     <Compile Include="Amazon.CognitoSync\Model\Internal\MarshallTransformations\DescribeIdentityUsageResponseUnmarshaller.cs" />
+    <Compile Include="Amazon.CognitoSync\Model\Internal\MarshallTransformations\GetBulkPublishDetailsRequestMarshaller.cs" />
+    <Compile Include="Amazon.CognitoSync\Model\Internal\MarshallTransformations\GetBulkPublishDetailsResponseUnmarshaller.cs" />
     <Compile Include="Amazon.CognitoSync\Model\Internal\MarshallTransformations\GetIdentityPoolConfigurationRequestMarshaller.cs" />
     <Compile Include="Amazon.CognitoSync\Model\Internal\MarshallTransformations\GetIdentityPoolConfigurationResponseUnmarshaller.cs" />
     <Compile Include="Amazon.CognitoSync\Model\Internal\MarshallTransformations\IdentityPoolUsageUnmarshaller.cs" />
     <Compile Include="Amazon.CognitoSync\Model\Internal\MarshallTransformations\IdentityUsageUnmarshaller.cs" />
+    <Compile Include="Amazon.CognitoSync\Model\Internal\MarshallTransformations\KinesisStreamingMarshaller.cs" />
+    <Compile Include="Amazon.CognitoSync\Model\Internal\MarshallTransformations\KinesisStreamingUnmarshaller.cs" />
     <Compile Include="Amazon.CognitoSync\Model\Internal\MarshallTransformations\ListDatasetsRequestMarshaller.cs" />
     <Compile Include="Amazon.CognitoSync\Model\Internal\MarshallTransformations\ListDatasetsResponseUnmarshaller.cs" />
     <Compile Include="Amazon.CognitoSync\Model\Internal\MarshallTransformations\ListIdentityPoolUsageRequestMarshaller.cs" />
@@ -583,6 +626,7 @@
     <Compile Include="Amazon.CognitoSync\Model\Internal\MarshallTransformations\UpdateRecordsResponseUnmarshaller.cs" />
     <Compile Include="Amazon.CognitoSync\Model\InvalidConfigurationException.cs" />
     <Compile Include="Amazon.CognitoSync\Model\InvalidParameterException.cs" />
+    <Compile Include="Amazon.CognitoSync\Model\KinesisStreaming.cs" />
     <Compile Include="Amazon.CognitoSync\Model\LimitExceededException.cs" />
     <Compile Include="Amazon.CognitoSync\Model\ListDatasetsRequest.cs" />
     <Compile Include="Amazon.CognitoSync\Model\ListDatasetsResponse.cs" />
@@ -634,6 +678,7 @@
     <Compile Include="Amazon.DynamoDBv2\DataModel\Context.Async.cs" />
     <Compile Include="Amazon.DynamoDBv2\DataModel\Context.cs" />
     <Compile Include="Amazon.DynamoDBv2\DataModel\ContextInternal.cs" />
+    <Compile Include="Amazon.DynamoDBv2\DataModel\Context_45.cs" />
     <Compile Include="Amazon.DynamoDBv2\DataModel\IDynamoDBContext.Async.cs" />
     <Compile Include="Amazon.DynamoDBv2\DataModel\IDynamoDBContext.cs" />
     <Compile Include="Amazon.DynamoDBv2\DataModel\InternalModel.cs" />
@@ -666,7 +711,6 @@
     <Compile Include="Amazon.DynamoDBv2\IAmazonDynamoDB.cs" />
     <Compile Include="Amazon.DynamoDBv2\Internal\DynamoDBRetryPolicy.cs" />
     <Compile Include="Amazon.DynamoDBv2\Model\AmazonDynamoDBRequest.cs" />
-    <Compile Include="Amazon.DynamoDBv2\Model\AmazonDynamoDBv2Request.cs" />
     <Compile Include="Amazon.DynamoDBv2\Model\AttributeDefinition.cs" />
     <Compile Include="Amazon.DynamoDBv2\Model\AttributeValue.cs" />
     <Compile Include="Amazon.DynamoDBv2\Model\AttributeValueUpdate.cs" />
@@ -680,9 +724,11 @@
     <Compile Include="Amazon.DynamoDBv2\Model\Condition.cs" />
     <Compile Include="Amazon.DynamoDBv2\Model\ConditionalCheckFailedException.cs" />
     <Compile Include="Amazon.DynamoDBv2\Model\ConsumedCapacity.cs" />
+    <Compile Include="Amazon.DynamoDBv2\Model\CreateGlobalSecondaryIndexAction.cs" />
     <Compile Include="Amazon.DynamoDBv2\Model\CreateTableRequest.cs" />
     <Compile Include="Amazon.DynamoDBv2\Model\CreateTableResponse.cs" />
     <Compile Include="Amazon.DynamoDBv2\Model\CreateTableResult.cs" />
+    <Compile Include="Amazon.DynamoDBv2\Model\DeleteGlobalSecondaryIndexAction.cs" />
     <Compile Include="Amazon.DynamoDBv2\Model\DeleteItemRequest.cs" />
     <Compile Include="Amazon.DynamoDBv2\Model\DeleteItemResponse.cs" />
     <Compile Include="Amazon.DynamoDBv2\Model\DeleteItemResult.cs" />
@@ -713,8 +759,10 @@
     <Compile Include="Amazon.DynamoDBv2\Model\Internal\MarshallTransformations\CapacityUnmarshaller.cs" />
     <Compile Include="Amazon.DynamoDBv2\Model\Internal\MarshallTransformations\ConditionMarshaller.cs" />
     <Compile Include="Amazon.DynamoDBv2\Model\Internal\MarshallTransformations\ConsumedCapacityUnmarshaller.cs" />
+    <Compile Include="Amazon.DynamoDBv2\Model\Internal\MarshallTransformations\CreateGlobalSecondaryIndexActionMarshaller.cs" />
     <Compile Include="Amazon.DynamoDBv2\Model\Internal\MarshallTransformations\CreateTableRequestMarshaller.cs" />
     <Compile Include="Amazon.DynamoDBv2\Model\Internal\MarshallTransformations\CreateTableResponseUnmarshaller.cs" />
+    <Compile Include="Amazon.DynamoDBv2\Model\Internal\MarshallTransformations\DeleteGlobalSecondaryIndexActionMarshaller.cs" />
     <Compile Include="Amazon.DynamoDBv2\Model\Internal\MarshallTransformations\DeleteItemRequestMarshaller.cs" />
     <Compile Include="Amazon.DynamoDBv2\Model\Internal\MarshallTransformations\DeleteItemResponseUnmarshaller.cs" />
     <Compile Include="Amazon.DynamoDBv2\Model\Internal\MarshallTransformations\DeleteRequestMarshaller.cs" />
@@ -2326,12 +2374,10 @@
     <Compile Include="Amazon.Lambda\ServiceEnumerations.cs" />
     <Compile Include="Amazon.MissingTypes\ICloneable.cs" />
     <Compile Include="Amazon.MissingTypes\IOrderedDictionary.cs" />
-    <Compile Include="Amazon.Runtime\AbstractWebServiceClient.cs" />
     <Compile Include="Amazon.Runtime\AmazonClientException.cs" />
     <Compile Include="Amazon.Runtime\AmazonServiceClient.cs" />
     <Compile Include="Amazon.Runtime\AmazonServiceException.cs" />
     <Compile Include="Amazon.Runtime\AmazonUnmarshallingException.cs" />
-    <Compile Include="Amazon.Runtime\AmazonWebServiceClient.cs" />
     <Compile Include="Amazon.Runtime\AmazonWebServiceRequest.cs" />
     <Compile Include="Amazon.Runtime\AmazonWebServiceResponse.cs" />
     <Compile Include="Amazon.Runtime\AWSCredentials.cs" />
@@ -2376,6 +2422,7 @@
     <Compile Include="Amazon.Runtime\Internal\Util\AsyncHelpers.cs" />
     <Compile Include="Amazon.Runtime\Internal\Util\CachingWrapperStream.cs" />
     <Compile Include="Amazon.Runtime\Internal\Util\ChunkedUploadWrapperStream.cs" />
+    <Compile Include="Amazon.Runtime\Internal\Util\Collections.cs" />
     <Compile Include="Amazon.Runtime\Internal\Util\Dispatcher.cs" />
     <Compile Include="Amazon.Runtime\Internal\Util\EventStream.cs" />
     <Compile Include="Amazon.Runtime\Internal\Util\Extensions.cs" />
@@ -2393,7 +2440,6 @@
     <Compile Include="Amazon.Runtime\Internal\Util\ReadOnlyWrapperStream.cs" />
     <Compile Include="Amazon.Runtime\Internal\Util\StringUtils.cs" />
     <Compile Include="Amazon.Runtime\Internal\Util\WrapperStream.cs" />
-    <Compile Include="Amazon.Runtime\Internal\WebRequestState.cs" />
     <Compile Include="Amazon.Runtime\Pipeline\Contexts.cs" />
     <Compile Include="Amazon.Runtime\Pipeline\ErrorHandler\ErrorHandler.cs" />
     <Compile Include="Amazon.Runtime\Pipeline\ErrorHandler\ExceptionHandler.cs" />
@@ -2404,8 +2450,6 @@
     <Compile Include="Amazon.Runtime\Pipeline\Handlers\CredentialsRetriever.cs" />
     <Compile Include="Amazon.Runtime\Pipeline\Handlers\EndpointResolver.cs" />
     <Compile Include="Amazon.Runtime\Pipeline\Handlers\ErrorCallbackHandler.cs" />
-    <Compile Include="Amazon.Runtime\Pipeline\Handlers\GenericExceptionHandler.cs" />
-    <Compile Include="Amazon.Runtime\Pipeline\Handlers\GenericHandler.cs" />
     <Compile Include="Amazon.Runtime\Pipeline\Handlers\Marshaller.cs" />
     <Compile Include="Amazon.Runtime\Pipeline\Handlers\MetricsHandler.cs" />
     <Compile Include="Amazon.Runtime\Pipeline\Handlers\RedirectHandler.cs" />
@@ -2424,6 +2468,7 @@
     <Compile Include="Amazon.Runtime\Pipeline\RuntimePipeline.cs" />
     <Compile Include="Amazon.Runtime\PreRequestHandler.cs" />
     <Compile Include="Amazon.Runtime\RequestHandler.cs" />
+    <Compile Include="Amazon.Runtime\RequestMetrics.cs" />
     <Compile Include="Amazon.Runtime\ResponseHandler.cs" />
     <Compile Include="Amazon.Runtime\ResponseMetadata.cs" />
     <Compile Include="Amazon.Runtime\SignatureException.cs" />
@@ -3281,7 +3326,9 @@
     <AndroidResource Include="Resources\Values\Strings.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="endpoints.xml" />
+    <EmbeddedResource Include="endpoints.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ThirdParty\BouncyCastle\Asn1\Utilities\" />

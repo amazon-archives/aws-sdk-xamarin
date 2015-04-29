@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright 2010-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -58,7 +58,7 @@ namespace Amazon.CognitoSync.Internal
                 SetIdentity(executionContext, cognitoCredentials.GetIdentityId(), cognitoCredentials.IdentityPoolId);       
             }
         }
-#else
+#elif AWS_ASYNC_API
         public override async System.Threading.Tasks.Task<T> InvokeAsync<T>(IExecutionContext executionContext)
         {
             T result = await base.InvokeAsync<T>(executionContext);

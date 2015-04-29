@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright 2010-2013 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -38,7 +38,7 @@ namespace Amazon.Runtime.Internal.Transform
     {
         Stream OpenResponse();
 
-#if BCL45 || WIN_RT || WINDOWS_PHONE
+#if AWS_ASYNC_API
         System.Threading.Tasks.Task<Stream> OpenResponseAsync();
 #endif
     }

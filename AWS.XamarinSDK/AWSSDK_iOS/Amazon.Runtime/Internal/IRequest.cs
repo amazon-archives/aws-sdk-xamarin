@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright 2010-2013 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -123,6 +123,12 @@ namespace Amazon.Runtime.Internal
             get;
             set;
         }
+
+        /// <summary>
+        /// Flag that signals that Content was and should be set
+        /// from the Parameters collection.
+        /// </summary>
+        bool SetContentFromParameters { get; set; }
 
         /// <summary>
         /// Gets and sets the content stream.

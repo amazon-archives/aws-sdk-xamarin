@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright 2010-2013 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -43,9 +43,6 @@ namespace Amazon.Runtime.Internal.Auth
                 return _aws4Signer;
             }
         }
-
-
-        protected const string DEFAULT_ENCODING = "UTF-8";
 
         /// <summary>
         /// Computes RFC 2104-compliant HMAC signature.

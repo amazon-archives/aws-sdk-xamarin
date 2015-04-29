@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright 2010-2013 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -62,7 +62,7 @@ namespace Amazon.Runtime.Internal.Util
 
         public static string FromBool(bool value)
         {
-            return value.ToString(CultureInfo.InvariantCulture).ToLower(CultureInfo.InvariantCulture);
+            return value.ToString(CultureInfo.InvariantCulture).ToLowerInvariant();
         }
 
         public static string FromDateTime(DateTime value)

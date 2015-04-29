@@ -296,7 +296,7 @@ namespace Amazon.S3.Model
             return !System.String.IsNullOrEmpty(this.serverSideEncryptionKeyManagementServiceKeyId);
         }
 
-#if BCL
+#if BCL || MOBILE
         /// <summary>
         /// Writes the content of the ResponseStream a file indicated by the filePath argument.
         /// </summary>
@@ -314,45 +314,47 @@ namespace Amazon.S3.Model
         /// <param name="append">Whether or not to append to the file if it exists</param>
         public void WriteResponseStreamToFile(string filePath, bool append)
         {
+            throw new NotImplementedException();
             // Make sure the directory exists to write too.
-            FileInfo fi = new FileInfo(filePath);
-            Directory.CreateDirectory(fi.DirectoryName);
+            //FileInfo fi = new FileInfo(filePath);
+            //Directory.CreateDirectory(fi.DirectoryName);
 
-            Stream downloadStream;
-            if (append && File.Exists(filePath))
-                downloadStream = new FileStream(filePath, FileMode.Append, FileAccess.Write, FileShare.Read, S3Constants.DefaultBufferSize);
-            else
-                downloadStream = new FileStream(filePath, FileMode.Create, FileAccess.ReadWrite, FileShare.Read, S3Constants.DefaultBufferSize);
+            //Stream downloadStream;
+            //if (append && File.Exists(filePath))
+            //    downloadStream = new FileStream(filePath, FileMode.Append, FileAccess.Write, FileShare.Read, S3Constants.DefaultBufferSize);
+            //else
+            //    downloadStream = new FileStream(filePath, FileMode.Create, FileAccess.ReadWrite, FileShare.Read, S3Constants.DefaultBufferSize);
 
-            try
-            {
-                long current = 0;
-                BufferedStream bufferedStream = new BufferedStream(this.ResponseStream);
+            //try
+            //{
+            //    long current = 0;
+            //    BufferedStream bufferedStream = new BufferedStream(this.ResponseStream);
                 
-                byte[] buffer = new byte[S3Constants.DefaultBufferSize];
-                int bytesRead = 0;
+            //    byte[] buffer = new byte[S3Constants.DefaultBufferSize];
+            //    int bytesRead = 0;
 
-                long totalIncrementTransferred = 0;
-                while ((bytesRead = bufferedStream.Read(buffer, 0, buffer.Length)) > 0)
-                {
-                    downloadStream.Write(buffer, 0, bytesRead);
-                    current += bytesRead;
-                    totalIncrementTransferred += bytesRead;
+            //    long totalIncrementTransferred = 0;
+            //    while ((bytesRead = bufferedStream.Read(buffer, 0, buffer.Length)) > 0)
+            //    {
+            //        downloadStream.Write(buffer, 0, bytesRead);
+            //        current += bytesRead;
+            //        totalIncrementTransferred += bytesRead;
 
-                    if (totalIncrementTransferred >= AWSSDKUtils.DefaultProgressUpdateInterval ||
-                        current == this.ContentLength)
-                    {
-                        this.OnRaiseProgressEvent(filePath, totalIncrementTransferred, current, this.ContentLength);
-                        totalIncrementTransferred = 0;
-                    }
-                }
+            //        if (totalIncrementTransferred >= AWSSDKUtils.DefaultProgressUpdateInterval ||
+            //            current == this.ContentLength)
+            //        {
+            //            this.OnRaiseProgressEvent(filePath, totalIncrementTransferred, current, this.ContentLength);
+            //            totalIncrementTransferred = 0;
+            //        }
+            //    }
 
-                ValidateWrittenStreamSize(current);
-            }
-            finally
-            {
-                downloadStream.Close();
-            }
+            //    ValidateWrittenStreamSize(current);
+            //}
+            //finally
+            //{
+            //    //downloadStream.Close();
+            //    downloadStream.Dispose();
+            //}
         }
 #endif
 

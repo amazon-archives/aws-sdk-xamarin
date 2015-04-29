@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("AWSSDK_Core")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("AWSSDK_XMOBILE (Xamarin PCL)")]
+[assembly: AssemblyDescription("AWS SDK for Xamarin (PCL)")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("AWSSDK_Core")]
+[assembly: AssemblyCompany("Amazon.com, Inc.")]
+[assembly: AssemblyProduct("AWSSDK_XMOBILE (Xamarin PCL)")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

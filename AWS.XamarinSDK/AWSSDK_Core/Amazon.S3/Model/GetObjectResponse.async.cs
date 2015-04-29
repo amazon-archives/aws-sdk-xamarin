@@ -37,7 +37,6 @@ namespace Amazon.S3.Model
         public async Task WriteResponseStreamToFileAsync(string filePath, bool append, CancellationToken cancellationToken)
         {
             throw new NotImplementedException();
-
             // Make sure the directory exists to write too.
             //FileInfo fi = new FileInfo(filePath);
             //Directory.CreateDirectory(fi.DirectoryName);
@@ -77,7 +76,8 @@ namespace Amazon.S3.Model
             //}
             //finally
             //{
-            //    downloadStream.Close();
+            //    //downloadStream.Close();
+            //    downloadStream.Dispose();
             //}
         }
     }

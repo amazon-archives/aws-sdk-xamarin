@@ -296,7 +296,7 @@ namespace Amazon.S3.Model
             return !System.String.IsNullOrEmpty(this.serverSideEncryptionKeyManagementServiceKeyId);
         }
 
-#if BCL
+#if BCL || MOBILE
         /// <summary>
         /// Writes the content of the ResponseStream a file indicated by the filePath argument.
         /// </summary>

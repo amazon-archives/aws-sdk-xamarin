@@ -405,11 +405,7 @@ namespace Amazon.S3.Transfer
             get
             {
                 long length;
-#if PCL 
-                length = this.InputStream.Length - this.InputStream.Position; 
-#endif
-
-#if BCL
+#if BCL 
                 if (this.IsSetFilePath())
                 {
                     FileInfo fileInfo = new FileInfo(this.FilePath);
@@ -422,12 +418,13 @@ namespace Amazon.S3.Transfer
                         this.StorageFile.GetBasicPropertiesAsync().AsTask()).Result;
                     length = checked((long)result.Size);
                 }
-//#endif
+
                 else
+#endif
                 {
                     length = this.InputStream.Length - this.InputStream.Position;
                 }
-#endif
+
                 return length;
             }
         }

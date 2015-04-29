@@ -1,4 +1,4 @@
-/*******************************************************************************
+﻿/*******************************************************************************
  *  Copyright 2008-2013 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *  Licensed under the Apache License, Version 2.0 (the "License"). You may not use
  *  this file except in compliance with the License. A copy of the License is located at
@@ -66,7 +66,7 @@ namespace Amazon.S3.Transfer.Internal
             {
                 throw new InvalidOperationException("The BucketName specified is null or empty!");
             }
-#if BCL || MOBILE
+#if BCL
             if (!this._request.IsSetFilePath())
             {
                 throw new InvalidOperationException("The filepath specified is null or empty!");

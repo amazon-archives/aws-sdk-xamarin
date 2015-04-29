@@ -25,6 +25,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
+using Amazon.Runtime;
 using Amazon.Runtime.Internal.Util;
 
 namespace Amazon.Util
@@ -40,7 +41,7 @@ namespace Amazon.Util
         internal const string DefaultRegion = "us-east-1";
         internal const string DefaultGovRegion = "us-gov-west-1";
 
-        internal const string SDKVersionNumber = "2.3.15.0";
+        internal const string SDKVersionNumber = "2.3.24.3";
 
         internal const int DefaultMaxRetry = 3;
         private const int DefaultConnectionLimit = 50;
@@ -184,6 +185,85 @@ namespace Amazon.Util
         }
 
 
+
+        #endregion
+
+        #region IsSet methods
+
+        /*
+            Set
+              Collection
+                True -> set to empty AlwaysSend*
+                False -> set to empty collection type
+              Value type
+                True -> set to default(T)
+                False -> set to null
+
+            Get
+              Collection
+                Field is AlwaysSend* OR has items -> True
+                Otherwise -> False
+              Value type
+                Field is any value -> True
+                Null -> False
+         */
+
+        internal static void SetIsSet<T>(bool isSet, ref Nullable<T> field)
+            where T : struct
+        {
+            if (isSet)
+                field = default(T);
+            else
+                field = null;
+        }
+        internal static void SetIsSet<T>(bool isSet, ref List<T> field)
+        {
+            if (isSet)
+                field = new AlwaysSendList<T>(field);
+            else
+                field = new List<T>();
+        }
+        internal static void SetIsSet<TKey, TValue>(bool isSet, ref Dictionary<TKey, TValue> field)
+        {
+            if (isSet)
+                field = new AlwaysSendDictionary<TKey, TValue>(field);
+            else
+                field = new Dictionary<TKey, TValue>();
+        }
+
+        internal static bool GetIsSet<T>(Nullable<T> field)
+            where T : struct
+        {
+            return (field.HasValue);
+        }
+        internal static bool GetIsSet<T>(List<T> field)
+        {
+            if (field == null)
+                return false;
+
+            if (field.Count > 0)
+                return true;
+
+            var sl = field as AlwaysSendList<T>;
+            if (sl != null)
+                return true;
+
+            return false;
+        }
+        internal static bool GetIsSet<TKey, TVvalue>(Dictionary<TKey, TVvalue> field)
+        {
+            if (field == null)
+                return false;
+
+            if (field.Count > 0)
+                return true;
+
+            var sd = field as AlwaysSendDictionary<TKey, TVvalue>;
+            if (sd != null)
+                return true;
+
+            return false;
+        }
 
         #endregion
 
@@ -455,18 +535,33 @@ namespace Amazon.Util
         {
             if (handler == null) return;
 
+
             var list = handler.GetInvocationList();
             foreach (var call in list)
             {
                 var eventHandler = ((EventHandler<T>)call);
                 if (eventHandler != null)
                 {
-                    dispatcher.Dispatch(() => eventHandler(sender, args));
+                    if (Dispatcher.IsRunning)
+                        Dispatcher.Dispatch(() => eventHandler(sender, args));
                 }
             }
         }
 
-        private static BackgroundInvoker dispatcher = new BackgroundInvoker();
+        private static BackgroundInvoker _dispatcher;
+
+        private static BackgroundInvoker Dispatcher
+        {
+            get
+            {
+                if (_dispatcher == null)
+                {
+                    _dispatcher = new BackgroundInvoker();
+                }
+
+                return _dispatcher;
+            }
+        }
 
         /// <summary>
         /// Parses a query string of a URL and returns the parameters as a string-to-string dictionary.
@@ -573,7 +668,7 @@ namespace Amazon.Util
         {
             get
             {
-                DateTime dateTime = DateTime.UtcNow;
+                DateTime dateTime = AWSSDKUtils.CorrectedUtcNow;
                 DateTime formatted = new DateTime(
                     dateTime.Year,
                     dateTime.Month,
@@ -614,7 +709,7 @@ namespace Amazon.Util
         /// <returns>The ISO8601 formatted future timestamp.</returns>
         public static string GetFormattedTimestampISO8601(int minutesFromNow)
         {
-            DateTime dateTime = DateTime.UtcNow.AddMinutes(minutesFromNow);
+            DateTime dateTime = AWSSDKUtils.CorrectedUtcNow.AddMinutes(minutesFromNow);
             DateTime formatted = new DateTime(
                 dateTime.Year,
                 dateTime.Month,
@@ -654,7 +749,7 @@ namespace Amazon.Util
         /// <returns>The ISO8601 formatted future timestamp.</returns>
         public static string GetFormattedTimestampRFC822(int minutesFromNow)
         {
-            DateTime dateTime = DateTime.UtcNow.AddMinutes(minutesFromNow);
+            DateTime dateTime = AWSSDKUtils.CorrectedUtcNow.AddMinutes(minutesFromNow);
             DateTime formatted = new DateTime(
                 dateTime.Year,
                 dateTime.Month,
@@ -758,6 +853,23 @@ namespace Amazon.Util
             }
 
             return buffer;
+        }
+
+        /// <summary>
+        /// Returns DateTime.UtcNow + ClockOffset when
+        /// <seealso cref="AWSConfigs.CorrectForClockSkew"/> is true.
+        /// This value should be used when constructing requests, as it
+        /// will represent accurate time w.r.t. AWS servers.
+        /// </summary>
+        public static DateTime CorrectedUtcNow
+        {
+            get
+            {
+                var now = DateTime.UtcNow;
+                if (AWSConfigs.CorrectForClockSkew)
+                    now += AWSConfigs.ClockOffset;
+                return now;
+            }
         }
 
         #endregion

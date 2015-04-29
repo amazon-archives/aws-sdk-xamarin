@@ -1,4 +1,4 @@
-/*******************************************************************************
+﻿/*******************************************************************************
  *  Copyright 2008-2013 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  *  Licensed under the Apache License, Version 2.0 (the "License"). You may not use
  *  this file except in compliance with the License. A copy of the License is located at
@@ -340,7 +340,7 @@ namespace Amazon.S3.Transfer
             {
                 throw new InvalidOperationException("Please specify BucketName to PUT an object into Amazon S3.");
             }
-#if BCL || MOBILE
+#if BCL
             if (!request.IsSetFilePath() &&
                 !request.IsSetInputStream())
             {
@@ -374,8 +374,7 @@ namespace Amazon.S3.Transfer
                         "The Key property must be specified when using a Stream to upload into Amazon S3.");
                 }
             }
-
-#if BCL || MOBILE
+#if BCL
             if (request.IsSetFilePath() && !File.Exists(request.FilePath))
                 throw new ArgumentException("The file indicated by the FilePath property does not exist!");
 #elif WIN_RT || WINDOWS_PHONE

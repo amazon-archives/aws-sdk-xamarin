@@ -22,7 +22,7 @@ using System.IO;
 using System.Globalization;
 using Amazon.Util;
 
-#if (WIN_RT || WINDOWS_PHONE || PCL)
+#if (WIN_RT || WINDOWS_PHONE || MOBILE)
 using Amazon.MissingTypes;
 #endif
 

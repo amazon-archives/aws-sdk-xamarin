@@ -19,11 +19,17 @@ namespace Amazon.CognitoIdentity
     public partial class CognitoAWSCredentials : RefreshingAWSCredentials
     {
 #if !MOBILE
-        private Credentials GetStsCredentials(AssumeRoleWithWebIdentityRequest assumeRequest)
+        private Amazon.SecurityToken.Model.Credentials GetStsCredentials(AssumeRoleWithWebIdentityRequest assumeRequest)
         {
             var assumeResult = sts.AssumeRoleWithWebIdentity(assumeRequest);
             var credentials = assumeResult.Credentials;
             return credentials;
+        }
+
+        private GetCredentialsForIdentityResponse GetCredentialsForIdentity(GetCredentialsForIdentityRequest getCredentialsRequest)
+        {
+            var result = cib.GetCredentialsForIdentity(getCredentialsRequest);
+            return result;
         }
 
         private GetOpenIdTokenResponse GetOpenId(GetOpenIdTokenRequest getTokenRequest)

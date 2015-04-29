@@ -27,7 +27,7 @@ namespace Amazon.Util
 {
     public static partial class AWSSDKUtils
     {
-        static string _userAgentBaseName = "aws-sdk-xamarin-wp";
+        static string _userAgentBaseName = "aws-sdk-dotnet-wp";
 
         static string DetermineRuntime()
         {

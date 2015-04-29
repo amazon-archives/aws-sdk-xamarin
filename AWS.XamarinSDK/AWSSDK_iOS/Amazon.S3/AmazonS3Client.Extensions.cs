@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright 2010-2013 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -32,10 +32,6 @@ using Amazon.S3.Model;
 using Amazon.S3.Model.Internal.MarshallTransformations;
 using Amazon.S3.Util;
 using Map = System.Collections.Generic.Dictionary<Amazon.S3.S3QueryParameter, string>;
-
-#if BCL45 || WIN_RT || WINDOWS_PHONE
-using System.Threading.Tasks;
-#endif
 
 namespace Amazon.S3
 {
@@ -181,7 +177,7 @@ namespace Amazon.S3
                 uriResourcePath.Append(S3Transforms.ToStringValue(getPreSignedUrlRequest.Key));
             }
 
-            var baselineTime = aws4Signing ? DateTime.UtcNow : new DateTime(1970, 1, 1);
+            var baselineTime = aws4Signing ? AWSSDKUtils.CorrectedUtcNow : new DateTime(1970, 1, 1);
             var expires = Convert.ToInt64((getPreSignedUrlRequest.Expires.ToUniversalTime() - baselineTime).TotalSeconds);
 
             if (aws4Signing && expires > AWS4PreSignedUrlSigner.MaxAWS4PreSignedUrlExpiry)

@@ -6,10 +6,10 @@ using System.Resources;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("AWSSDK (Windows Phone)")]
-[assembly: AssemblyDescription("The Amazon Web Services SDK for .NET")]
+[assembly: AssemblyTitle("AWSSDK_XMOBILE (Xamarin Windows Phone)")]
+[assembly: AssemblyDescription("The Amazon Web Services SDK for Xamarin (Windows Phone)")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyProduct("Amazon Web Services SDK for .NET")]
+[assembly: AssemblyProduct("Amazon Web Services SDK for Xamarin")]
 [assembly: AssemblyCompany("Amazon.com, Inc")]
 [assembly: AssemblyCopyright("Copyright 2009-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.")]
 [assembly: AssemblyTrademark("")]
@@ -32,8 +32,8 @@ using System.Resources;
 //
 // You can specify all the values or you can default the Revision and Build Numbers 
 // by using the '*' as shown below:
-[assembly: AssemblyVersion("2.3.15.0")]
-[assembly: AssemblyFileVersion("2.3.15.0")]
+[assembly: AssemblyVersion("0.4.0")]
+[assembly: AssemblyFileVersion("0.4.0")]
 [assembly: NeutralResourcesLanguageAttribute("en-US")]
 
 [assembly: System.CLSCompliant(false)]

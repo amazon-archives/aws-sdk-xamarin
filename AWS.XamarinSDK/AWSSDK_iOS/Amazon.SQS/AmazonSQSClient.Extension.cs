@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright 2010-2013 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -68,17 +68,21 @@ namespace Amazon.SQS
             statement.Resources.Add(new Resource(getAttributeResponse.QueueARN));
             statement.Conditions.Add(ConditionFactory.NewSourceArnCondition(sourceArn));
             statement.Principals.Add(new Principal("*"));
-            policy.Statements.Add(statement);
 
-            var policyString = policy.ToJson();
-            this.SetQueueAttributes(new SetQueueAttributesRequest
+            if (!policy.CheckIfStatementExists(statement))
             {
-                QueueUrl = queueUrl,
-                Attributes = new Dictionary<string, string>
+                policy.Statements.Add(statement);
+
+                var policyString = policy.ToJson();
+                this.SetQueueAttributes(new SetQueueAttributesRequest
                 {
-                    {"Policy", policyString}
-                }
-            });
+                    QueueUrl = queueUrl,
+                    Attributes = new Dictionary<string, string>
+                    {
+                        {"Policy", policyString}
+                    }
+                });
+            }
 
             return getAttributeResponse.QueueARN;
         }

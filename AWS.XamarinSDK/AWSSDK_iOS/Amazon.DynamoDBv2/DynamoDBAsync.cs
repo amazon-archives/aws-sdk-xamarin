@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright 2012-2013 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -128,7 +128,7 @@ namespace Amazon.DynamoDBv2
         public static IAsyncResult BeginOperation(AsyncCall call, AsyncCallback callback, object state)
         {
             DynamoDBAsyncResult result = new DynamoDBAsyncResult(callback, state);
-#if (WIN_RT || WINDOWS_PHONE || MOBILE)
+#if (WIN_RT || WINDOWS_PHONE)
             System.Threading.Tasks.Task.Run((Action)(() => Execute(call, result)));
 #else
             ThreadPool.QueueUserWorkItem(s => Execute(call, result));

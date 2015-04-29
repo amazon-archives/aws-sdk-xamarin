@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright 2010-2013 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -261,7 +261,7 @@ namespace Amazon.Runtime.Internal.Transform
     {
         #region Private members
 
-#if BCL && !BCL45
+#if BCL35
         private static readonly XmlReaderSettings READER_SETTINGS = new XmlReaderSettings() { ProhibitDtd = false, IgnoreWhitespace = true };
 #else
         private static readonly XmlReaderSettings READER_SETTINGS = new XmlReaderSettings() { DtdProcessing = DtdProcessing.Ignore, IgnoreWhitespace = true };

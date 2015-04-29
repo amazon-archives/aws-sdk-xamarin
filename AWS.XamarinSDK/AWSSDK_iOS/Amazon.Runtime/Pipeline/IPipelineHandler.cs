@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright 2010-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -48,7 +48,7 @@ namespace Amazon.Runtime
         /// requests and response context.</param>
         void InvokeSync(IExecutionContext executionContext);
 
-#if BCL && !BCL45
+#if AWS_APM_API
 
         /// <summary>
         /// Contains the processing logic for an asynchronous request invocation.
@@ -74,7 +74,7 @@ namespace Amazon.Runtime
         void AsyncCallback(IAsyncExecutionContext executionContext);
 #endif
 
-#if BCL45 || WIN_RT || WINDOWS_PHONE
+#if AWS_ASYNC_API
 
         /// <summary>
         /// Contains the processing logic for an asynchronous request invocation.

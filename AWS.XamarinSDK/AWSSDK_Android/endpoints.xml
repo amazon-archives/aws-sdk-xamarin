@@ -123,6 +123,12 @@
         <Hostname>route53.amazonaws.com</Hostname>
       </Endpoint>
       <Endpoint>
+        <ServiceName>route53domains</ServiceName>
+        <Http>false</Http>
+        <Https>true</Https>
+        <Hostname>route53domains.us-east-1.amazonaws.com</Hostname>
+      </Endpoint>
+      <Endpoint>
         <ServiceName>email</ServiceName>
         <Http>false</Http>
         <Https>true</Https>
@@ -248,6 +254,12 @@
         <Https>true</Https>
         <Hostname>elastictranscoder.us-east-1.amazonaws.com</Hostname>
       </Endpoint>
+      <Endpoint>
+        <ServiceName>ssm</ServiceName>
+        <Http>false</Http>
+        <Https>true</Https>
+        <Hostname>ssm.us-east-1.amazonaws.com</Hostname>
+      </Endpoint>
     </Region>
     <Region>
       <Name>us-west-1</Name>
@@ -323,6 +335,12 @@
         <Http>false</Http>
         <Https>true</Https>
         <Hostname>route53.amazonaws.com</Hostname>
+      </Endpoint>
+      <Endpoint>
+        <ServiceName>route53domains</ServiceName>
+        <Http>false</Http>
+        <Https>true</Https>
+        <Hostname>route53domains.us-east-1.amazonaws.com</Hostname>
       </Endpoint>
       <Endpoint>
         <ServiceName>sdb</ServiceName>
@@ -517,6 +535,12 @@
         <Hostname>route53.amazonaws.com</Hostname>
       </Endpoint>
       <Endpoint>
+        <ServiceName>route53domains</ServiceName>
+        <Http>false</Http>
+        <Https>true</Https>
+        <Hostname>route53domains.us-east-1.amazonaws.com</Hostname>
+      </Endpoint>
+      <Endpoint>
         <ServiceName>email</ServiceName>
         <Http>false</Http>
         <Https>true</Https>
@@ -709,6 +733,12 @@
         <Hostname>route53.amazonaws.com</Hostname>
       </Endpoint>
       <Endpoint>
+        <ServiceName>route53domains</ServiceName>
+        <Http>false</Http>
+        <Https>true</Https>
+        <Hostname>route53domains.us-east-1.amazonaws.com</Hostname>
+      </Endpoint>
+      <Endpoint>
         <ServiceName>sdb</ServiceName>
         <Http>true</Http>
         <Https>true</Https>
@@ -895,6 +925,12 @@
         <Hostname>route53.amazonaws.com</Hostname>
       </Endpoint>
       <Endpoint>
+        <ServiceName>route53domains</ServiceName>
+        <Http>false</Http>
+        <Https>true</Https>
+        <Hostname>route53domains.us-east-1.amazonaws.com</Hostname>
+      </Endpoint>
+      <Endpoint>
         <ServiceName>sdb</ServiceName>
         <Http>true</Http>
         <Https>true</Https>
@@ -1075,6 +1111,12 @@
         <Hostname>route53.amazonaws.com</Hostname>
       </Endpoint>
       <Endpoint>
+        <ServiceName>route53domains</ServiceName>
+        <Http>false</Http>
+        <Https>true</Https>
+        <Hostname>route53domains.us-east-1.amazonaws.com</Hostname>
+      </Endpoint>
+      <Endpoint>
         <ServiceName>sdb</ServiceName>
         <Http>true</Http>
         <Https>true</Https>
@@ -1253,6 +1295,12 @@
         <Http>false</Http>
         <Https>true</Https>
         <Hostname>route53.amazonaws.com</Hostname>
+      </Endpoint>
+      <Endpoint>
+        <ServiceName>route53domains</ServiceName>
+        <Http>false</Http>
+        <Https>true</Https>
+        <Hostname>route53domains.us-east-1.amazonaws.com</Hostname>
       </Endpoint>
       <Endpoint>
         <ServiceName>sdb</ServiceName>
@@ -1439,6 +1487,12 @@
         <Http>false</Http>
         <Https>true</Https>
         <Hostname>route53.amazonaws.com</Hostname>
+      </Endpoint>
+      <Endpoint>
+        <ServiceName>route53domains</ServiceName>
+        <Http>false</Http>
+        <Https>true</Https>
+        <Hostname>route53domains.us-east-1.amazonaws.com</Hostname>
       </Endpoint>
       <Endpoint>
         <ServiceName>email</ServiceName>
@@ -1638,6 +1692,12 @@
         <Http>false</Http>
         <Https>true</Https>
         <Hostname>route53.amazonaws.com</Hostname>
+      </Endpoint>
+      <Endpoint>
+        <ServiceName>route53domains</ServiceName>
+        <Http>false</Http>
+        <Https>true</Https>
+        <Hostname>route53domains.us-east-1.amazonaws.com</Hostname>
       </Endpoint>
       <Endpoint>
         <ServiceName>sns</ServiceName>
@@ -1930,6 +1990,12 @@
         <Hostname>swf.us-gov-west-1.amazonaws.com</Hostname>
       </Endpoint>
       <Endpoint>
+        <ServiceName>glacier</ServiceName>
+        <Http>true</Http>
+        <Https>true</Https>
+        <Hostname>glacier.us-gov-west-1.amazonaws.com</Hostname>
+      </Endpoint>
+      <Endpoint>
         <ServiceName>redshift</ServiceName>
         <Http>false</Http>
         <Https>true</Https>
@@ -2159,6 +2225,19 @@
       <RegionName>eu-central-1</RegionName>
     </Service>
     <Service>
+      <Name>route53domains</Name>
+      <FullName>Amazon Route 53 Domains</FullName>
+      <RegionName>us-east-1</RegionName>
+      <RegionName>us-west-1</RegionName>
+      <RegionName>us-west-2</RegionName>
+      <RegionName>ap-northeast-1</RegionName>
+      <RegionName>ap-southeast-1</RegionName>
+      <RegionName>ap-southeast-2</RegionName>
+      <RegionName>sa-east-1</RegionName>
+      <RegionName>eu-west-1</RegionName>
+      <RegionName>eu-central-1</RegionName>
+    </Service>
+    <Service>
       <Name>email</Name>
       <FullName>Amazon Simple Email Service</FullName>
       <RegionName>us-east-1</RegionName>
@@ -2353,6 +2432,7 @@
       <RegionName>eu-west-1</RegionName>
       <RegionName>eu-central-1</RegionName>
       <RegionName>cn-north-1</RegionName>
+      <RegionName>us-gov-west-1</RegionName>
     </Service>
     <Service>
       <Name>directconnect</Name>
@@ -2413,6 +2493,11 @@
       <RegionName>ap-northeast-1</RegionName>
       <RegionName>ap-southeast-1</RegionName>
       <RegionName>eu-west-1</RegionName>
+    </Service>
+    <Service>
+      <Name>ssm</Name>
+      <FullName>Amazon Simple Systems Management</FullName>
+      <RegionName>us-east-1</RegionName>
     </Service>
   </Services>
 </XML>

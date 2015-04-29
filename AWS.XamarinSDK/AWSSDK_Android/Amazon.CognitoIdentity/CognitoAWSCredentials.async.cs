@@ -17,7 +17,7 @@ namespace Amazon.CognitoIdentity
     /// </summary>
     public partial class CognitoAWSCredentials : RefreshingAWSCredentials
     {
-        private Credentials GetStsCredentials(AssumeRoleWithWebIdentityRequest assumeRequest)
+        private Amazon.SecurityToken.Model.Credentials GetStsCredentials(AssumeRoleWithWebIdentityRequest assumeRequest)
         {
             var assumeResult = Amazon.Runtime.Internal.Util.AsyncHelpers.RunSync<AssumeRoleWithWebIdentityResponse>(() => sts.AssumeRoleWithWebIdentityAsync(assumeRequest));
             var credentials = assumeResult.Credentials;
@@ -28,6 +28,12 @@ namespace Amazon.CognitoIdentity
         {
             var getTokenResult = Amazon.Runtime.Internal.Util.AsyncHelpers.RunSync<GetOpenIdTokenResponse>(() => cib.GetOpenIdTokenAsync(getTokenRequest));
             return getTokenResult;
+        }
+
+        private GetCredentialsForIdentityResponse GetCredentialsForIdentity(GetCredentialsForIdentityRequest getCredentialsRequest)
+        {
+            var getCredentialsResult = Amazon.Runtime.Internal.Util.AsyncHelpers.RunSync<GetCredentialsForIdentityResponse>(() => cib.GetCredentialsForIdentityAsync(getCredentialsRequest));
+            return getCredentialsResult;
         }
 
         /// <summary>
@@ -63,6 +69,7 @@ namespace Amazon.CognitoIdentity
 
         const string IDENTITY_ID_CACHE_KEY = "CognitoIdentity:IdentityId";
 
+#if !MOBILE
         /// <summary>
         /// Gets the previously cached the identity id retrieved from Cognito. 
         /// <para>
@@ -77,8 +84,6 @@ namespace Amazon.CognitoIdentity
         /// </para>
         /// </summary>
         /// <returns>The previously cached identity id</returns>
-        /// For Xamarin Android and iOS this is not used
-#if !MOBILE
         public virtual string GetCachedIdentityId()
         {
             switch(this._identityIdCacheMode)
@@ -134,4 +139,4 @@ namespace Amazon.CognitoIdentity
         }
 #endif
     }
-}
+ }

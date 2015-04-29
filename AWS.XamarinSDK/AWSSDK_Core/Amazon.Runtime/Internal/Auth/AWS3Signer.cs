@@ -109,6 +109,9 @@ namespace Amazon.Runtime.Internal.Auth
             request.Headers[HeaderKeys.DateHeader] = date;
             request.Headers[HeaderKeys.XAmzDateHeader] = date;
 
+            // Clear out existing auth header (can be there if retry)
+            request.Headers.Remove(HeaderKeys.XAmzAuthorizationHeader);
+
             // AWS3 HTTP requires that we sign the Host header
             // so we have to have it in the request by the time we sign.
             string hostHeader = request.Endpoint.Host;
@@ -219,8 +222,7 @@ namespace Amazon.Runtime.Internal.Auth
             if (request.Content == null)
                 return string.Empty;
 
-            Encoding encoding = Encoding.GetEncoding(DEFAULT_ENCODING);
-            return encoding.GetString(request.Content, 0, request.Content.Length);
+            return Encoding.UTF8.GetString(request.Content, 0, request.Content.Length);
         }
 
         private static string GetSignedHeadersComponent(IRequest request)
@@ -260,13 +262,13 @@ namespace Amazon.Runtime.Internal.Auth
 
             for (int i = 0; i < headersToSign.Count; i++)
             {
-                headersToSign[i] = headersToSign[i].ToLower(CultureInfo.InvariantCulture);
+                headersToSign[i] = headersToSign[i].ToLowerInvariant();
             }
 
             SortedDictionary<string,string> sortedHeaderMap = new SortedDictionary<string,string>();
             foreach (var entry in request.Headers)
             {
-                if (headersToSign.Contains(entry.Key.ToLower(CultureInfo.InvariantCulture)))
+                if (headersToSign.Contains(entry.Key.ToLowerInvariant()))
                 {
                     sortedHeaderMap[entry.Key] = entry.Value;
                 }
@@ -275,7 +277,7 @@ namespace Amazon.Runtime.Internal.Auth
             StringBuilder builder = new StringBuilder();
             foreach (var entry in sortedHeaderMap)
             {
-                builder.Append(entry.Key.ToLower(CultureInfo.InvariantCulture));
+                builder.Append(entry.Key.ToLowerInvariant());
                 builder.Append(":");
                 builder.Append(entry.Value);
                 builder.Append("\n");

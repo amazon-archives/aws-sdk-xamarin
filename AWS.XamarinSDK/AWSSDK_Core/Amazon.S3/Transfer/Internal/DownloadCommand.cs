@@ -42,7 +42,7 @@ namespace Amazon.S3.Transfer.Internal
         {
             WebExceptionStatus.ConnectFailure,
 
-#if (!WIN_RT && !PCL) // These statuses are not available on WinRT
+#if (!(WIN_RT || MOBILE)) // These statuses are not available on WinRT
             WebExceptionStatus.ConnectionClosed,
             WebExceptionStatus.KeepAliveFailure,
             WebExceptionStatus.NameResolutionFailure,            
@@ -66,7 +66,7 @@ namespace Amazon.S3.Transfer.Internal
             {
                 throw new InvalidOperationException("The BucketName specified is null or empty!");
             }
-#if BCL || MOBILE
+#if BCL
             if (!this._request.IsSetFilePath())
             {
                 throw new InvalidOperationException("The filepath specified is null or empty!");
@@ -93,7 +93,7 @@ namespace Amazon.S3.Transfer.Internal
             var canRetry = true;
             if (exception is IOException)
             {
-#if (!WIN_RT && !PCL)
+#if (!(WIN_RT||MOBILE))
                 while (exception.InnerException != null)
                 {
                     if (exception.InnerException is ThreadAbortException)

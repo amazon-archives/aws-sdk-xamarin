@@ -84,7 +84,6 @@ namespace Amazon.S3.Model
         internal void SetupForFilePath()
         {
             throw new NotImplementedException();
-
             //var fileStream = new FileStream(this.FilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
             //fileStream.Position = this.FilePosition;
             //this.InputStream = fileStream;

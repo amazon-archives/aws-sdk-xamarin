@@ -1,4 +1,4 @@
-/*
+﻿/*
  * Copyright 2012-2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License").
@@ -180,6 +180,11 @@ namespace Amazon.DynamoDBv2.DocumentModel
         /// Filter for the search operation
         /// </summary>
         public ScanFilter Filter { get; set; }
+
+        /// <summary>
+        /// Name of the index to scan against.
+        /// </summary>
+        public string IndexName { get; set; }
 
         /// <summary>
         /// Enum specifying what data to return from query.

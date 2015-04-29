@@ -107,6 +107,14 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
+        /// <i>Backfilling</i> - If true, then the index is currently in the backfilling phase.
+        /// Backfilling occurs only when a new global secondary index is added to the table; it
+        /// is the process by which DynamoDB populates the new index with data from the table.
+        /// (This attribute does not appear for indexes that were created during a <i>CreateTable</i>
+        /// operation.)
+        /// </para>
+        ///  </li> <li> 
+        /// <para>
         /// <i>IndexName</i> - The name of the global secondary index.
         /// </para>
         ///  </li> <li> 
@@ -174,7 +182,7 @@ namespace Amazon.DynamoDBv2.Model
         ///  </li> </ul> </li> <li> 
         /// <para>
         /// <i>NonKeyAttributes</i> - A list of one or more non-key attribute names that are projected
-        /// into the secondary index. The total count of attributes specified in <i>NonKeyAttributes</i>,
+        /// into the secondary index. The total count of attributes provided in <i>NonKeyAttributes</i>,
         /// summed across all of the secondary indexes, must not exceed 20. If you project the
         /// same attribute into two different indexes, this counts as two distinct attributes
         /// when determining the total.
@@ -299,7 +307,7 @@ namespace Amazon.DynamoDBv2.Model
         ///  </li> </ul> </li> <li> 
         /// <para>
         /// <i>NonKeyAttributes</i> - A list of one or more non-key attribute names that are projected
-        /// into the secondary index. The total count of attributes specified in <i>NonKeyAttributes</i>,
+        /// into the secondary index. The total count of attributes provided in <i>NonKeyAttributes</i>,
         /// summed across all of the secondary indexes, must not exceed 20. If you project the
         /// same attribute into two different indexes, this counts as two distinct attributes
         /// when determining the total.
@@ -397,18 +405,15 @@ namespace Amazon.DynamoDBv2.Model
         /// </para>
         ///  <ul> <li> 
         /// <para>
-        /// <i>CREATING</i> - The table is being created, as the result of a <i>CreateTable</i>
-        /// operation.
+        /// <i>CREATING</i> - The table is being created.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// <i>UPDATING</i> - The table is being updated, as the result of an <i>UpdateTable</i>
-        /// operation.
+        /// <i>UPDATING</i> - The table is being updated.
         /// </para>
         ///  </li> <li> 
         /// <para>
-        /// <i>DELETING</i> - The table is being deleted, as the result of a <i>DeleteTable</i>
-        /// operation.
+        /// <i>DELETING</i> - The table is being deleted.
         /// </para>
         ///  </li> <li> 
         /// <para>
