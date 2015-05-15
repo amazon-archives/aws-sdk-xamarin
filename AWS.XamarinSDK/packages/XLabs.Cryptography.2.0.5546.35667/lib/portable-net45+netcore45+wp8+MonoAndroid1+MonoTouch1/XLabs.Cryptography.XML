@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>XLabs.Cryptography</name>
+    </assembly>
+    <members>
+        <member name="T:XLabs.Cryptography.MD5">
+            <summary>
+            Summary description for MD5.
+            </summary>
+        </member>
+        <member name="M:XLabs.Cryptography.MD5.ROTATE_LEFT(System.UInt32,System.Byte)">
+            <summary>
+            rotates x left n bits.
+            </summary>
+            <param name="x"></param>
+            <param name="n"></param>
+            <returns></returns>
+        </member>
+        <member name="M:XLabs.Cryptography.MD5.FF(System.UInt32@,System.UInt32,System.UInt32,System.UInt32,System.UInt32,System.Byte,System.UInt32)">
+            FF, GG, HH, and II transformations 
+            for rounds 1, 2, 3, and 4.
+            Rotation is separate from addition to prevent recomputation.
+        </member>
+        <member name="F:XLabs.Cryptography.MD5.state">
+            <summary>
+            state (ABCD)
+            </summary>
+        </member>
+        <member name="F:XLabs.Cryptography.MD5.count">
+            <summary>
+            number of bits, modulo 2^64 (lsb first)
+            </summary>
+        </member>
+        <member name="F:XLabs.Cryptography.MD5.buffer">
+            <summary>
+            input buffer
+            </summary>
+        </member>
+        <member name="M:XLabs.Cryptography.MD5.Initialize">
+            <summary>
+            MD5 initialization. Begins an MD5 operation, writing a new context.
+            </summary>
+            <remarks>
+            The RFC named it "MD5Init"
+            </remarks>
+        </member>
+        <member name="M:XLabs.Cryptography.MD5.HashCore(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            MD5 block update operation. Continues an MD5 message-digest
+            operation, processing another message block, and updating the
+            context.
+            </summary>
+            <param name="input"></param>
+            <param name="offset"></param>
+            <param name="count"></param>
+            <remarks>The RFC Named it MD5Update</remarks>
+        </member>
+        <member name="M:XLabs.Cryptography.MD5.HashFinal">
+            <summary>
+            MD5 finalization. Ends an MD5 message-digest operation, writing the
+            the message digest and zeroizing the context.
+            </summary>
+            <returns>message digest</returns>
+            <remarks>The RFC named it MD5Final</remarks>
+        </member>
+        <member name="M:XLabs.Cryptography.MD5.Transform(System.Byte[],System.Int32)">
+            <summary>
+            MD5 basic transformation. Transforms state based on 64 bytes block.
+            </summary>
+            <param name="block"></param>
+            <param name="offset"></param>
+        </member>
+        <member name="M:XLabs.Cryptography.MD5.Encode(System.Byte[],System.Int32,System.UInt32[],System.Int32,System.Int32)">
+            <summary>
+            Encodes input (uint) into output (byte). Assumes len is
+             multiple of 4.
+            </summary>
+            <param name="output"></param>
+            <param name="outputOffset"></param>
+            <param name="input"></param>
+            <param name="inputOffset"></param>
+            <param name="count"></param>
+        </member>
+        <member name="M:XLabs.Cryptography.MD5.Decode(System.UInt32[],System.Int32,System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Decodes input (byte) into output (uint). Assumes len is
+            a multiple of 4.
+            </summary>
+            <param name="output"></param>
+            <param name="outputOffset"></param>
+            <param name="input"></param>
+            <param name="inputOffset"></param>
+            <param name="count"></param>
+        </member>
+    </members>
+</doc>
