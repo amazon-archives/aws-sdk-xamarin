@@ -4,7 +4,6 @@
 ##**UPDATE 07/28/2015**: 
 
 **The AWS Mobile SDK Xamarin Beta has been updated to an official Developer Preview release and can be located as a part of the AWS .NET SDK.**  The Source is located [https://github.com/aws/aws-sdk-net][1]. With the update and migration of the AWS Mobile SDK for Xamarin into the AWS .NET SDK it has also been modularized by services, therefore the NuGet packages for the individual AWS services can be retrieved here: [https://github.com/aws/aws-sdk-net#nuget-packages][2]
-
 This SDK repo is now for historical purposes only and was last updated 04/2015.  For current AWS Xamarin SDK functionality, please leverage links and information provided at links above. 
 
 __________
@@ -45,5 +44,5 @@ Here are some resources that can help you get started:
 
 
   [1]: https://github.com/aws/aws-sdk-net "https://github.com/aws/aws-sdk-net"
-  [2]: http://aws.amazon.com/lambda/ "AWS Lambda"
+  [2]: https://github.com/aws/aws-sdk-net#nuget-packages "https://github.com/aws/aws-sdk-net#nuget-packages"
   [3]: http://aws.amazon.com/lambda/ "AWS Lambda"
