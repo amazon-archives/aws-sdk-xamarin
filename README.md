@@ -3,7 +3,7 @@
 
 ##**UPDATE 07/28/2015**: 
 
-**The AWS Mobile SDK Xamarin Beta has been updated to an official Developer Preview release and can be located as a part of the AWS .NET SDK.**  The Source is located [https://github.com/aws/aws-sdk-net][1].  With the update and migration of the AWS Mobile SDK for Xamarin into the AWS .NET SDK it has also been modularized by services, therefore the NuGet packages for the individual AWS services can be retrieved here: [https://github.com/aws/aws-sdk-net#nuget-packages][2]
+**The AWS Mobile SDK Xamarin Beta has been updated to an official Developer Preview release and can be located as a part of the AWS .NET SDK.**  The Source is located [https://github.com/aws/aws-sdk-net][1]. With the update and migration of the AWS Mobile SDK for Xamarin into the AWS .NET SDK it has also been modularized by services, therefore the NuGet packages for the individual AWS services can be retrieved here: [https://github.com/aws/aws-sdk-net#nuget-packages][2]
 
 This SDK repo is now for historical purposes only and was last updated 04/2015.  For current AWS Xamarin SDK functionality, please leverage links and information provided at links above. 
 
@@ -27,7 +27,7 @@ The SDK is available on AWSLabs [here](https://github.com/awslabs/aws-sdk-xamari
  * **Amazon SNS Mobile Push**: [Amazon SNS Mobile Push](http://aws.amazon.com/sns/) is a fast, flexible, fully managed push messaging service. Amazon SNS makes it simple and cost-effective to push notifications to Apple, Google, Fire OS, and Windows devices, as well as Android devices in China with Baidu Cloud Push.
 
 
- * **AWS Lambda (preview)**: [AWS Lambda][1] is a AWS Lambda is a compute service that runs your code in response to events and automatically manages the compute resources for you, making it easy to build applications that respond quickly to new information. Newly added in v2 of the SDK
+ * **AWS Lambda (preview)**: [AWS Lambda][3] is a AWS Lambda is a compute service that runs your code in response to events and automatically manages the compute resources for you, making it easy to build applications that respond quickly to new information. Newly added in v2 of the SDK
 
  * **AWS Key Management Service (KMS)**: [AWS Key Management](http://aws.amazon.com/kms/) is a managed service that makes it easy for you to create and control the encryption keys used to encrypt your data, and uses Hardware Security Modules (HSMs) to protect the security of your keys.  Newly added in v2 of the SDK.
 
@@ -42,4 +42,8 @@ Here are some resources that can help you get started:
 * [Amazon DynamoDB Developer Guide](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/)
 * [Amazon SNS Developer Guide](http://docs.aws.amazon.com/sns/latest/dg/)
 * [AWS Xamarin SDK NuGet Package](https://www.nuget.org/packages/AWS-Mobile-SDK-Xamarin-Beta/)
-  [1]: http://aws.amazon.com/lambda/ "AWS Lambda"
+
+
+  [1]: https://github.com/aws/aws-sdk-net "https://github.com/aws/aws-sdk-net"
+  [2]: http://aws.amazon.com/lambda/ "AWS Lambda"
+  [3]: http://aws.amazon.com/lambda/ "AWS Lambda"
