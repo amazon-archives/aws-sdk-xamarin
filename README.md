@@ -1,7 +1,6 @@
-#The AWS Mobile SDK for Xamarin -
-# DEVELOPER PREVIEW Released 
+# The AWS Mobile SDK for Xamarin - DEVELOPER PREVIEW Released 
 
-##**UPDATE 07/28/2015**: 
+## **UPDATE 07/28/2015**: 
 
 **The AWS Mobile SDK Xamarin Beta has been updated to an official Developer Preview release and can be located as a part of the AWS .NET SDK.**  The Source is located [https://github.com/aws/aws-sdk-net][1]. With the update and migration of the AWS Mobile SDK for Xamarin into the AWS .NET SDK it has also been modularized by services, therefore the NuGet packages for the individual AWS services can be retrieved here: [https://github.com/aws/aws-sdk-net#nuget-packages][2]
 This SDK repo is now for historical purposes only and was last updated 05/2015.  For current AWS Xamarin SDK functionality, please leverage links and information provided at links above. 
@@ -11,7 +10,7 @@ We are making the AWS Mobile SDK for Xamarin available as a beta for you to eval
 
 The SDK is available on AWSLabs [here](https://github.com/awslabs/aws-sdk-xamarin) and is in early stage development. The current version of the SDK (v3)  has been updated to provide more features and services for evaluation.  We plan to make improvements based on your feedback, so be sure to let us know if you have questions, issues or ideas [here](https://github.com/awslabs/aws-sdk-xamarin/issues).
 
-##Highlights
+## Highlights
 
  * Included iOS Unified library in addition to Classic iOS project for iOS 64 Apple requirement and Xamarin Unified API. iOS project is Unified API to be used with iOS 64 and iOS-Classic is classic Xamarin library API.
 
@@ -30,7 +29,7 @@ The SDK is available on AWSLabs [here](https://github.com/awslabs/aws-sdk-xamari
 
  * **AWS Key Management Service (KMS)**: [AWS Key Management](http://aws.amazon.com/kms/) is a managed service that makes it easy for you to create and control the encryption keys used to encrypt your data, and uses Hardware Security Modules (HSMs) to protect the security of your keys.  Newly added in v2 of the SDK.
 
-##Resources
+## Resources
 
 Here are some resources that can help you get started:
 
